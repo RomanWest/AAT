@@ -5,9 +5,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 class Attempts(db.Model):
-	attempt_id = db.Column(db.Integer, primary_key=True)
-	user_id = db.Column(db.Integer, nullable=False)
-	assessment_id = db.Column(db.Integer, nullable=False)
+	id = db.Column(db.Integer, primary_key=True)
+	# user_id = db.Column(db.Integer, db.ForeignKey('Assessment.id'))
+	# assessment_id = db.Column(db.Integer, db.ForeignKey('Assessment.id'))
 	attempt_no = db.Column(db.Integer, nullable=False)
 	answer_1 = db.Column(db.String, nullable=False)
 	correct_1 = db.Column(db.Boolean, nullable=False)
@@ -21,7 +21,8 @@ class Attempts(db.Model):
 	is_formative = db.Column(db.Boolean,nullable=False)
 
 class Multiple(db.Model):
-	quesion_id = db.Column(db.Integer,primary_key=True)
+	id = db.Column(db.Integer,primary_key=True)
+	#assessment_id = db.Column(db.Integer, db.ForeignKey('Assessment.id'))
 	question = db.Column(db.String, nullable=False)
 	correct = db.Column(db.String, nullable=False)
 	module_code = db.Column(db.String,nullable=False)
@@ -34,7 +35,8 @@ class Multiple(db.Model):
 	feedback = db.Column(db.String,nullable=False)
 	
 class Fill(db.Model):
-	quesion_id = db.Column(db.Integer,primary_key=True)
+	id = db.Column(db.Integer,primary_key=True)
+	#assessment_id = db.Column(db.Integer, db.ForeignKey('Assessment.id'))
 	question = db.Column(db.String, nullable=False)
 	module_code = db.Column(db.String,nullable=False)
 	correct = db.Column(db.String, nullable=False)
@@ -47,20 +49,28 @@ class Fill(db.Model):
 	feedback = db.Column(db.String,nullable=False)
 
 class Assessment(db.Model):
-	assessment_id = db.Column(db.Integer,primary_key=True)
+	id = db.Column(db.Integer,primary_key=True)
+	# user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 	assessment_name = db.Column(db.String, nullable=False)
-	module_code = db.Column(db.Integer,nullable=False)
+	module_code = db.Column(db.String,nullable=False)
 	admin_created = db.Column(db.Boolean,nullable=False)
 	q1_type = db.Column(db.String, nullable=False)
-	q1_id = db.Column(db.String, nullable=False)
+	# if q1_type == "Fill":
+	# 	q1_id = db.Column(db.String, db.ForeignKey('Fill.id'))
+	# elif q1_type == "Multiple":
+	# 	q1_id = db.Column(db.String, db.ForeignKey('Multiple.id'))
+	q1_id = db.Column(db.String, db.ForeignKey('Multiple.id'))
 	q2_type = db.Column(db.String, nullable=False)
 	q2_id = db.Column(db.String, nullable=False)
 	q3_type = db.Column(db.String, nullable=False)
 	q3_id = db.Column(db.String, nullable=False)
+	# fill_q = db.relationship('Fill', foreign_keys='Fill.assessment_id', backref='assessment', lazy='dyanmic')
+	#multiple_q = db.relationship('Multiple', foreign_keys='Multiple.assessment_id', backref='assessment', lazy='dynamic')
+	#attempt = db.relationship('Attempts', foreign_keys='Attempts.assessment_id', backref='assessment', lazy='dynamic')
 
 
 	def __repr__(self):
-		return f"Assessment('{self.username}','{self.email}')"
+		return f"Assessment('{self.assessment_name}')"
 
 class User(db.Model, UserMixin):
 	id=db.Column(db.Integer,primary_key=True)
@@ -74,7 +84,8 @@ class User(db.Model, UserMixin):
 	module_1 = db.Column(db.String(20), nullable=False)
 	module_2 = db.Column(db.String(20), nullable=False)
 	module_3 = db.Column(db.String(20), nullable=False)
-
+	#student_attempt = db.relationship('Attempts',foreign_keys= 'Attempts.user_id' , backref='user', lazy='dynamic')
+	#create_assessment = db.relationship('Assessment', foreign_keys= 'Assessment.user_id', backref= 'user', lazy= 'dynamic')
 
 	
 	def __repr__(self):
