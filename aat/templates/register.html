@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="regform forms">
+    <h2 class = logintitle>REGISTRATION</h2>
+    <form class="login-register-form-container" method = 'POST' action=''>
+        {{ form.csrf_token }}
+        {{ form.username.label (class = 'login-register-form-label')}} {{ form.username (class = 'login-register-form')}}
+        {{ form.first_name.label (class = 'login-register-form-label')}} {{ form.first_name (class = 'login-register-form')}}
+        {{ form.last_name.label (class = 'login-register-form-label')}} {{ form.last_name (class = 'login-register-form')}}
+        {{ form.email.label (class = 'login-register-form-label')}} {{ form.email (class = 'login-register-form')}}
+        {{ form.password.label (class = 'login-register-form-label')}} {{ form.password (class = 'login-register-form')}}  
+        {{ form.confirm_password.label (class = 'login-register-form-label')}} {{ form.confirm_password (class = 'login-register-form')}}
+        <input class = login-register-form type="submit" value="Register">
+    </form>
+</div>
+
+{% endblock content %}
