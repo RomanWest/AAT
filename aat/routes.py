@@ -4,6 +4,10 @@ from aat import app, db
 from aat.models import User
 from aat.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, login_required, current_user
+<<<<<<< HEAD
+=======
+
+>>>>>>> a479c7a1d00e13765c2159bd213b302572f60edd
  
 @app.route("/home") 
 def home():
