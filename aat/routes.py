@@ -23,6 +23,17 @@ def login():
         flash("Email or password is incorrect")
   return render_template('login.html',title='Login',form=form)
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data, password=form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+        return redirect(url_for('home'))
+    return render_template('register.html', title='Register', form=form)
+
 @app.route("/logout")
 def logout():
     logout_user()

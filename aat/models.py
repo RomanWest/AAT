@@ -59,7 +59,7 @@ class Assessment(db.Model):
 	# 	q1_id = db.Column(db.String, db.ForeignKey('Fill.id'))
 	# elif q1_type == "Multiple":
 	# 	q1_id = db.Column(db.String, db.ForeignKey('Multiple.id'))
-	q1_id = db.Column(db.String, db.ForeignKey('Multiple.id'))
+	q1_id = db.Column(db.String, nullable=False)
 	q2_type = db.Column(db.String, nullable=False)
 	q2_id = db.Column(db.String, nullable=False)
 	q3_type = db.Column(db.String, nullable=False)
@@ -80,10 +80,10 @@ class User(db.Model, UserMixin):
 	email=db.Column(db.String(120),unique=True,nullable=False)
 	password_hash=db.Column(db.String(128))
 	password=db.Column(db.String(60),nullable=False)
-	is_admin = db.Column(db.Boolean, nullable=False,default=False)
-	module_1 = db.Column(db.String(20), nullable=False)
-	module_2 = db.Column(db.String(20), nullable=False)
-	module_3 = db.Column(db.String(20), nullable=False)
+	is_admin = db.Column(db.Boolean,default=False)
+	module_1 = db.Column(db.String(20), nullable=True)
+	module_2 = db.Column(db.String(20), nullable=True)
+	module_3 = db.Column(db.String(20), nullable=True)
 	#student_attempt = db.relationship('Attempts',foreign_keys= 'Attempts.user_id' , backref='user', lazy='dynamic')
 	#create_assessment = db.relationship('Assessment', foreign_keys= 'Assessment.user_id', backref= 'user', lazy= 'dynamic')
 
@@ -92,16 +92,16 @@ class User(db.Model, UserMixin):
 		return f"User('{self.username}','{self.email}')"
 
 
-@property
-def password(self):
-		raise AttributeError('password is not a readable attribute')
+	@property
+	def password(self):
+			raise AttributeError('password is not a readable attribute')
 
-@password.setter
-def password(self,password):
-	self.password_hash=generate_password_hash(password)
+	@password.setter
+	def password(self,password):
+		self.password_hash=generate_password_hash(password)
 
-def verify_password(self,password):
-	return check_password_hash(self.password_hash,password)
+	def verify_password(self,password):
+		return check_password_hash(self.password_hash,password)
 
 @login_manager.user_loader
 def load_user(user_id):

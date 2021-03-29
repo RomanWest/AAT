@@ -5,7 +5,7 @@ from flask_babel import _, lazy_gettext as _l
 from aat.models import User
 from flask import request
 class RegistrationForm(FlaskForm):
-    username = StringField('Username',validators=[DataRequired(),Length(min=3,max=15)])
+    username = StringField('Username',validators=[DataRequired(),Length(min=1,max=15)])
     first_name = StringField('First Name',validators=[DataRequired(),Length(min=1,max=20)])
     last_name = StringField('Last Name',validators=[DataRequired(),Length(min=1,max=20)])
     email = StringField('Email',validators=[DataRequired(),Email()])
