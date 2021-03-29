@@ -1,50 +1,57 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-  <meta charset="utf-8"> 
-  <title>AAT - Team J</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-</head>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tim's Wonderful Site</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{url_for('static', filename='style.css')}}"
+    />
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
 
-<body class="Site"> 
-  <div id="header"> 
-    <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerBlog" aria-controls="navbarTogglerBlog" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerBlog">
-          <a class="navbar-brand" href="{{ url_for('home') }}">AAT - Team J</a>
-          <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
-            </li>
-          </div> 
-        <div class="nav-item">
-          {% if current_user.is_authenticated %}
-            <a class="navbar-text"> Hello {{ current_user.username }}!</a>
-            <a class="btn btn-outline-info" href="{{ url_for('logout') }}">Logout</a>
-          {% else %}
-            <a class="navbar-text"> Hello Guest!</a> &nbsp 
-            <a class="btn btn-outline-info" href="{{ url_for('login') }}">Login</a> &nbsp
-          {% endif %}
-        </div>
+  <body>
+    <div class="header">
+      <nav class="navbuttons">
+        <a id="homebtn" class="nav-button" href="{{url_for('home')}}">HOME</a>
+      </nav>
+
+      <div class="titleholder">
+        <h1 class="title">{{}}</h1>
       </div>
-    </nav>
-  </div>
 
-  <main class="Site-content">
-    {% block content %} 
-    {% endblock %} 
-  </main> 
+      <div class="login">
+        {% if current_user.is_authenticated %}
+        <p class="greeting">Hello, {{ current_user.firstname }}!</p>
+        <br />
+        <a class="button" href="{{url_for('logout')}}">LOG OUT</a>
+        {% else %}
+        <p class="greeting">Hello, Guest!</p>
+        <br/>
+        &nbsp;
+        <a class="button" href="{{url_for('login')}}">LOG IN </a>
+        {% endif %}
+      </div>
+    </div>
+    <br />
 
-  </div>
-
-<footer>
-</footer>
-</body> 
-</html> 
+    <div class="content">
+      <div class="flash-container">
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <div class="flashes">
+          {% for message in messages %}
+          <p class="flashmsg">{{ message }}</p>
+          <span class="close">&times;</span>
+          {% endfor %}
+        </div>
+        {% endif %} {% endwith %}
+      </div>
+      {% block content %} {% endblock %}
+    </div>
+  </body>
+</html>

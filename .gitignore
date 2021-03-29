@@ -7,3 +7,4 @@ venv/
 X*.py
 .vscode/
 .env
+/aat/app
