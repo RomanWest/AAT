@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tim's Wonderful Site</title>
+    <title>Team J AAT</title>
     <link
       rel="stylesheet"
       type="text/css"
@@ -22,7 +22,9 @@
       </nav>
 
       <div class="titleholder">
-        <h1 class="title">{{}}</h1>
+        <h1 id = "maintitle" class="title">
+          
+        </h1>
       </div>
 
       <div class="login">
@@ -32,7 +34,7 @@
         <a class="button" href="{{url_for('logout')}}">LOG OUT</a>
         {% else %}
         <p class="greeting">Hello, Guest!</p>
-        <br/>
+        <br />
         &nbsp;
         <a class="button" href="{{url_for('login')}}">LOG IN </a>
         {% endif %}
@@ -54,4 +56,5 @@
       {% block content %} {% endblock %}
     </div>
   </body>
+  <script src = "{{ url_for('static', filename='script/script.js')}}"></script>
 </html>
