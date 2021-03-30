@@ -76,16 +76,16 @@ body {
 }
 
 .button {
-  font-size: 2.2rem;
+  font-size: 2.0rem;
   color: white;
   text-decoration: none;
   padding: 2rem;
   border-radius: 4rem;
   transition: 0.3s;
-  background-color: #3546A3;
+  background-color: #acacac;
 }
 .button:hover {
-  background-color:rgb(90, 91, 168);
+  background-color:#807f7f;
 }
 .greeting {
   align-self: center;
@@ -173,6 +173,47 @@ body {
   justify-self:end;
 }
 
+/* STAFF HOME */
+
+.Admin-home-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+.module-dropdown{
+  border-radius: 4rem;
+  height: 3rem;
+  width: 15%;
+  border:1rem;
+  font-size: 2rem;
+}
+.create-assessments {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  white-space: normal;
+}
+.view-stats{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  white-space: normal;
+}
+.admin-home-btn{
+  margin-bottom: 1rem;
+}
+.view-assessments{
+  background-color: #acacac;
+  border-radius: 1rem;
+}
+.assessments-table ,th ,td {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
 
 /* HOME & POSTS */
 

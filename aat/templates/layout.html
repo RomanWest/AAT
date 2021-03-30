@@ -29,7 +29,8 @@
 
       <div class="login">
         {% if current_user.is_authenticated %}
-        <p class="greeting">Hello, {{ current_user.firstname }}!</p>
+        <p class="greeting">Hello, {{ current_user.first_name }}!</p>
+        &nbsp;
         <br />
         <a class="button" href="{{url_for('logout')}}">LOG OUT</a>
         {% else %}
