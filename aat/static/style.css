@@ -76,16 +76,16 @@ body {
 }
 
 .button {
-  font-size: 2.2rem;
+  font-size: 2.0rem;
   color: white;
   text-decoration: none;
   padding: 2rem;
   border-radius: 4rem;
   transition: 0.3s;
-  background-color: #3546A3;
+  background-color: #acacac;
 }
 .button:hover {
-  background-color:rgb(90, 91, 168);
+  background-color:#807f7f;
 }
 .greeting {
   align-self: center;
@@ -173,6 +173,47 @@ body {
   justify-self:end;
 }
 
+/* STAFF HOME */
+
+.Admin-home-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+.module-dropdown{
+  border-radius: 4rem;
+  height: 3rem;
+  width: 15%;
+  border:1rem;
+  font-size: 2rem;
+}
+.create-assessments {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  white-space: normal;
+}
+.view-stats{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  white-space: normal;
+}
+.admin-home-btn{
+  margin-bottom: 1rem;
+}
+.view-assessments{
+  background-color: #acacac;
+  border-radius: 1rem;
+}
+.assessments-table ,th ,td {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
 
 /* HOME & POSTS */
 
@@ -298,14 +339,15 @@ body {
 }
 .forms {
   display: flex;
-  flex-direction: column;
   text-align: center;
+  color: white;
   align-items: stretch;
   align-content: center;
-  margin-right: 30%;
-  margin-left: 30%;
+  margin-right: 20%;
+  margin-left: 20%;
   padding-bottom: 15%;
   padding-top: 10%;
+
 
 }
 
@@ -316,20 +358,15 @@ body {
 }
 
 .login-register-form-container {
-  margin-left: auto;
-  margin-right: auto;
-  background-color: lightgray;
+
+  background-color: #4A8BAF;
   border: 1px solid black;
   border-radius: 1rem;
-  /* padding-left: 10%;
-  padding-right: 10%; */
-  padding-bottom: 0%;
+  padding: 10% 30% 15% 30%;
   margin-top:0;
-  
   width:100%;
   display: flex;
   flex-direction: column;
-
 
 }
 
