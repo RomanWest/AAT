@@ -6,9 +6,12 @@ from aat.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, login_required, current_user
  
 @app.route("/Staff-Home") 
-def home():
+def staffhome():
     return render_template('Staff Home.html')
 
+@app.route("/Student-Home")
+def studenthome():
+    return render_template("Student Home.html")
 @app.route("/")
 @app.route("/login",methods=['GET','POST'])
 def login():
@@ -18,7 +21,10 @@ def login():
     if user is not None and user.verify_password(form.password.data):
         login_user(user)
         flash('Login successful!')
-        return redirect(url_for('home'))
+        if user.is_admin:
+            return redirect(url_for('staffhome'))
+        else:
+            return redirect(url_for("studenthome"))
     else:
         flash("Email or password is incorrect")
   return render_template('login.html',title='Login',form=form)
@@ -38,4 +44,4 @@ def register():
 def logout():
     logout_user()
     flash('Logout successful!')
-    return redirect(url_for('home'))
+    return redirect(url_for('login'))
