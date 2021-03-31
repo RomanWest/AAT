@@ -30,9 +30,9 @@ if (window.location.pathname == "/login"){
 
 //code to replace left margin with sidebar on student home
 //i changed == to includes so that itll work when we add additional routes after e.g student-home/stats
-// if (window.location.pathname.includes("/Student-Home")){
-//   document.getElementsById("content").style.marginLeft= "0";
-// }
-// else{
-//   document.getElementById("content").style.marginLeft= "10%";
-// }
+if (window.location.pathname.includes("/Student-Home")){
+  document.getElementsById("content").style.marginLeft= "0";
+}
+else{
+  document.getElementById("content").style.marginLeft= "10%";
+}
