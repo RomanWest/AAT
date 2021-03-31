@@ -1,5 +1,29 @@
 {% extends "layout.html" %}
 {% block content %}
+{% for error in form.username.errors%}
+    <div class=flashes>
+        <p class = flashmsg>{{ error }}</p>
+        <span class="close">&times;</span>
+    </div>
+{% endfor %}
+{% for error in form.email.errors %}
+<div class=flashes>
+    <p class = flashmsg>{{ error }}</p>
+    <span class="close">&times;</span>
+</div>
+{% endfor %}
+{% for error in form.password.errors %}
+<div class=flashes>
+    <p class = flashmsg>{{ error }}</p>
+    <span class="close">&times;</span>
+</div>
+{%endfor%}
+{%for error in form.confirm_password.errors %}
+<div class=flashes>
+    <p class = flashmsg>{{ error }}</p>
+    <span class="close">&times;</span>
+</div>
+{% endfor%}
 <div class="regform forms">
     <h2 class = logintitle>REGISTRATION</h2>
     <form class="login-register-form-container" method = 'POST' action=''>

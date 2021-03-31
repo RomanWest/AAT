@@ -18,7 +18,11 @@
   <body>
     <div class="header">
       <nav class="navbuttons">
-        <a id="homebtn" class="nav-button" href="{{url_for('home')}}">HOME</a>
+        {% if current_user.is_admin %}
+          <a id="homebtn" class="nav-button" href="{{url_for('staffhome')}}">HOME</a>
+        {%else%}
+          <a id="homebtn" class="nav-button" href="{{url_for('studenthome')}}">HOME</a>
+        {%endif%}
       </nav>
 
       <div class="titleholder">
@@ -34,7 +38,7 @@
         <br />
         <a class="button" href="{{url_for('logout')}}">LOG OUT</a>
         {% else %}
-        <p class="greeting">Hello, Guest!</p>
+        <p class="greeting">Hello, Guest!</p> &nbsp; &nbsp;
         <br />
         &nbsp;
         <a class="button" href="{{url_for('login')}}">LOG IN </a>
@@ -42,18 +46,18 @@
       </div>
     </div>
     <br />
-
-    <div class="content">
-      <div class="flash-container">
-        {% with messages = get_flashed_messages() %} {% if messages %}
-        <div class="flashes">
-          {% for message in messages %}
-          <p class="flashmsg">{{ message }}</p>
-          <span class="close">&times;</span>
-          {% endfor %}
-        </div>
-        {% endif %} {% endwith %}
+    <div class="flash-container">
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <div class="flashes">
+        {% for message in messages %}
+        <p class="flashmsg">{{ message }}</p>
+        <span class="close">&times;</span>
+        {% endfor %}
       </div>
+      {% endif %} {% endwith %}
+    </div>
+    <div id = "content" class="content">
+      
       {% block content %} {% endblock %}
     </div>
   </body>
