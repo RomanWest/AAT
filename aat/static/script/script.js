@@ -23,7 +23,7 @@ for (i = 0; i < close.length; i++) {
 
 //code to hide the home button if user is not logged in and on the login page
 
-if (window.location.pathname == "/login"){
+if (window.location.pathname == "/login" || window.location.pathname == "/"){
  document.getElementById("homebtn").style.display= "none";
 }
 
