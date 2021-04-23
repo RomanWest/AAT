@@ -4,6 +4,8 @@ from flask import current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+
+
 class Attempts(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	# user_id = db.Column(db.Integer, db.ForeignKey('Assessment.id'))
@@ -48,9 +50,15 @@ class Fill(db.Model):
 	is_formative = db.Column(db.Boolean,nullable=False)
 	feedback = db.Column(db.String,nullable=False)
 
+
+# user_to_quiz = db.Table('user_to_quiz',
+# 	db.Column('user_id', db.Integer, db.ForeignKey('User.id')),
+# 	db.Column('assessment_id', db.Integer, db.ForeignKey('Assessment.id'))
+# 	)
+
 class Assessment(db.Model):
-	id = db.Column(db.Integer,primary_key=True)
-	# user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+	id = db.Column(db.Integer, primary_key=True)
+	#user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
 	assessment_name = db.Column(db.String, nullable=False)
 	module_code = db.Column(db.String,nullable=False)
 	admin_created = db.Column(db.Boolean,nullable=False)
@@ -64,7 +72,15 @@ class Assessment(db.Model):
 	q2_id = db.Column(db.String, nullable=False)
 	q3_type = db.Column(db.String, nullable=False)
 	q3_id = db.Column(db.String, nullable=False)
-	# fill_q = db.relationship('Fill', foreign_keys='Fill.assessment_id', backref='assessment', lazy='dyanmic')
+
+	# user_to_quiz_relationship = db.relationship('User', 
+	# 	secondary = user_to_quiz, 
+	# 	primaryjoin = (user_to_quiz.c.assessment_id == id),
+	# 	foreign_keys = "User.id",
+	# 	backref = db.backref("user_to_quiz", lazy = "dynamic"), lazy = "dynamic"
+	# 	)
+		
+	#fill_q = db.relationship('Fill', foreign_keys='Fill.assessment_id', backref='assessment', lazy='dyanmic')
 	#multiple_q = db.relationship('Multiple', foreign_keys='Multiple.assessment_id', backref='assessment', lazy='dynamic')
 	#attempt = db.relationship('Attempts', foreign_keys='Attempts.assessment_id', backref='assessment', lazy='dynamic')
 
@@ -74,6 +90,7 @@ class Assessment(db.Model):
 
 class User(db.Model, UserMixin):
 	id=db.Column(db.Integer,primary_key=True)
+	#assessment_id = db.Column(db.Integer, db.ForeignKey('Assessment.id'))
 	username=db.Column(db.String(15),unique=True,nullable=False)
 	first_name=db.Column(db.String(20),unique=True,nullable=False)
 	last_name=db.Column(db.String(20),unique=True,nullable=False)
@@ -84,6 +101,15 @@ class User(db.Model, UserMixin):
 	module_1 = db.Column(db.String(20), nullable=True)
 	module_2 = db.Column(db.String(20), nullable=True)
 	module_3 = db.Column(db.String(20), nullable=True)
+
+	# user_to_quiz_relationship = db.relationship('Assessment', 
+	# 	secondary=user_to_quiz, 
+	# 	primaryjoin = (user_to_quiz.c.user_id == id),
+	# 	foreign_keys = "Assessment.id",
+	# 	backref = db.backref("user_to_quiz", lazy = "dynamic"), lazy = "dynamic"	
+	# 	)
+		
+
 	#student_attempt = db.relationship('Attempts',foreign_keys= 'Attempts.user_id' , backref='user', lazy='dynamic')
 	#create_assessment = db.relationship('Assessment', foreign_keys= 'Assessment.user_id', backref= 'user', lazy= 'dynamic')
 

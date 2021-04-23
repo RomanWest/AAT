@@ -12,7 +12,7 @@ def staffhome():
 @app.route("/Student-Home")
 def studenthome():
     return render_template("Student Home.html")
-@app.route("/")
+@app.route("/",methods=['GET','POST'])
 @app.route("/login",methods=['GET','POST'])
 def login():
   form = LoginForm()
