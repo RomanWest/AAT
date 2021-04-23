@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="admin-main">
+<div class = "Admin-home-buttons">
+  <select class = module-dropdown name="modules">
+    <option value="">Select Module</option>
+    <option value="Module1">Module 1</option>
+    <option value="Module2">Module2</option>
+    <option value="Module3">Module3</option>
+  </select>
+  <div class = "create-assessments">
+    <a class="button admin-home-btn" href="">Create a new Sumative Assessment</a>
+    <a class="button admin-home-btn" href="">Create a new Formative Assessment</a>
+  </div>
+  <div class = "view-stats">
+    <a class="button admin-home-btn" href="">View Cohort Statistics</a>
+    <a class="button admin-home-btn" href="">View Student Statistics</a>
+  </div>
+</div>
+<div class = "view-assessments">
+  <h1>view assessments:</h1>
+  <table class = "assessments-table">
+    <tr>
+      <th>Assessment name</th>
+      <th>Completion</th>
+      <th>etc....</th>
+    </tr>
+
+  </table>
+</div>
+</div>
+
+
+
+
+{% endblock content %}
