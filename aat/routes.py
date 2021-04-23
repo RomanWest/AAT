@@ -45,3 +45,7 @@ def logout():
     logout_user()
     flash('Logout successful!')
     return redirect(url_for('login'))
+
+@app.route("/Create-Formative") 
+def formativehome():
+    return render_template('Create Formative.html')
