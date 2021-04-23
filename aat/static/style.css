@@ -37,7 +37,9 @@ body {
 }
 .navbuttons {
   margin-left: 10%;
+  min-width: 15%;
 }
+
 .nav-button {
   font-size: 2.2rem;
   color: white;
