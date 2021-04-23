@@ -4,14 +4,19 @@ from aat import app, db
 from aat.models import User
 from aat.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, login_required, current_user
+from aat.testroute import test
  
 @app.route("/Staff-Home") 
 def staffhome():
     return render_template('Staff Home.html')
 
-@app.route("/Student-Home")
+@app.route("/Student-Home", methods=["GET", 'POST'])
 def studenthome():
+    test()
     return render_template("Student Home.html")
+
+
+
 @app.route("/",methods=['GET','POST'])
 @app.route("/login",methods=['GET','POST'])
 def login():
@@ -37,7 +42,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        return redirect(url_for('home'))
+        return redirect(url_for('staffhome'))
     return render_template('register.html', title='Register', form=form)
 
 @app.route("/logout")
