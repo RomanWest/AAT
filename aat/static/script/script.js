@@ -2,11 +2,11 @@
 if (window.location.pathname == "/"){
     document.getElementById("maintitle").innerHTML = "LOGIN"
 }
+
 //IMPORTANT
 // as long as all the names of the routes are in the format student-home or staff-home, the main title will be correct
-
 else {
-    document.getElementById("maintitle").innerHTML = window.location.pathname.split("/")[1].toUpperCase().replace("-", " ");
+    document.getElementById("maintitle").innerHTML = window.location.pathname.split("/")[1].toUpperCase().replace(/-/g, " ");
 }
 
 //code to make the x work on flash messages
