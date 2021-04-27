@@ -50,5 +50,49 @@ def logout():
     return redirect(url_for('login'))
 
 @app.route("/Create-Formative") 
-def formativehome():
+def createFormative():
     return render_template('Create Formative.html')
+
+@app.route("/Student-View-Progress") 
+def studentViewProgress():
+    return render_template('Student View Progress.html')
+
+@app.route("/Student-View-Attempts") 
+def studentViewAttempts():
+    return render_template('Student View Attempts.html')
+
+@app.route("/View-Quiz-Attempt") 
+def viewQuizAttempt():
+    return render_template('View Quiz Attempt.html')
+
+@app.route("/Generate-Quiz") 
+def generateQuiz():
+    return render_template('Generate Quiz.html')
+
+@app.route("/Attempt-Assessment") 
+def attemptAssessment():
+    return render_template('Attempt Assessment.html')
+
+@app.route("/View-Cohort") 
+def viewCohort():
+    return render_template('View Cohort.html')
+
+@app.route("/View-Student") 
+def viewStudent():
+    return render_template('View Student.html')
+
+@app.route("/Create-Summative") 
+def createSummative():
+    return render_template('Create Summative.html')
+
+@app.route("/Create-Question") 
+def createQuestion():
+    return render_template('Create Question.html')
+
+@app.route("/Preview-Assessment") 
+def previewAssessment():
+    return render_template('Preview Assessment.html')
+
+@app.route("/Submit-Assessment") 
+def submitAssessment():
+    return render_template('Submit Assessment.html')
