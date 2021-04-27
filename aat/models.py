@@ -4,10 +4,14 @@ from flask import current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+
+#Attempts class contains student attempt records
 class Attempts(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	# user_id = db.Column(db.Integer, db.ForeignKey('Assessment.id'))
-	# assessment_id = db.Column(db.Integer, db.ForeignKey('Assessment.id'))
+	#who has attempted
+	user_id = db.Column(db.Integer)
+	#which assessment attempted
+	assessment_id = db.Column(db.Integer)
 	attempt_no = db.Column(db.Integer, nullable=False)
 	answer_1 = db.Column(db.String, nullable=False)
 	correct_1 = db.Column(db.Boolean, nullable=False)
@@ -20,9 +24,9 @@ class Attempts(db.Model):
 	date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 	is_formative = db.Column(db.Boolean,nullable=False)
 
+#multiple means multiple choice type question
 class Multiple(db.Model):
 	id = db.Column(db.Integer,primary_key=True)
-	#assessment_id = db.Column(db.Integer, db.ForeignKey('Assessment.id'))
 	question = db.Column(db.String, nullable=False)
 	correct = db.Column(db.String, nullable=False)
 	module_code = db.Column(db.String,nullable=False)
@@ -33,45 +37,41 @@ class Multiple(db.Model):
 	difficulty = db.Column(db.String, nullable=False)
 	is_formative = db.Column(db.Boolean,nullable=False)
 	feedback = db.Column(db.String,nullable=False)
-	
+
+#fill means fill in the blanks type question
 class Fill(db.Model):
 	id = db.Column(db.Integer,primary_key=True)
-	#assessment_id = db.Column(db.Integer, db.ForeignKey('Assessment.id'))
 	question = db.Column(db.String, nullable=False)
 	module_code = db.Column(db.String,nullable=False)
 	correct = db.Column(db.String, nullable=False)
-	blank_1 = db.Column(db.String,nullable=False)
-	blank_2 = db.Column(db.String,nullable=False)
-	blank_3 = db.Column(db.String,nullable=False)
+	blank = db.Column(db.String,nullable=False)
 	difficulty = db.Column(db.String, nullable=False)
 	date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 	is_formative = db.Column(db.Boolean,nullable=False)
 	feedback = db.Column(db.String,nullable=False)
 
+
+
+#Assessment is a collection of 3 questions that could be fill or multiple
 class Assessment(db.Model):
-	id = db.Column(db.Integer,primary_key=True)
-	# user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+	id = db.Column(db.Integer, primary_key=True)
+	#lecturer that made it
+	user_id = db.Column(db.Integer)
 	assessment_name = db.Column(db.String, nullable=False)
 	module_code = db.Column(db.String,nullable=False)
 	admin_created = db.Column(db.Boolean,nullable=False)
 	q1_type = db.Column(db.String, nullable=False)
-	# if q1_type == "Fill":
-	# 	q1_id = db.Column(db.String, db.ForeignKey('Fill.id'))
-	# elif q1_type == "Multiple":
-	# 	q1_id = db.Column(db.String, db.ForeignKey('Multiple.id'))
 	q1_id = db.Column(db.String, nullable=False)
 	q2_type = db.Column(db.String, nullable=False)
 	q2_id = db.Column(db.String, nullable=False)
 	q3_type = db.Column(db.String, nullable=False)
 	q3_id = db.Column(db.String, nullable=False)
-	# fill_q = db.relationship('Fill', foreign_keys='Fill.assessment_id', backref='assessment', lazy='dyanmic')
-	#multiple_q = db.relationship('Multiple', foreign_keys='Multiple.assessment_id', backref='assessment', lazy='dynamic')
-	#attempt = db.relationship('Attempts', foreign_keys='Attempts.assessment_id', backref='assessment', lazy='dynamic')
-
 
 	def __repr__(self):
 		return f"Assessment('{self.assessment_name}')"
 
+
+#the users, both admin and students
 class User(db.Model, UserMixin):
 	id=db.Column(db.Integer,primary_key=True)
 	username=db.Column(db.String(15),unique=True,nullable=False)
@@ -84,10 +84,7 @@ class User(db.Model, UserMixin):
 	module_1 = db.Column(db.String(20), nullable=True)
 	module_2 = db.Column(db.String(20), nullable=True)
 	module_3 = db.Column(db.String(20), nullable=True)
-	#student_attempt = db.relationship('Attempts',foreign_keys= 'Attempts.user_id' , backref='user', lazy='dynamic')
-	#create_assessment = db.relationship('Assessment', foreign_keys= 'Assessment.user_id', backref= 'user', lazy= 'dynamic')
 
-	
 	def __repr__(self):
 		return f"User('{self.username}','{self.email}')"
 
