@@ -8,3 +8,4 @@ X*.py
 .vscode/
 .env
 /aat/app.db
+/aat/__pycache__/

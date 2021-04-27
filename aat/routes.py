@@ -13,15 +13,9 @@ def staffhome():
 @app.route("/Student-Home", methods=["GET", 'POST'])
 def studenthome():
     test()
-    return render_template("Student Home.html")
-<<<<<<< HEAD
+    return render_template("Student Home.html") 
+
 @app.route("/", methods=["GET", "POST"])
-=======
-
-
-
-@app.route("/",methods=['GET','POST'])
->>>>>>> tim
 @app.route("/login",methods=['GET','POST'])
 def login():
   form = LoginForm()
