@@ -1,33 +1,82 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="admin-main">
-<div class = "Admin-home-buttons">
-  <select class = module-dropdown name="modules">
-    <option value="">Select Module</option>
-    <option value="Module1">Module 1</option>
-    <option value="Module2">Module2</option>
-    <option value="Module3">Module3</option>
-  </select>
-  <div class = "create-assessments">
-    <a class="button admin-home-btn" href="">Create a new Sumative Assessment</a>
-    <a class="button admin-home-btn" href="">Create a new Formative Assessment</a>
-  </div>
-  <div class = "view-stats">
-    <a class="button admin-home-btn" href="">View Cohort Statistics</a>
-    <a class="button admin-home-btn" href="">View Student Statistics</a>
-  </div>
-</div>
-<div class = "view-assessments">
-  <h1>view assessments:</h1>
-  <table class = "assessments-table">
-    <tr>
-      <th>Assessment name</th>
-      <th>Completion</th>
-      <th>etc....</th>
-    </tr>
+<div class="admin-create-formative">
+  <div class="Top-dropdown">
+    <select class=module-dropdown name="modules">
+      <option value="">Select Module</option>
+      <option value="Module1">Module 1</option>
+      <option value="Module2">Module2</option>
+      <option value="Module3">Module3</option>
+    </select>
 
-  </table>
-</div>
+    <select class=assessment-dropdown name="assessments">
+      <option value="">Select Assessment Type</option>
+      <option value="Module1">Formative</option>
+      <option value="Module2">Summative</option>
+    </select>
+  </div>
+
+  <div id="quiz-questions-container">
+
+    <div class="question-container-head">
+      <h1>Quiz Questions</h1>
+      <h1>Unused Questions</h1>
+    </div>
+
+    <div id="question-container-main">
+      <ul id="chosen-questions">
+        <li>Question 1</li>
+        <li>Question 2</li>
+        <li>Question 3</li>
+        <li>Question 5</li>
+      </ul>
+
+      <a id="chose-question-button" class="button"> <<< </a>
+      <a id="remove-question-button" class="button"> >>> </a>
+
+      <ul id="other-questions">
+        <li>Question 4</li>
+        <li>Question 6</li>
+        <li>Question 7</li>
+        <li>Question 8</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="question-preview">
+
+    <div class="question-preview-head">
+      <h1>Question Preview</h1>
+      <h1>Question Type</h1>
+      *TYPE*
+    </div>
+
+    <div class="muliple-choice-question">
+      <h3>Question</h3>
+      *TEXT*
+      <h3>Topic</h3>
+      *TOPIC TEXT*
+      <h3>Date Created</h3>
+      *DATE CREATE*
+      <h3>Date Last Used</h3>
+      *DATE USED*
+      <h3>Answer 1</h3>
+      *ANSWER1*
+      <h3>Answer 2</h3>
+      *ANSWER2*
+      <h3>Answer 3</h3>
+      *ANSWER3*
+      <h3>Answer 4</h3>
+      *ANSWER4*
+      <h3>Difficulty</h3>
+      *DIFFICULTY*
+      <h3>Incorrect Answer Feedback</h3>
+      *FEEDBACK*
+    </div>
+
+  </div>
+
 </div>
 
 
