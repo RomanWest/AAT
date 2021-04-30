@@ -170,7 +170,7 @@ body {
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
-.module-dropdown {
+.admin-main .module-dropdown {
   border-radius: 4rem;
   height: 3rem;
   width: 15%;
@@ -459,4 +459,129 @@ td {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Create Formative */
+.admin-create-formative{
+  width:100%;
+}
+
+.Top-dropdown{
+  display:inline-flex;
+}
+
+.Top-dropdown .module-dropdown{
+  border-radius: 4rem;
+  height: 3rem;
+  border: 1rem;
+  font-size: 2rem;
+}
+
+.Top-dropdown .assessment-dropdown{
+  border-radius: 4rem;
+  height: 3rem;
+  border: 1rem;
+  font-size: 2rem;
+}
+
+#quiz-questions-container{
+  background-color: #C4C4C4;
+  border: 1rem;
+  border-radius: 2rem;
+}
+
+.question-container-head{
+  background-color: antiquewhite;
+  display:inline-flex;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+#question-container-main{
+  background-color: #3546a3;
+  display:flex;
+  justify-content: space-between;
+}
+
+.chosen-q{
+  width:40%;
+  background-color: rgb(252, 177, 177);
+  margin:1rem;
+}
+
+.unchosen-q{
+  width:40%;
+  background-color: rgb(252, 177, 177);
+  margin:1rem;
+}
+
+.move-button{
+  display:grid;
+  margin:1rem;
+  justify-content:space-around;
+}
+
+.move-button .button{
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+  margin:1rem;
+  border-radius: 4rem;
+  transition: 0.3s;
+  background-color: #acacac;
+}
+
+.question-preview-head{
+  width:100%;
+  display:inline-flex;
+  justify-content: space-between;
+}
+
+.multiple-choice-question{
+  display:grid;
+  background-color: #3546a3;
+  margin:2rem;
+}
+
+#cont{
+  display:flex;
+  justify-content:space-between;
+}
+
+#top{
+  background-color: rgb(252, 177, 177);
+}
+
+#col1{
+  background-color: #717171;
+}
+
+#col2{
+  background-color: #acacac;
+}
+
+#col3{
+  background-color: #717171;
+}
+
+#col4{
+  background-color: #acacac;
+}
+
+.foot{
+  display:flex;
+  justify-content: flex-end;
+}
+
+.foot .button{
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+  margin:1rem;
+  border-radius: 4rem;
+  transition: 0.3s;
 }

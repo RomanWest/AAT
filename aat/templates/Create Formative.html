@@ -24,22 +24,30 @@
     </div>
 
     <div id="question-container-main">
-      <ul id="chosen-questions">
-        <li>Question 1</li>
-        <li>Question 2</li>
-        <li>Question 3</li>
-        <li>Question 5</li>
-      </ul>
+      <div class="chosen-q">
+        <ul id="chosen-questions">
+          <li>Question 1</li>
+          <li>Question 2</li>
+          <li>Question 3</li>
+          <li>Question 5</li>
+        </ul>
+      </div>
 
-      <a id="chose-question-button" class="button"> <<< </a>
-      <a id="remove-question-button" class="button"> >>> </a>
+      <div class="move-button">
+        <a id="chose-question-button" class="button">
+          <<< </a>
+            <a id="remove-question-button" class="button"> >>> </a>
+            <a id="add-question-button" class="button"> add </a>
+      </div>
 
-      <ul id="other-questions">
-        <li>Question 4</li>
-        <li>Question 6</li>
-        <li>Question 7</li>
-        <li>Question 8</li>
-      </ul>
+      <div class="unchosen-q">
+        <ul id="other-questions">
+          <li>Question 4</li>
+          <li>Question 6</li>
+          <li>Question 7</li>
+          <li>Question 8</li>
+        </ul>
+      </div>
     </div>
 
   </div>
@@ -52,27 +60,49 @@
       *TYPE*
     </div>
 
-    <div class="muliple-choice-question">
-      <h3>Question</h3>
-      *TEXT*
-      <h3>Topic</h3>
-      *TOPIC TEXT*
-      <h3>Date Created</h3>
-      *DATE CREATE*
-      <h3>Date Last Used</h3>
-      *DATE USED*
-      <h3>Answer 1</h3>
-      *ANSWER1*
-      <h3>Answer 2</h3>
-      *ANSWER2*
-      <h3>Answer 3</h3>
-      *ANSWER3*
-      <h3>Answer 4</h3>
-      *ANSWER4*
-      <h3>Difficulty</h3>
-      *DIFFICULTY*
-      <h3>Incorrect Answer Feedback</h3>
-      *FEEDBACK*
+    <div class="multiple-choice-question">
+      <div id="top">
+        <h3>Question</h3>
+        *TEXT*
+      </div>
+
+      <div id="cont">
+
+        <div id="col1">
+          <h3>Topic</h3>
+          *TOPIC TEXT*
+          <h3>In Use Y/N</h3>
+          *Y/N*
+          <h3>Difficulty</h3>
+          *DIFFICULTY*
+        </div>
+
+        <div id="col2">
+          <h3>Answer 1</h3>
+          *ANSWER1*
+          <h3>Answer 2</h3>
+          *ANSWER2*
+        </div>
+
+        <div id="col3">
+          <h3>Answer 3</h3>
+          *ANSWER3*
+          <h3>Answer 4</h3>
+          *ANSWER4*
+        </div>
+
+        <div id="col4">
+          <h3>Incorrect Answer Feedback</h3>
+          *FEEDBACK*
+        </div>
+        
+      </div>
+
+    </div>
+
+    <div class = "foot">
+      <a id="save-button" class="button"> Save </a>
+      <a id="preview-button" class="button"> Preview </a>
     </div>
 
   </div>
