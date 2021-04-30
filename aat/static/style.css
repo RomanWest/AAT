@@ -548,6 +548,7 @@ td {
   background-color: #C4C4C4;
   border-radius:1rem;
   font-size:1.7rem;
+  padding:0.5rem;
 }
 
 .question-preview-head #type{
@@ -580,25 +581,25 @@ td {
 #col1{
   margin-top:1rem;
   margin-bottom:1rem;
-  width: 20%;
+  min-width:20%;
 }
 
 #col2{
   margin-top:1rem;
   margin-bottom:1rem;
-  width: 20%;
+  min-width:20%;
 }
 
 #col3{
   margin-top:1rem;
   margin-bottom:1rem;
-  width: 20%;
+  min-width:20%;
 }
 
 #col4{
   margin-top:1rem;
   margin-bottom:1rem;
-  width: 20%;
+  min-width:20%;
 }
 
 .foot{
