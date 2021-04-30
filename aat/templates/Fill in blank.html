@@ -1,5 +1,6 @@
 {% extends "layout.html" %} {% block content %}
 <div class="mainbit">
+
   <div class="top-part">
     <div class="question-type-dropdown">
       <label class="pagetitle" for="question type">Question Type:</label> &nbsp;
@@ -26,14 +27,34 @@
     <div class="bottom-inputs">
       <div class="module-and-date">
         <div class="module">
-          <label class="question-label" for="question">Question</label>
-          <input class="question-input" type="text" id="question" name="question"/>
-
+          <label class="question-label" for="module">Module</label>
+          <input class="module-input" type="text" id="module" name="module"/>
         </div>
-       </div>
-    <div class="answer"></div>
+      </div>
+
+    <div class="answer-and-difficulty">
+      <label class="question-label" for="answer">Answer</label>
+      <input class="question-input" type="text" id="answer" name="answer"/>
+      <label class="question-label" for="incorrect">Incorrect Answer Feedback:</label>
+      <input class="question-input" type="text" id="incorrect" name="incorrect"/>
+      <label class="question-label" for="incorrect">Difficulty</label>
+      <select class="dropdown-menu-questions" name="question type">
+        <option value="Fill in the Blank">Easy</option>
+        <option value="Multiple Choice">Hard</option>
+      </select>
+
+
+    </div>
       
     </div>
   </div>
+  <form class="save" method="POST" action="">
+    <input
+      class="save-btn"
+      type="submit"
+      name="Save"
+      value="Save Question"
+    />
+  </form>
 </div>
 {% endblock content %}
