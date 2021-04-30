@@ -537,10 +537,18 @@ td {
 }
 
 .question-preview-head h5 {
-  min-width:20%;
+  margin-left:1rem;
+  min-width: 10vw;
   text-align: center;
+  align-self: center;
   background-color: #C4C4C4;
   border-radius:1rem;
+  font-size:1.7rem;
+}
+
+.question-preview-head #type{
+  display:inline-flex;
+  justify-content: space-around;
 }
 
 .multiple-choice-question h5{
