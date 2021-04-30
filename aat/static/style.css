@@ -205,6 +205,13 @@ td {
   border-collapse: collapse;
 }
 
+.create-questions{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  white-space: normal;
+}
+
 
 
 /* STUDENT HOME */

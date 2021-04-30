@@ -7,5 +7,6 @@ venv/
 X*.py
 .vscode/
 .env
+*.db
 /aat/app.db
 /aat/__pycache__/
