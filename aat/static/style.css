@@ -22,7 +22,7 @@ body {
   display: flex;
   align-items: center;
   position: fixed;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
   top: 0;
   left: 0;
@@ -298,80 +298,32 @@ td {
   float: right;
 }
 
-.likecontainer {
-  float: right;
-  margin: 1rem;
-  margin-right: 5rem;
-}
-.like {
-  font-weight: 600;
-}
-/*like buttons*/
-.unlike {
-  background-color: rgb(90, 91, 168) !important;
-  transition: 0.3s;
-}
-.unlike:hover {
-  background-color: #2b2f4e !important;
-}
-.likebtn {
-  font-size: 1.4rem;
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin: 0.5rem;
-  border-radius: 4rem;
-  background-color: #2b2f4e;
-  transition: 0.3s;
-}
-.likebtn:hover {
-  background-color: rgb(90, 91, 168);
-}
-
-/* ALL POSTS */
-.posts {
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-.postimgcontainer {
+/* FILL IN BLANK */
+.mainbit{
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  display: inline-flex;
-  justify-content: flex-end;
+}
+.top-part{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.dropdown-menu-questions{
+  
+  font-size: 2rem;
+  font-weight: 400;
+  
 }
 
-.imglink {
-  width: 25%;
-  margin-right: 5rem;
-}
-
-/* INDIVIDUAL POST */
-
-.indiv-post-img {
-  width: 35%;
-  margin: 0 0 0 1rem;
-  float: right;
-}
-
-.comments-container {
-  background-color: rgba(131, 141, 173, 0.397);
+.question-maker-container{
+  width: 100%;
+  background-color: #C4C4C4;
   padding: 2rem;
-  padding-top: 1rem;
-  border-radius: 1rem;
-  width: 60%;
+  border-radius: 2rem;
 }
 
-.comment-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  font-style: italic;
-}
-
-.comment-content {
-  font-size: 1.4rem;
-}
 
 /* login*/
 

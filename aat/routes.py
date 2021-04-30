@@ -88,8 +88,12 @@ def createSummative():
 @app.route("/Create-Question") 
 def createQuestion():
     return render_template('Create Question.html')
+@app.route("/Create-Fill-in-the-Blank")
 
+def FillintheBlank():
+    return render_template("Fill in blank.html")
 @app.route("/Preview-Assessment") 
+
 def previewAssessment():
     return render_template('Preview Assessment.html')
 
