@@ -462,6 +462,7 @@ td {
   height: 3rem;
   border: 1rem;
   font-size: 2rem;
+  margin:1rem;
 }
 
 .Top-dropdown .assessment-dropdown{
@@ -469,6 +470,7 @@ td {
   height: 3rem;
   border: 1rem;
   font-size: 2rem;
+  margin:1rem;
 }
 
 #quiz-questions-container{
@@ -478,7 +480,6 @@ td {
 }
 
 .question-container-head{
-  background-color: antiquewhite;
   display:inline-flex;
   justify-content: space-around;
   margin-left: auto;
@@ -487,21 +488,22 @@ td {
 }
 
 #question-container-main{
-  background-color: #3546a3;
   display:flex;
   justify-content: space-between;
 }
 
 .chosen-q{
   width:40%;
-  background-color: rgb(252, 177, 177);
-  margin:1rem;
+  background-color:white;
+  margin:2rem;
+  border-radius: 2rem;
 }
 
 .unchosen-q{
   width:40%;
-  background-color: rgb(252, 177, 177);
-  margin:1rem;
+  background-color:white;
+  margin:2rem;
+  border-radius: 2rem;
 }
 
 .move-button{
@@ -512,55 +514,81 @@ td {
 
 .move-button .button{
   font-size: 1.5rem;
-  color: white;
+  color: black;
   text-decoration: none;
   padding: 1rem;
   margin:1rem;
   border-radius: 4rem;
   transition: 0.3s;
-  background-color: #acacac;
+  background-color: white;
 }
 
 .question-preview-head{
   width:100%;
   display:inline-flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .multiple-choice-question{
   display:grid;
-  background-color: #3546a3;
-  margin:2rem;
+  background-color: #C4C4C4;
+  border-radius: 2rem;
+}
+
+.question-preview-head h5 {
+  min-width:20%;
+  text-align: center;
+  background-color: #C4C4C4;
+  border-radius:1rem;
+}
+
+.multiple-choice-question h5{
+  background-color: white;
+  margin-top:1rem;
+  margin-bottom:1rem;
+  font-weight:400;
+  font-size:1.7rem;
+  padding:0.5rem;
+  border-radius: 1rem;
 }
 
 #cont{
   display:flex;
   justify-content:space-between;
+  margin-left: 1rem;
+  margin-right:1rem;
 }
 
 #top{
-  background-color: rgb(252, 177, 177);
+  margin-left:1rem;
+  margin-right:1rem;
 }
 
 #col1{
-  background-color: #717171;
+  margin-top:1rem;
+  margin-bottom:1rem;
 }
 
 #col2{
-  background-color: #acacac;
+  margin-top:1rem;
+  margin-bottom:1rem;
 }
 
 #col3{
-  background-color: #717171;
+  margin-top:1rem;
+  margin-bottom:1rem;
 }
 
 #col4{
-  background-color: #acacac;
+  margin-top:1rem;
+  margin-bottom:1rem;
 }
 
 .foot{
   display:flex;
   justify-content: flex-end;
+  margin:1rem;
 }
 
 .foot .button{
