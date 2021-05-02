@@ -36,3 +36,4 @@ if (window.location.pathname.includes("/Student-Home")){
 else{
   document.getElementById("content").style.marginLeft= "10%";
 }
+
