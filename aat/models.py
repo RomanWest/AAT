@@ -44,10 +44,9 @@ class Fill(db.Model):
 	question = db.Column(db.String, nullable=False)
 	module_code = db.Column(db.String,nullable=False)
 	correct = db.Column(db.String, nullable=False)
-	blank = db.Column(db.String,nullable=False)
 	difficulty = db.Column(db.String, nullable=False)
 	date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-	is_formative = db.Column(db.Boolean,nullable=False)
+	is_summative = db.Column(db.Boolean,nullable=False)
 	feedback = db.Column(db.String,nullable=False)
 
 
