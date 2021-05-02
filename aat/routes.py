@@ -2,9 +2,10 @@ from datetime import datetime
 from flask import render_template, url_for, request, redirect, flash, g, current_app, session
 from aat import app, db
 from aat.models import User
-from aat.forms import RegistrationForm, LoginForm
+from aat.forms import RegistrationForm, LoginForm, FillQForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat.testroute import test
+from aat.Fillinblankroute import fillblankroute
  
 @app.route("/Staff-Home") 
 def staffhome():
@@ -49,6 +50,8 @@ def logout():
     flash('Logout successful!')
     return redirect(url_for('login'))
 
+fillblankroute()
+
 @app.route("/Create-Formative") 
 def createFormative():
     return render_template('Create Formative.html')
@@ -88,12 +91,9 @@ def createSummative():
 @app.route("/Create-Question") 
 def createQuestion():
     return render_template('Create Question.html')
-@app.route("/Create-Fill-in-the-Blank")
 
-def FillintheBlank():
-    return render_template("Fill in blank.html")
+
 @app.route("/Preview-Assessment") 
-
 def previewAssessment():
     return render_template('Preview Assessment.html')
 

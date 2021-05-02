@@ -29,11 +29,11 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class FillQForm(FlaskForm):
-    question = StringField('question', validators=[DataRequired()])
-    module = StringField('module', validators=[DataRequired()])
-    answer = StringField('answer', validators=[DataRequired()])
-    incorrectfeedback = StringField('incorrectfeedback',validators = [DataRequired()])
-    issummative = BooleanField('issummative', default = False, validators=[DataRequired()])
-    difficulty = SelectField('difficulty', choices=[('easy','Easy'), ('hard', 'Hard')], validators=[DataRequired()])
-    save = SubmitField('Save Question')
+    question = StringField('Question', validators=[DataRequired()])
+    module = StringField('Module', validators=[DataRequired()])
+    answer = StringField('Answer', validators=[DataRequired()])
+    incorrectfeedback = StringField('Incorrect Answer Feedback',validators = [DataRequired()])
+    issummative = BooleanField('Is summative?', default = False, validators=[DataRequired()])
+    difficulty = SelectField('Difficulty', choices=[('easy','Easy'), ('hard', 'Hard')], validators=[DataRequired()])
+    submit = SubmitField('Save Question')
 
