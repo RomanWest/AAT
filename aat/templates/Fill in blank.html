@@ -14,22 +14,17 @@
   <div class="question-maker-container">
     <div class="top-input-box">
       <label class="question-label" for="question">Question</label>
-      <form class="add-blank-btn" method="POST" action="">
-        <input
-          class="add-blank-btn"
-          type="submit"
-          name="add-blank"
-          value="Add blank"
-          onclick="add_field()"
-        />
-      </form>
       <input class="question-input" type="text" id="question" name="question" />
     </div>
     <div class="bottom-inputs">
-      <div class="module-and-date">
+      <div class="module-and-formative">
         <div class="module">
           <label class="question-label" for="module">Module</label>
           <input class="module-input" type="text" id="module" name="module"/>
+        </div>
+        <div class="issummative">
+          <label class = "question-label" for="issummative">Is formative?</label> &nbsp;
+          <input class = "checkbox" type="checkbox" id="issummative" name="issummative">
         </div>
       </div>
 
