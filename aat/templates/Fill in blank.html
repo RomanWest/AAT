@@ -12,24 +12,35 @@
   </div>
 
   <div class="question-maker-container">
-    <div class="top-input-box">
-      <label class="question-label" for="question">Question</label>
-      <input class="question-input" type="text" id="question" name="question" />
-    </div>
+    <form class="top-input-box" method="POST">
+      {{form.csrf_token}}
+      {{form.question.label (class = "question-label")}}{{form.question (class = "question-input")}}
+      <!-- <label class="question-label" for="question">Question</label>
+      <input class="question-input" type="text" id="question" name="question" /> --> 
+    </form>
     <div class="bottom-inputs">
       <div class="module-and-formative">
-        <div class="module">
-          <label class="question-label" for="module">Module</label>
-          <input class="module-input" type="text" id="module" name="module"/>
-        </div>
-        <div class="issummative">
-          <label class = "question-label" for="issummative">Is formative?</label> &nbsp;
-          <input class = "checkbox" type="checkbox" id="issummative" name="issummative">
-        </div>
+        <form class="module" method="POST">
+          {{form.csrf_token}}
+          {{form.module.label (class = "question-label")}}{{form.module ( class = "module-input")}}
+          <!-- <label class="question-label" for="module">Module</label>
+          <input class="module-input" type="text" id="module" name="module"/> -->
+        </form>
+        <form class="issummative" method="POST">
+          {{form.csrf_token}}
+          {{form.issummative.label (class="question-label")}} {{form.issummative (class = "checkbox")}}
+          <!-- <label class = "question-label" for="issummative">Is formative?</label> &nbsp;
+          <input class = "checkbox" type="checkbox" id="issummative" name="issummative"> -->
+        </form>
       </div>
 
-    <div class="answer-and-difficulty">
-      <label class="question-label" for="answer">Answer</label>
+    <form class="answer-and-difficulty" method="POST">
+      {{form.csrf_token}}
+      {{form.answer.label (class="question-label")}} {{form.answer (class = "question-input")}}
+      {{form.incorrectfeedback.label (class="question-label")}} {{form.incorrectfeedback (class = "question-input")}}
+      {{form.difficulty.label (class="question-label")}} {{form.difficulty (class = "dropdown-menu-questions")}}
+
+  <!-- <label class="question-label" for="answer">Answer</label>
       <input class="question-input" type="text" id="answer" name="answer"/>
       <label class="question-label" for="incorrect">Incorrect Answer Feedback:</label>
       <input class="question-input" type="text" id="incorrect" name="incorrect"/>
@@ -37,20 +48,13 @@
       <select class="dropdown-menu-questions" name="question type">
         <option value="Fill in the Blank">Easy</option>
         <option value="Multiple Choice">Hard</option>
-      </select>
-
-
-    </div>
+      </select> -->
+    </form>
       
     </div>
   </div>
   <form class="save" method="POST" action="">
-    <input
-      class="save-btn"
-      type="submit"
-      name="Save"
-      value="Save Question"
-    />
+    <input class="save-btn" type="submit" value="Save Question"/>
   </form>
 </div>
 {% endblock content %}
