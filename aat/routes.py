@@ -14,14 +14,11 @@ def staffhome():
 def studenthome():
     test()
     return render_template("Student Home.html")
-<<<<<<< HEAD
-@app.route("/", methods=["GET", "POST"])
-=======
 
 
 
-@app.route("/",methods=['GET','POST'])
->>>>>>> tim
+
+
 @app.route("/login",methods=['GET','POST'])
 def login():
   form = LoginForm()
@@ -58,3 +55,5 @@ def logout():
 @app.route("/Create-Formative") 
 def formativehome():
     return render_template('Create Formative.html')
+
+

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div>
+	<form method="POST"  action="{{ url_for("random") }}">
+		<div>
+			<select name="Q1_module">
+				{% for module in modules %}
+					<option value="{{ module }}">{{ module }}</option>
+				{% endfor %}	
+			</select>
+			<select name="Q1_diff">
+				<option selected value="easy">Easy</option>
+				<option value="medium">Medium</option>
+				<option value="hard">Hard</option>
+			</select>
+		</div>
+		<div>
+			<select name="Q2_module">
+				{% for module in modules %}
+					<option value="{{ module }}">{{ module }}</option>
+				{% endfor %}
+			</select>
+			<select name="Q2_diff">
+				<option selected value="easy">Easy</option>
+				<option value="medium">Medium</option>
+				<option value="hard">Hard</option>
+			</select>
+		</div>	
+		<button type="submit" >Generate Quiz</button>
+	</form>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div>	
+  	{% for i in data %}
+		<p> Question {{ loop.index }} module is {{ i[0] }} and difficulty is {{ i[1] }} </p>
+	{% endfor %}
+	
+</div>
+
+{% endblock content %}
