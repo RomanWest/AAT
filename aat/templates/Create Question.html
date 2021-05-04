@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class = top-part>
+    <div class = create-fill-title-holder>
+        <h1 class = create-fill-title>Edit question</h1>
+    </div>
+    <div class = question-type-dropdown>
+        <label class = pagetitle for="question type">Question Type:</label>
+        <select class = dropdown-menu-questions name="question type">
+            <option value="Fill in the Blank">Fill in the Blank</option>
+            <option value="Multiple Choice">Multiple Choice</option>
+        </select>
+    </div>
+    </div>
+    <div class = "question-maker-container">
+        <div class = "top-input-box">
+            <label for="question">Question</label>
+            <input type="text" id="fname" name="fname">
+        </div>
+        <div class = "bottom-inputs">
+            <div class = "topic-and-date">
+    
+            </div>
+            <div class = "answer">
+                
+            </div>
+            <div class = "Difficulty">
+                
+            </div>
+            <div class = "feedback">
+                
+            </div>
+        </div>
+    </div>
+    
+    </div>
+
+{% endblock content %}

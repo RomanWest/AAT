@@ -22,7 +22,7 @@ body {
   display: flex;
   align-items: center;
   position: fixed;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
   top: 0;
   left: 0;
@@ -170,7 +170,7 @@ body {
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
-.module-dropdown {
+.admin-main .module-dropdown {
   border-radius: 4rem;
   height: 3rem;
   width: 15%;
@@ -203,6 +203,13 @@ td {
   margin-right: 1rem;
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+.create-questions{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  white-space: normal;
 }
 
 
@@ -291,80 +298,124 @@ td {
   float: right;
 }
 
-.likecontainer {
-  float: right;
-  margin: 1rem;
-  margin-right: 5rem;
-}
-.like {
-  font-weight: 600;
-}
-/*like buttons*/
-.unlike {
-  background-color: rgb(90, 91, 168) !important;
-  transition: 0.3s;
-}
-.unlike:hover {
-  background-color: #2b2f4e !important;
-}
-.likebtn {
-  font-size: 1.4rem;
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin: 0.5rem;
-  border-radius: 4rem;
-  background-color: #2b2f4e;
-  transition: 0.3s;
-}
-.likebtn:hover {
-  background-color: rgb(90, 91, 168);
-}
-
-/* ALL POSTS */
-.posts {
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-.postimgcontainer {
+/* FILL IN BLANK */
+.mainbit{
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  display: inline-flex;
-  justify-content: flex-end;
+}
+.top-part{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.question-type-dropdown{
+  margin-top:2rem;
+  margin-bottom:2rem;
 }
 
-.imglink {
-  width: 25%;
-  margin-right: 5rem;
-}
 
-/* INDIVIDUAL POST */
 
-.indiv-post-img {
-  width: 35%;
-  margin: 0 0 0 1rem;
-  float: right;
-}
-
-.comments-container {
-  background-color: rgba(131, 141, 173, 0.397);
+.question-maker-container{
+  width: 100%;
+  background-color: #C4C4C4;
   padding: 2rem;
-  padding-top: 1rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.question-maker{
+  width: 100%;
+}
+.question-input{
+  width:100%;
+  height:3rem;
+  border-radius: 2rem;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+.question-label{
+  font-size: 2rem;
+  margin-left: 2rem;
+}
+.top-input-box{
+  margin-left:5%;
+  margin-right:5%;
+}
+.bottom-inputs{
+  margin-left:5%;
+  margin-right:5%;
+  display:flex;
+}
+.answer-and-difficulty{
+  display:flex;
+  flex-direction: column;
+  width:100%;
+}
+.module{
+  margin-right: 2rem;
+}
+.module-input{
+  width:90%;
+  height:2rem;
+  border-radius: 2rem;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+.issummative{
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  align-items: center;
+}
+.module-and-formative{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.question-input{
+  width:100%;
+  height:3rem;
+  border-radius: 2rem;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+.checkbox{
+  height:2rem;
+  width: 2rem;
+}
+.dropdown-menu-questions{
+  font-size: 2rem;
+  padding: 1rem;
+  margin-left:1.5rem;
+  width:20rem;
+  font-size: 2rem;
+  font-weight: 400;
+}
+.save-btn{
+  float: right;
+  height:3rem;
+  margin-bottom:1rem;
+  font-size: 2rem;
   border-radius: 1rem;
-  width: 60%;
+  outline: none;
+  border:none;
+  transition: 0.3s;
+  margin: 1rem;
+  background-color: #C4C4C4;
+}
+.save-btn:hover {
+  background-color: #aaaaaa;
 }
 
-.comment-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  font-style: italic;
-}
 
-.comment-content {
-  font-size: 1.4rem;
-}
 
 /* login*/
 
@@ -452,4 +503,174 @@ td {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Create Formative & Summative */
+.admin-create-formative{
+  width:100%;
+}
+
+.admin-create-summative{
+  width:100%;
+}
+
+.Top-dropdown{
+  display:inline-flex;
+}
+
+.Top-dropdown .module-dropdown{
+  border-radius: 4rem;
+  height: 3rem;
+  border: 1rem;
+  font-size: 2rem;
+  margin:1rem;
+}
+
+.Top-dropdown .assessment-dropdown{
+  border-radius: 4rem;
+  height: 3rem;
+  border: 1rem;
+  font-size: 2rem;
+  margin:1rem;
+}
+
+#quiz-questions-container{
+  background-color: #C4C4C4;
+  border: 1rem;
+  border-radius: 2rem;
+}
+
+.question-container-head{
+  display:inline-flex;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+#question-container-main{
+  display:flex;
+  justify-content: space-between;
+}
+
+.chosen-q{
+  width:40%;
+  background-color:white;
+  margin:2rem;
+  border-radius: 2rem;
+}
+
+.unchosen-q{
+  width:40%;
+  background-color:white;
+  margin:2rem;
+  border-radius: 2rem;
+}
+
+.move-button{
+  display:grid;
+  margin:1rem;
+  justify-content:space-around;
+}
+
+.move-button .button{
+  font-size: 1.5rem;
+  color: black;
+  text-decoration: none;
+  padding: 1rem;
+  margin:1rem;
+  border-radius: 4rem;
+  transition: 0.3s;
+  background-color: white;
+}
+
+.question-preview-head{
+  width:100%;
+  display:inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.multiple-choice-question{
+  display:grid;
+  background-color: #C4C4C4;
+  border-radius: 2rem;
+}
+
+.question-preview-head h5 {
+  margin-left:1rem;
+  min-width: 10vw;
+  text-align: center;
+  align-self: center;
+  background-color: #C4C4C4;
+  border-radius:1rem;
+  font-size:1.7rem;
+  padding:0.5rem;
+}
+
+.question-preview-head #type{
+  display:inline-flex;
+  justify-content: space-around;
+}
+
+.multiple-choice-question h5{
+  background-color: white;
+  margin-top:1rem;
+  margin-bottom:1rem;
+  font-weight:400;
+  font-size:1.7rem;
+  padding:0.5rem;
+  border-radius: 1rem;
+}
+
+#cont{
+  display:flex;
+  justify-content:space-between;
+  margin-left: 1rem;
+  margin-right:1rem;
+}
+
+#top{
+  margin-left:1rem;
+  margin-right:1rem;
+}
+
+#col1{
+  margin-top:1rem;
+  margin-bottom:1rem;
+  min-width:20%;
+}
+
+#col2{
+  margin-top:1rem;
+  margin-bottom:1rem;
+  min-width:20%;
+}
+
+#col3{
+  margin-top:1rem;
+  margin-bottom:1rem;
+  min-width:20%;
+}
+
+#col4{
+  margin-top:1rem;
+  margin-bottom:1rem;
+  min-width:20%;
+}
+
+.foot{
+  display:flex;
+  justify-content: flex-end;
+  margin:1rem;
+}
+
+.foot .button{
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+  margin:1rem;
+  border-radius: 4rem;
+  transition: 0.3s;
 }

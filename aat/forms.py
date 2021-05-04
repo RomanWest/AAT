@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, InputRequired, ValidationError, Regexp
 from flask_babel import _, lazy_gettext as _l
 from aat.models import User
@@ -27,3 +27,13 @@ class LoginForm(FlaskForm):
     email = StringField('Email',validators=[DataRequired(),Email()])
     password = PasswordField('Password',validators=[DataRequired()])
     submit = SubmitField('Login')
+
+class FillQForm(FlaskForm):
+    question = StringField('Question', validators=[DataRequired()])
+    module = StringField('Module', validators=[DataRequired()])
+    answer = StringField('Answer', validators=[DataRequired()])
+    incorrectfeedback = StringField('Incorrect Answer Feedback',validators = [DataRequired()])
+    issummative = BooleanField('Is summative?')
+    difficulty = SelectField('Difficulty', choices=[('easy','Easy'), ('hard', 'Hard')], validators=[DataRequired()])
+    submit = SubmitField('Save Question')
+
