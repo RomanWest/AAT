@@ -9,6 +9,10 @@
         <option value="Multiple Choice">Multiple Choice</option>
       </select>
     </div>
+    <div class ="edit-btn-container">
+      <a class="button admin-home-btn" href="{{url_for('FillEdit')}}">Edit/Delete</a>
+    </div>
+  
   </div>
 
   <form class="question-maker-container" method="POST" action="">
@@ -36,9 +40,6 @@
       
     </div>
   </form>
-  <div class ="edit-btn-container">
-    <a class="button admin-home-btn">Edit/Delete</a>
-  </div>
   </div>
 
 {% endblock content %}
