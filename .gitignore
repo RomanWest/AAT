@@ -10,3 +10,4 @@ X*.py
 *.db
 /aat/app.db
 /aat/__pycache__/
+*.history
