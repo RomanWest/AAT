@@ -58,9 +58,7 @@ filleditroute()
 
 @app.route("/Create-Formative")
 def createFormative():
-    multiple_all = Multiple.query.all()
-    print(multiple_all)
-    return render_template('Create Formative.html', multiple_all=multiple_all)
+    return render_template('Create Formative.html')
 
 @app.route("/Student-View-Progress")
 def studentViewProgress():
