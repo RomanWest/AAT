@@ -402,6 +402,8 @@ td {
 .save-btn{
   float: right;
   height:3rem;
+  width: 50%;
+  align-self: center;
   margin-bottom:1rem;
   font-size: 2rem;
   border-radius: 1rem;
@@ -409,8 +411,9 @@ td {
   border:none;
   transition: 0.3s;
   margin: 1rem;
-  background-color: #C4C4C4;
+  background-color: #e7e7e7;
 }
+
 .save-btn:hover {
   background-color: #aaaaaa;
 }
