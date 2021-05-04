@@ -5,8 +5,9 @@ from aat.models import User, Multiple, Fill
 from aat.forms import RegistrationForm, LoginForm, FillQForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat.testroute import test
-# from aat.Fillinblankroute import fillblankroute
+from aat.Fillinblankroute import fillblankroute
 from aat.MultipleChoice import MCForm
+from aat.FillEditRoute import filleditroute
 
 @app.route("/Staff-Home")
 def staffhome():
@@ -51,6 +52,10 @@ def logout():
     flash('Logout successful!')
     return redirect(url_for('login'))
 
+fillblankroute()
+filleditroute()
+
+
 @app.route("/Create-Formative")
 def createFormative():
     multiple_all = Multiple.query.all()
@@ -92,23 +97,6 @@ def createSummative():
 @app.route("/Create-Question")
 def createQuestion():
     return render_template('Create Question.html')
-
-@app.route("/Create-Fill-in-the-Blank", methods=['GET', 'POST'])
-def FillintheBlank():
-    form = FillQForm()
-    if form.validate_on_submit():
-        question = Fill(question=form.question.data,
-                        module_code=form.module.data,
-                        correct=form.answer.data,
-                        feedback=form.incorrectfeedback.data,
-                        difficulty=form.difficulty.data,
-                        is_summative=form.issummative.data
-                        )
-        db.session.add(question)
-        db.session.commit()
-        return redirect(url_for('staffhome'))
-
-    return render_template("Fill in blank.html", form=form)
 
 
 @app.route("/Create-Multiple-Choice-Question", methods=['GET', 'POST'])
