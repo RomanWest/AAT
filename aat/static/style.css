@@ -537,54 +537,8 @@ td {
   margin:1rem;
 }
 
-#quiz-questions-container{
-  background-color: #C4C4C4;
-  border: 1rem;
-  border-radius: 2rem;
-}
-
-.question-container-head{
-  display:inline-flex;
-  justify-content: space-around;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-}
-
-#question-container-main{
-  display:flex;
-  justify-content: space-between;
-}
-
-.chosen-q{
-  width:40%;
-  background-color:white;
-  margin:2rem;
-  border-radius: 2rem;
-}
-
-.unchosen-q{
-  width:40%;
-  background-color:white;
-  margin:2rem;
-  border-radius: 2rem;
-}
-
-.move-button{
-  display:grid;
-  margin:1rem;
-  justify-content:space-around;
-}
-
-.move-button .button{
-  font-size: 1.5rem;
-  color: black;
-  text-decoration: none;
-  padding: 1rem;
-  margin:1rem;
-  border-radius: 4rem;
-  transition: 0.3s;
-  background-color: white;
+.question-preview * {
+  margin:0px;
 }
 
 .question-preview-head{
@@ -617,7 +571,7 @@ td {
 }
 
 .multiple-choice-question h5{
-  background-color: white;
+  background-color:rgb(231, 231, 231);
   margin-top:1rem;
   margin-bottom:1rem;
   font-weight:400;
