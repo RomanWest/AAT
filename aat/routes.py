@@ -95,8 +95,8 @@ def createQuestion():
 def FillintheBlank():
     form = FillQForm()
     if form.validate_on_submit():
-        question = Fill(question=form.question.data, 
-                        module_code=form.module.data, 
+        question = Fill(question=form.question.data,
+                        module_code=form.module.data,
                         correct=form.answer.data,
                         feedback=form.incorrectfeedback.data,
                         difficulty=form.difficulty.data,
@@ -113,7 +113,7 @@ def FillintheBlank():
 def createMultipleChoiceQuestion():
     form = MCForm()
     if form.validate_on_submit():
-        quest = Multiple(question=form.question.data, correct=form.correct.data, module_code=form.module_code.data, incorrect_1=form.incorrect_1.data, incorrect_2=form.incorrect_2.data, incorrect_3=form.incorrect_3.data, difficulty=form.difficulty.data, is_formative=form.is_formative.data, feedback=form.feedback.data)
+        quest = Multiple(question=form.question.data, correct=form.correct.data, module_code=form.module_code.data, incorrect_1=form.incorrect_1.data, incorrect_2=form.incorrect_2.data, incorrect_3=form.incorrect_3.data, difficulty=form.difficulty.data, is_summative=form.is_summative.data, feedback=form.feedback.data)
         db.session.add(quest)
         db.session.commit()
         return redirect(url_for('staffhome'))

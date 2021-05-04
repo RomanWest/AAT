@@ -22,7 +22,7 @@ class Attempts(db.Model):
 	percentage_correct = db.Column(db.Float, nullable=False)
 	module_code = db.Column(db.String,nullable=False)
 	date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-	is_formative = db.Column(db.Boolean,nullable=False)
+	is_summative = db.Column(db.Boolean,nullable=False)
 
 #multiple means multiple choice type question
 class Multiple(db.Model):
@@ -35,7 +35,7 @@ class Multiple(db.Model):
 	incorrect_3 = db.Column(db.String,nullable=False)
 	date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 	difficulty = db.Column(db.String, nullable=False)
-	is_formative = db.Column(db.Boolean,nullable=False)
+	is_summative = db.Column(db.Boolean,nullable=False)
 	feedback = db.Column(db.String,nullable=False)
 
 #fill means fill in the blanks type question

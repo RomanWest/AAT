@@ -12,7 +12,7 @@ class MCForm(FlaskForm):
     incorrect_2 = StringField('incorrect_2', validators=[DataRequired()])
     incorrect_3 = StringField('incorrect_3', validators=[DataRequired()])
     difficulty = SelectField('difficulty', choices=[('easy','easy'),('medium','medium'),('hard','hard')], validators=[DataRequired()])
-    is_formative = BooleanField('is_formative')
+    is_summative = BooleanField('is_summative')
     feedback = StringField('feedback', validators=[DataRequired()])
     submit = SubmitField('Upload')
 
