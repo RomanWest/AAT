@@ -38,6 +38,9 @@ class Multiple(db.Model):
 	is_summative = db.Column(db.Boolean,nullable=False)
 	feedback = db.Column(db.String,nullable=False)
 
+	def __repr__(self):
+    		return f"Multiple('{self.id}', '{self.question}', '{self.is_summative}')"
+
 #fill means fill in the blanks type question
 class Fill(db.Model):
 	id = db.Column(db.Integer,primary_key=True)
