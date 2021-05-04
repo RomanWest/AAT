@@ -14,8 +14,6 @@
   <form class="question-maker-container" method="POST" action="">
     {{form.csrf_token}}
     <div class="top-input-box">
-      <!-- <label class="question-label" for="question">Question</label>
-      <input class="question-input" type="text" id="question" name="question" /> --> 
       {{form.question.label (class = "question-label")}}{{form.question (class = "question-input")}}
 
     </div>
@@ -23,13 +21,9 @@
       <div class="module-and-formative">
         <div class="module" >
           {{form.module.label (class = "question-label")}}{{form.module ( class = "module-input")}}
-          <!-- <label class="question-label" for="module">Module</label>
-          <input class="module-input" type="text" id="module" name="module"/> -->
           </div>
         <div class="issummative" >
           {{form.issummative.label (class="question-label")}} {{form.issummative (class = "checkbox")}}
-          <!-- <label class = "question-label" for="issummative">Is formative?</label> &nbsp;
-          <input class = "checkbox" type="checkbox" id="issummative" name="issummative"> -->
           </div>
       </div>
 
@@ -38,20 +32,13 @@
       {{form.incorrectfeedback.label (class="question-label")}} {{form.incorrectfeedback (class = "question-input")}}
       {{form.difficulty.label (class="question-label")}} {{form.difficulty (class = "dropdown-menu-questions")}}
       {{form.submit (class="save-btn")}}
-  
-  <!-- <label class="question-label" for="answer">Answer</label>
-      <input class="question-input" type="text" id="answer" name="answer"/>
-      <label class="question-label" for="incorrect">Incorrect Answer Feedback:</label>
-      <input class="question-input" type="text" id="incorrect" name="incorrect"/>
-      <label class="question-label" for="incorrect">Difficulty</label>
-      <select class="dropdown-menu-questions" name="question type">
-        <option value="Fill in the Blank">Easy</option>
-        <option value="Multiple Choice">Hard</option>
-      </select> -->
     </div>
       
     </div>
+  </form>
+  <div class ="edit-btn-container">
+    <a class="button admin-home-btn">Edit/Delete</a>
   </div>
-    
-</div>
+  </div>
+
 {% endblock content %}
