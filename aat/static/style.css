@@ -3,7 +3,8 @@ html {
     font-size: 62.5%;
     /* background-color: #DFDFDF;  */
     background: #e5e5e5;
-  }
+}
+
   
   /* Layout */
   
@@ -679,7 +680,7 @@ html {
     transition: 0.3s;
   }
 
-}
+
 .content {
   margin-right: 10%;
 
@@ -1207,4 +1208,3 @@ td {
   border-radius: 4rem;
   transition: 0.3s;
 }
->>>>>>> aat/static/style.css
