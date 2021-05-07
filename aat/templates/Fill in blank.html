@@ -4,7 +4,7 @@
   <div class="top-part">
     <div class="question-type-dropdown">
       <label class="pagetitle" for="question type">Question Type:</label> &nbsp;
-      <select class="dropdown-menu-questions" name="question type">
+      <select id="qType" onchange="dropdownURL2()" class="dropdown-menu-questions" name="question type">
         <option value="Fill in the Blank">Fill in the Blank</option>
         <option value="Multiple Choice">Multiple Choice</option>
       </select>
@@ -24,16 +24,16 @@
     <div class="bottom-inputs">
       <div class="module-and-formative">
         <div class="module">
-          {{form.module.label (class = "question-label")}}{{form.module (class = "module-input")}}
+          {{form.module_code.label (class = "question-label")}}{{form.module_code (class = "module-input")}}
           </div>
         <div class="issummative" >
-          {{form.issummative.label (class="question-label")}} {{form.issummative (class = "checkbox")}}
+          {{form.is_summative.label (class="question-label")}} {{form.is_summative (class = "checkbox")}}
           </div>
       </div>
 
     <div class="answer-and-difficulty">
-      {{form.answer.label (class="question-label")}} {{form.answer (class = "question-input")}}
-      {{form.incorrectfeedback.label (class="question-label")}} {{form.incorrectfeedback (class = "question-input")}}
+      {{form.correct.label (class="question-label")}} {{form.correct (class = "question-input")}}
+      {{form.feedback.label (class="question-label")}} {{form.feedback (class = "question-input")}}
       {{form.difficulty.label (class="question-label")}} {{form.difficulty (class = "dropdown-menu-questions")}}
       {{form.submit (class="save-btn")}}
     </div>
