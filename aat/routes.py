@@ -5,9 +5,9 @@ from aat.models import User, Multiple, Fill
 from aat.forms import RegistrationForm, LoginForm, FillQForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat.testroute import test
-# from aat.Fillinblankroute import fillblankroute
-#from aat.MultipleChoice import MCForm
-#from aat import wildcardroute
+from aat.Fillinblankroute import fillblankroute
+from aat.MultipleChoice import MultipleRoute, MultipleEditRoute
+from aat.FillEditRoute import filleditroute
 
 @app.route("/Staff-Home")
 def staffhome():
@@ -52,9 +52,14 @@ def logout():
     flash('Logout successful!')
     return redirect(url_for('login'))
 
+fillblankroute()
+filleditroute()
+
 @app.route("/Create-Formative")
 def createFormative():
-    return render_template('Create Formative.html')
+    multiple_all = Multiple.query.all()
+    fill_all = Fill.query.all()
+    return render_template('Create Formative.html', multiple_all=multiple_all, fill_all=fill_all)
 
 @app.route("/Student-View-Progress")
 def studentViewProgress():
@@ -88,12 +93,15 @@ def viewStudent():
 
 @app.route("/Create-Summative")
 def createSummative():
-    return render_template('Create Summative.html')
+    multiple_all = Multiple.query.all()
+    fill_all = Fill.query.all()
+    return render_template('Create Summative.html', multiple_all=multiple_all, fill_all=fill_all)
 
 @app.route("/Create-Question")
 def createQuestion():
     return render_template('Create Question.html')
 
+<<<<<<< HEAD
 @app.route("/Create-Fill-in-the-Blank", methods=['GET', 'POST'])
 def FillintheBlank():
     form = FillQForm()
@@ -121,6 +129,10 @@ def createMultipleChoiceQuestion():
         db.session.commit()
         return redirect(url_for('staffhome'))
     return render_template('Create Multiple Choice Question.html', form = form)
+=======
+MultipleRoute()
+MultipleEditRoute()
+>>>>>>> de8537bf581e8a89f3d78985acd23546a96eaec7
 
 @app.route("/Preview-Assessment")
 def previewAssessment():

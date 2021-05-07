@@ -16,94 +16,119 @@
     </select>
   </div>
 
-  <div id="quiz-questions-container">
-
-    <div class="question-container-head">
-      <h1>Quiz Questions</h1>
-      <h1>Unused Questions</h1>
-    </div>
-
-    <div id="question-container-main">
-      <div class="chosen-q">
-        <ul id="chosen-questions">
-          <li>Question 1</li>
-          <li>Question 2</li>
-          <li>Question 3</li>
-          <li>Question 5</li>
-        </ul>
-      </div>
-
-      <div class="move-button">
-        <a id="chose-question-button" class="button">
-          <<< </a>
-            <a id="remove-question-button" class="button"> >>> </a>
-            <a id="add-question-button" class="button"> add </a>
-      </div>
-
-      <div class="unchosen-q">
-        <ul id="other-questions">
-          <li>Question 4</li>
-          <li>Question 6</li>
-          <li>Question 7</li>
-          <li>Question 8</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-
   <div class="question-preview">
-
+    {% for multiple in multiple_all %}
     <div class="question-preview-head">
       <div id="title">
-        <h1>Question Preview</h1>
-      </div>
-
-      <div id="type">
-        <h1>Question Type</h1>
-        <h5>*TYPE*</h5>
+        <h1>Multiple Choice Question {{ multiple.id }}</h1>
       </div>
     </div>
 
-    <div class="multiple-choice-question">
+    <div class="question">
       <div id="top">
-        <h3>Question</h3>
-        <h5>*TEXT*</h5>
+        <h3>Multiple Choice Question</h3>
+        <h5 id='question-text'>{{ multiple.question }}</h5>
+        <h3>Question Type</h3>
+        {% if multiple.is_summative == 1 %}
+        <h5 id='question-type-text'>Summative</h5>
+        {% else %}
+        <h5 id='question-type-text'>Formative</h5>
+        {% endif %}
       </div>
 
-      <div id="cont">
+      <div id="multiple-cont">
 
         <div id="col1">
           <h3>Module</h3>
-          <h5>*Module TEXT*</h5>
+          <h5>{{ multiple.module_code }}</h5>
           <h3>In Use Y/N</h3>
           <h5>*Y/N*</h5>
           <h3>Difficulty</h3>
-          <h5>*DIFFICULTY*</h5>
+          <h5>{{ multiple.difficulty }}</h5>
         </div>
 
         <div id="col2">
-          <h3>Answer 1</h3>
-          <h5>*ANSWER1*</h5>
-          <h3>Answer 2</h3>
-          <h5>*ANSWER2*</h5>
+          <h3>Correct Answer</h3>
+          <h5>{{ multiple.correct }}</h5>
+          <h3>Incorrect Answer 1</h3>
+          <h5>{{ multiple.incorrect_1 }}</h5>
         </div>
 
         <div id="col3">
-          <h3>Answer 3</h3>
-          <h5>*ANSWER3*</h5>
-          <h3>Answer 4</h3>
-          <h5>*ANSWER4*</h5>
+          <h3>Incorrect Answer 2</h3>
+          <h5>{{ multiple.incorrect_2 }}</h5>
+          <h3>Incorrect Answer 3</h3>
+          <h5>{{ multiple.incorrect_3 }}</h5>
         </div>
 
         <div id="col4">
           <h3>Incorrect Answer Feedback</h3>
-          <h5>*FEEDBACK*</h5>
+          <h5>{{ multiple.feedback }}</h5>
         </div>
 
+        <div id="col5">
+          <h3>Add to assessment</h3>
+          <label class="checkcontainer">
+            <input type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+        </div>
       </div>
 
     </div>
+    {% endfor %}
+
+    {% for fill in fill_all %}
+    <div class="question-preview-head">
+      <div id="title">
+        <h1>Fill in the Blank Question {{ fill.id }}</h1>
+      </div>
+    </div>
+
+    <div class="question">
+      <div id="top">
+        <h3>Question</h3>
+        <h5 id='question-text'>{{ fill.question }}</h5>
+        <h3>Question Type</h3>
+        {% if fill.is_summative == 1 %}
+        <h5 id='question-type-text'>Summative</h5>
+        {% else %}
+        <h5 id='question-type-text'>Formative</h5>
+        {% endif %}
+      </div>
+
+      <div id="fill-cont">
+
+        <div id="col1">
+          <h3>Module</h3>
+          <h5>{{ fill.module_code }}</h5>
+          <h3>In Use Y/N</h3>
+          <h5>*Y/N*</h5>
+          <h3>Difficulty</h3>
+          <h5>{{ fill.difficulty }}</h5>
+        </div>
+
+        <div id="col2">
+          <h3>Correct Answer</h3>
+          <h5>{{ fill.correct }}</h5>
+        </div>
+
+        <div id="col4">
+          <h3>Incorrect Answer Feedback</h3>
+          <h5>{{ fill.feedback }}</h5>
+        </div>
+
+        <div id="col5">
+          <h3>Add to assessment</h3>
+          <label class="checkcontainer">
+            <input type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+    {% endfor %}
 
     <div class="foot">
       <a id="save-button" class="button"> Save </a>

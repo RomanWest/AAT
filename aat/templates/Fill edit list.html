@@ -1,0 +1,24 @@
+{% extends "layout.html" %} {% block content %}
+<div class="question-container">
+{%for question in questions %}
+
+<div class="question-main">
+<div class="question-inner-container">
+    <div>Question id: {{question.id}}</div>
+<div class="question-question">
+Question : {{question.question}} &nbsp;
+</div>
+<div class="question-answer">
+Answer : {{question.correct}} &nbsp;
+</div>
+</div>
+<div class="question-date">
+    <div>Created : {{question.date_created}}</div>
+    <a href="{{ url_for('FillEdit', fill_id=question.id) }}">Edit</a>
+</div>
+</div>
+<br />
+<hr />
+{%endfor%}
+</div>
+{% endblock content %}

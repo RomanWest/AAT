@@ -1,0 +1,27 @@
+{% extends "layout.html" %} {% block content %}
+{% from "_formhelpers.html" import render_field %}
+<form class="question-maker-container" method="POST" action="">
+    <div class="top-input-box">
+      {{render_field(form.question)}}
+
+    </div>
+    <div class="bottom-inputs">
+      <div class="module-and-formative">
+        <div class="module" >
+          {{render_field(form.module)}}
+          </div>
+        <div class="issummative" >
+          {{render_field(form.issummative)}}
+          </div>
+      </div>
+
+    <div class="answer-and-difficulty">
+      {{render_field(form.answer)}}
+      {{render_field(form.incorrectfeedback)}}
+      {{render_field(form.difficulty)}}
+      {{form.submit (class="save-btn")}}
+    </div>
+      
+    </div>
+  </form>
+{% endblock content %}

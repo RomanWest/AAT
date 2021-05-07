@@ -1,21 +1,53 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="student-view-progress">
+<div class="mainbit">
 
 
-<h1 class="title">Registration</h1>
-<form method="POST" action="">
+  <div class="top-part">
+    <div class="question-type-dropdown">
+      <label class="pagetitle" for="question type">Question Type:</label> &nbsp;
+      <select class="dropdown-menu-questions" name="question type">
+        <option value="Fill in the Blank">Fill in the Blank</option>
+        <option value="Multiple Choice">Multiple Choice</option>
+      </select>
+    </div>
+
+<div class ="edit-btn-container">
+  <a class="button admin-home-btn" href="{{url_for('MultipleEdit')}}">Edit/Delete</a>
+</div>
+
+</div>
+<form class="question-maker-container" method="POST" action="">
   {{ form.csrf_token }}
-  <p class="title">{{ form.question.label }} {{ form.question }}</p>
-  <p class="title">{{ form.correct.label }} {{ form.correct }}</p>
-  <p class="title">{{ form.module_code.label }} {{ form.module_code }}</p>
-  <p class="title">{{ form.incorrect_1.label }} {{ form.incorrect_1 }}</p>
-  <p class="title">{{ form.incorrect_2.label }} {{ form.incorrect_2 }}</p>
-  <p class="title">{{ form.incorrect_3.label }} {{ form.incorrect_3 }}</p>
-  <p class="title">{{ form.difficulty.label }} {{ form.difficulty }}</p>
-  <p class="title">{{ form.is_formative.label }} {{ form.is_formative }}</p>
-  <p class="title">{{ form.feedback.label }} {{ form.feedback }}</p>
-  <p class="title">{{ form.submit }}</p>
+
+
+  <div class="top-input-box">
+    {{form.question.label (class = "question-label")}}{{form.question (class = "question-input")}}
+
+  </div>
+  <div class="bottom-inputs">
+    <div class="module-and-formative">
+      <div class="module" >
+        {{form.module_code.label (class = "question-label")}}{{form.module_code ( class = "module-input")}}
+        </div>
+      <div class="issummative" >
+        {{form.is_summative.label (class="question-label")}} {{form.is_summative (class = "checkbox")}}
+        </div>
+    </div>
+
+  <div class="answer-and-difficulty">
+    {{form.correct.label (class="question-label")}} {{form.correct (class = "question-input")}}
+    {{form.incorrect_1.label (class="question-label")}} {{form.incorrect_1 (class = "question-input")}}
+    {{form.incorrect_2.label (class="question-label")}} {{form.incorrect_2 (class = "question-input")}}
+    {{form.incorrect_3.label (class="question-label")}} {{form.incorrect_3 (class = "question-input")}}
+    {{form.feedback.label (class="question-label")}} {{form.feedback (class = "question-input")}}
+    {{form.difficulty.label (class="question-label")}} {{form.difficulty (class = "dropdown-menu-questions")}}
+    {{form.submit (class="save-btn")}}
+  </div>
+
+  </div>
+
+
 
 </form>
 </div>
