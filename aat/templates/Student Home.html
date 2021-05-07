@@ -18,6 +18,9 @@
   </div>
   <div class = formative-summative-container>
     <div class="formative-summative">formative</div>
+    {% for assessment in assessment_all %}
+    <a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a>
+    {% endfor %}
     <div class="formative-summative">summative</div>
   </div>
 </div>

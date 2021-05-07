@@ -613,6 +613,11 @@ td {
   align-items: center;
 }
 
+.question-check-box {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
 .question {
   display: grid;
   background-color: #c4c4c4;
@@ -682,7 +687,6 @@ td {
 }
 
 
-
 #col4 h5{
   min-height:80%;
 }
@@ -714,8 +718,8 @@ td {
 
 /* The container */
 .checkcontainer {
-  display: block;
-  position: relative;
+  display: inline-flex;
+  position: absolute;
   padding-left: 35px;
   margin-bottom: 12px;
   cursor: pointer;
@@ -738,11 +742,11 @@ td {
 /* Create a custom checkbox */
 .checkmark {
   position: absolute;
-  top: 35%;
+  top: 15%;
   left: 0;
   height: 25px;
   width: 25px;
-  background-color: #eee;
+  background-color: rgb(255, 255, 255);
 }
 
 /* On mouse-over, add a grey background color */

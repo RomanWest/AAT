@@ -1,8 +1,8 @@
 from datetime import datetime
 from flask import render_template, url_for, request, redirect, flash, g, current_app, session
 from aat import app, db
-from aat.models import User, Multiple, Fill
-from aat.forms import RegistrationForm, LoginForm
+from aat.models import Assessment, User, Multiple, Fill
+from aat.forms import RegistrationForm, LoginForm, FillQForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat.testroute import test
 from aat.MultipleChoice import MultipleRoute, MultipleEditRoute
@@ -14,8 +14,8 @@ def staffhome():
 
 @app.route("/Student-Home", methods=["GET", 'POST'])
 def studenthome():
-    test()
-    return render_template("Student Home.html")
+    assessment_all = Assessment.query.all()
+    return render_template("Student Home.html", assessment_all=assessment_all)
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/login",methods=['GET','POST'])
@@ -66,6 +66,7 @@ def studentViewProgress():
 
 @app.route("/Student-View-Attempts")
 def studentViewAttempts():
+
     return render_template('Student View Attempts.html')
 
 @app.route("/View-Quiz-Attempt")
@@ -108,3 +109,20 @@ def previewAssessment():
 @app.route("/Submit-Assessment")
 def submitAssessment():
     return render_template('Submit Assessment.html')
+
+@app.route("/Attempt-Assessment/<int:assessment_id>",methods=['GET','POST'])
+def testassess(assessment_id):
+    assessment = Assessment.query.get_or_404(assessment_id)
+    multiple_all = Multiple.query.all()
+    fill_all = Fill.query.all()
+    # for ( i < length of assessment):
+    #     questions.append ( q1_type.query.filter_by (q1_id) )
+
+    # q1_type = Assessment.query.get_or_404(q1_type)
+    # q1_id = Assessment.query.get_or_404(q1_id)
+    # q2_type = Assessment.query.get_or_404(q2_type)
+    # q2_id = Assessment.query.get_or_404(q2_id)
+    # q3_type = Assessment.query.get_or_404(q3_type)
+    # q3_id = Assessment.query.get_or_404(q3_id)  
+    print(assessment)
+    return render_template('testassess.html', assessment=assessment, multiple_all=multiple_all, fill_all=fill_all)
