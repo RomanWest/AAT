@@ -37,7 +37,23 @@ else {
   document.getElementById("content").style.marginLeft = "10%";
 }
 
+//function to change url based on dropdown menu
 
+function dropdownURL(){
+  if(document.getElementById("qType").value = "Fill in the Blank"){
+    var newurl = window.location.href.replace(window.location.pathname, "/Create-Fill-in-the-Blank");
+    location.replace(newurl)
+  }
+}
+
+function dropdownURL2(){
+  if(document.getElementById("qType").value = "Multiple Choice"){
+    var newurl = window.location.href.replace(window.location.pathname, "/Create-Multiple-Choice-Question");
+    location.replace(newurl)
+  }
+}
+
+//counter for ticks
 function questionCheck() {
   var count = 0;
   var noElements = document.getElementsByClassName("checkbx");
@@ -55,5 +71,6 @@ function uncheck(){
   var noElements = document.getElementsByClassName("checkbx");
   for (var i = 0; i < noElements.length; i++) {
     noElements[i].checked = false;
+
   }
 }

@@ -138,7 +138,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: darkgrey;
+  background-color: rgb(221, 221, 221);
   border-radius: 3rem;
   opacity: 1;
   transition: 0.3;
