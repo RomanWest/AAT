@@ -612,17 +612,6 @@ td {
   flex-grow:3;
 }
 
-.question-preview-head h5 {
-  margin-left: 1rem;
-  min-width: 10vw;
-  text-align: center;
-  align-self: center;
-  background-color: #c4c4c4;
-  border-radius: 1rem;
-  font-size: 1.7rem;
-  padding: 0.5rem;
-}
-
 .question-preview-head #type {
   display: inline-flex;
   justify-content: space-around;
@@ -666,6 +655,10 @@ td {
 #col4 {
   margin-bottom: 1rem;
   min-width: 20%;
+}
+
+#col4 h5{
+  min-height:80%;
 }
 
 .foot {
