@@ -1,27 +1,27 @@
 {% extends "layout.html" %} {% block content %}
 {% from "_formhelpers.html" import render_field %}
 <form class="question-maker-container" method="POST" action="">
+    {{form.csrf_token}}
     <div class="top-input-box">
-      {{render_field(form.question)}}
+      {{form.question.label (class = "question-label")}}{{form.question (class = "question-input")}}
 
     </div>
     <div class="bottom-inputs">
       <div class="module-and-formative">
-        <div class="module" >
-          {{render_field(form.module_code)}}
+        <div class="module">
+          {{form.module_code.label (class = "question-label")}}{{form.module_code (class = "module-input")}}
           </div>
         <div class="issummative" >
-          {{render_field(form.is_summative)}}
+          {{form.is_summative.label (class="question-label")}} {{form.is_summative (class = "checkbox")}}
           </div>
       </div>
 
     <div class="answer-and-difficulty">
-      {{render_field(form.correct)}}
-      {{render_field(form.feedback)}}
-      {{render_field(form.difficulty)}}
+      {{form.correct.label (class="question-label")}} {{form.correct (class = "question-input")}}
+      {{form.feedback.label (class="question-label")}} {{form.feedback (class = "question-input")}}
+      {{form.difficulty.label (class="question-label")}} {{form.difficulty (class = "dropdown-menu-questions")}}
       {{form.submit (class="save-btn")}}
     </div>
-      
-    </div>
-  </form>
+</div>
+</form>
 {% endblock content %}

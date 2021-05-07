@@ -16,6 +16,7 @@ def filleditroute():
         fill = db.session.query(Fill).get(fill_id)
         form = FillQForm(formdata=request.form, obj = fill)
         if form.validate_on_submit():
+            db.session.delete(fill)
             question = Fill(question=form.question.data, 
                             module_code=form.module_code.data, 
                             correct=form.correct.data,
@@ -23,7 +24,7 @@ def filleditroute():
                             difficulty=form.difficulty.data,
                             is_summative=form.is_summative.data
                             )
-            db.session.add(fill)
+            db.session.add(question)
             db.session.commit()
             flash("edited successfully")
             return redirect(url_for('staffhome'))
