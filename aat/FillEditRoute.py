@@ -13,6 +13,19 @@ def filleditroute():
 
     @app.route("/Edit-Fill-in-the-Blank/<int:fill_id>",methods=['GET', 'POST'])
     def FillEdit(fill_id):
-        question = Fill.query.get_or_404(fill_id)
-        form = FillQForm(formdata=request.form, )
-        return render_template("fillEdit.html", question=question, form=form)
+        fill = db.session.query(Fill).get(fill_id)
+        form = FillQForm(formdata=request.form, obj = fill)
+        if form.validate_on_submit():
+            db.session.delete(fill)
+            question = Fill(question=form.question.data, 
+                            module_code=form.module_code.data, 
+                            correct=form.correct.data,
+                            feedback=form.feedback.data,
+                            difficulty=form.difficulty.data,
+                            is_summative=form.is_summative.data
+                            )
+            db.session.add(question)
+            db.session.commit()
+            flash("edited successfully")
+            return redirect(url_for('staffhome'))
+        return render_template("fillEdit.html", fill=fill, form=form)

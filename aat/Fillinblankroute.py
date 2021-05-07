@@ -11,14 +11,15 @@ def fillblankroute():
         form = FillQForm()
         if form.validate_on_submit():
             question = Fill(question=form.question.data, 
-                            module_code=form.module.data, 
-                            correct=form.answer.data,
-                            feedback=form.incorrectfeedback.data,
+                            module_code=form.module_code.data, 
+                            correct=form.correct.data,
+                            feedback=form.feedback.data,
                             difficulty=form.difficulty.data,
-                            is_summative=form.issummative.data
+                            is_summative=form.is_summative.data
                             )
             db.session.add(question)
             db.session.commit()
+            flash("Question added.")
             return redirect(url_for('staffhome'))
 
         return render_template("Fill in blank.html", form=form)
