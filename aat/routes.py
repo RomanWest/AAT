@@ -1,12 +1,13 @@
 from datetime import datetime
 from flask import render_template, url_for, request, redirect, flash, g, current_app, session
-from aat import app, db
+from aat import app, db, wildcardroute, testroute
 from aat.models import User, Multiple, Fill
 from aat.forms import RegistrationForm, LoginForm, FillQForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat.testroute import test
 # from aat.Fillinblankroute import fillblankroute
-from aat.MultipleChoice import MCForm
+#from aat.MultipleChoice import MCForm
+#from aat import wildcardroute
 
 @app.route("/Staff-Home")
 def staffhome():
@@ -67,9 +68,11 @@ def studentViewAttempts():
 def viewQuizAttempt():
     return render_template('View Quiz Attempt.html')
 
-@app.route("/Generate-Quiz")
-def generateQuiz():
-    return render_template('Generate Quiz.html')
+#modules = ["cmt120","cmt119","cmt219"]
+
+#@app.route("/Generate-Quiz",methods = ["GET","POST"])
+#def generateQuiz():
+	#return render_template("Generate Quiz.html",modules = modules)
 
 @app.route("/Attempt-Assessment")
 def attemptAssessment():
@@ -95,8 +98,8 @@ def createQuestion():
 def FillintheBlank():
     form = FillQForm()
     if form.validate_on_submit():
-        question = Fill(question=form.question.data, 
-                        module_code=form.module.data, 
+        question = Fill(question=form.question.data,
+                        module_code=form.module.data,
                         correct=form.answer.data,
                         feedback=form.incorrectfeedback.data,
                         difficulty=form.difficulty.data,
@@ -126,4 +129,3 @@ def previewAssessment():
 @app.route("/Submit-Assessment")
 def submitAssessment():
     return render_template('Submit Assessment.html')
-
