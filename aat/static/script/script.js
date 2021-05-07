@@ -48,4 +48,12 @@ function questionCheck() {
     }
   }
   console.log(count);
+  document.getElementById("question-counter").innerText = count + "/3";
+}
+
+function uncheck(){
+  var noElements = document.getElementsByClassName("checkbx");
+  for (var i = 0; i < noElements.length; i++) {
+    noElements[i].checked = false;
+  }
 }

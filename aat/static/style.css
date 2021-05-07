@@ -691,6 +691,15 @@ td {
   margin: 1rem;
 }
 
+#question-counter{
+  margin-left:5px;
+  font-size: 1.7rem;
+  font-weight: 200;
+  margin-top:0px;
+  margin-bottom:0px;
+  align-self: center;
+}
+
 .foot .button {
   font-size: 1.5rem;
   color: white;

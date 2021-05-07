@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="admin-create-formative">
+  <body onload='uncheck()'>
   <div class="Top-dropdown">
     <select class=module-dropdown name="modules">
       <option value="">Select Module</option>
@@ -70,7 +71,7 @@
         <div id="col5">
           <h3>Add to assessment</h3>
           <label class="checkcontainer">
-            <input type="checkbox" class = "checkbx" id = "questionChecker {{multiple.id}}" onclick="questionCheck()">
+            <input type="checkbox" class = "checkbx" id = "questionChecker {{multiple.id}}" onclick="questionCheck()" checked=>
             <span class="checkmark"></span>
           </label>
         </div>
@@ -136,6 +137,8 @@
     </div>
 
     <div class="foot">
+      <h3>Questions Selected</h3>
+      <h5 id="question-counter">0 / 3</h5>
       <a id="save-button" class="button"> Save </a>
       <a id="preview-button" class="button"> Preview </a>
     </div>
