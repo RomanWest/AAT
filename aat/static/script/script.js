@@ -37,18 +37,15 @@ else {
   document.getElementById("content").style.marginLeft = "10%";
 }
 
-var count = 0;
+
 function questionCheck() {
+  var count = 0;
   var noElements = document.getElementsByClassName("checkbx");
   for (var i = 0; i < noElements.length; i++) {
-    console.log("questionChecker",i);
-    if (document.getElementById("questionChecker",i).checked == true) {
-      count += 1;
-      console.log(count);
-    }
-    else {
-      count -= 1;
-      console.log(count);
+    count += 1;
+    if (noElements[i].checked == false) {
+      count -=1
     }
   }
+  console.log(count);
 }
