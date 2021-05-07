@@ -20,7 +20,7 @@
     {% for multiple in multiple_all %}
     <div class="question-preview-head">
       <div id="title">
-        <h1>Question Preview</h1>
+        <h1>Question Preview {{ multiple.id }}</h1>
       </div>
 
       <div id="type">
@@ -32,7 +32,13 @@
     <div class="multiple-choice-question">
       <div id="top">
         <h3>Question</h3>
-        <h5>{{ multiple.question }}</h5>
+        <h5 id='question-text'>{{ multiple.question }}</h5>
+        <h3>Question Type</h3>
+        {% if multiple.is_summative == 1 %}
+        <h5 id='question-type-text'>Summative</h5>
+        {% else %}
+        <h5 id='question-type-text'>Formative</h5>
+        {% endif %}
       </div>
 
       <div id="cont">
@@ -63,6 +69,10 @@
         <div id="col4">
           <h3>Incorrect Answer Feedback</h3>
           <h5>{{ multiple.feedback }}</h5>
+          </label>
+        </div>
+
+        <div id="col5">
           <h3>Add to assessment</h3>
           <label class="checkcontainer">
             <input type="checkbox" >
