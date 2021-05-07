@@ -62,8 +62,6 @@ def createFormative():
     print(multiple_all)
     return render_template('Create Formative.html', multiple_all=multiple_all)
 
-    return render_template('Create Formative.html')
-
 @app.route("/Student-View-Progress")
 def studentViewProgress():
     return render_template('Student View Progress.html')
