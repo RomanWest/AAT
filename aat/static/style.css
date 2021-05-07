@@ -7,28 +7,87 @@ html {
 
   
   /* Layout */
-  
-  .alignleft {
-    float: left;
-  }
-  .alignright {
-    float: right;
-  }
-  body {
-    font-family: Segoe UI;
-    font-size: 1.4rem;
-  }
-  .header {
-    background-color: #4a8baf;
-    display: flex;
-    align-items: center;
-    position: fixed;
-    justify-content: space-between;
-    width: 100%;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: 2;
+
+.alignleft {
+  float: left;
+}
+.alignright {
+  float: right;
+}
+body {
+  font-family: Segoe UI;
+  font-size: 1.4rem;
+}
+.header {
+  background-color: #4a8baf;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  justify-content: space-between;
+  width: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.title {
+  font-weight: normal;
+  color: white;
+  font-size: 4.4rem;
+}
+.navbuttons {
+  margin-left: 10%;
+  min-width: 15%;
+}
+
+.nav-button {
+  font-size: 2.2rem;
+  color: white;
+  text-decoration: none;
+  padding: 2rem;
+  border-radius: 4rem;
+  transition: 0.3s;
+  background-color: #3546a3;
+}
+.nav-button:hover {
+  background-color: rgb(90, 91, 168);
+}
+.searchbar {
+  display: flex;
+  position: relative;
+  top: -0.5rem;
+}
+.login {
+  margin-right: 10%;
+  display: flex;
+  align-items: center;
+  align-self: center;
+  padding-bottom: 1rem;
+}
+.button {
+  font-size: 2rem;
+  color: white;
+  text-decoration: none;
+  padding: 2rem;
+  border-radius: 4rem;
+  transition: 0.3s;
+  background-color: #acacac;
+}
+.button:hover {
+  background-color: #807f7f;
+}
+.greeting {
+  align-self: center;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  color: white;
+  font-size: 2.2rem;
+}
+@media screen and (max-width: 1400px) {
+  .searchbar-bar {
+    width: 10rem;
   }
   .title {
     font-size: 2.2rem;
@@ -45,6 +104,7 @@ html {
   .button {
     font-size: 1.4rem;
   }
+}
 
 
 .content {
