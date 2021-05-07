@@ -76,6 +76,20 @@
     </div>
     {% endfor %}
 
+    <div class="multiple-choice-question">
+      <div id="top">
+        <h3>Question</h3>
+        <h5 id='question-text'>{{ multiple.question }}</h5>
+        <h3>Question Type</h3>
+        {% if multiple.is_summative == 1 %}
+        <h5 id='question-type-text'>Summative</h5>
+        {% else %}
+        <h5 id='question-type-text'>Formative</h5>
+        {% endif %}
+      </div>
+      
+    </div>
+
     <div class="foot">
       <a id="save-button" class="button"> Save </a>
       <a id="preview-button" class="button"> Preview </a>
