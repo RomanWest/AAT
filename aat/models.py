@@ -51,7 +51,7 @@ class Fill(db.Model):
 	date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 	is_summative = db.Column(db.Boolean,nullable=False)
 	feedback = db.Column(db.String,nullable=False)
-
+		
 
 
 #Assessment is a collection of 3 questions that could be fill or multiple

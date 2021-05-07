@@ -8,16 +8,16 @@
     <div class="bottom-inputs">
       <div class="module-and-formative">
         <div class="module" >
-          {{render_field(form.module)}}
+          {{render_field(form.module_code)}}
           </div>
         <div class="issummative" >
-          {{render_field(form.issummative)}}
+          {{render_field(form.is_summative)}}
           </div>
       </div>
 
     <div class="answer-and-difficulty">
-      {{render_field(form.answer)}}
-      {{render_field(form.incorrectfeedback)}}
+      {{render_field(form.correct)}}
+      {{render_field(form.feedback)}}
       {{render_field(form.difficulty)}}
       {{form.submit (class="save-btn")}}
     </div>
