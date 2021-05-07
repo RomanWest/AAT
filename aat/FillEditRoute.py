@@ -17,7 +17,8 @@ def filleditroute():
         form = FillQForm(formdata=request.form, obj = fill)
         if form.validate_on_submit():
             db.session.delete(fill)
-            question = Fill(question=form.question.data, 
+            question = Fill(id = fill_id,
+                            question=form.question.data, 
                             module_code=form.module_code.data, 
                             correct=form.correct.data,
                             feedback=form.feedback.data,
