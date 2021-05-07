@@ -16,24 +16,29 @@
     </select>
   </div>
 
-  
+
   <div class="question-preview">
     {% for multiple in multiple_all %}
     <div class="question-preview-head">
       <div id="title">
-        <h1>Question Preview</h1>
+        <h1>Question {{ multiple.id }}</h1>
       </div>
 
       <div id="type">
-        <h1>Question Type</h1>
-        <h5>{{ multiple.is_summative }}</h5>
+
       </div>
     </div>
 
     <div class="multiple-choice-question">
       <div id="top">
         <h3>Question</h3>
-        <h5>{{ multiple.question }}</h5>
+        <h5 id='question-text'>{{ multiple.question }}</h5>
+        <h3>Question Type</h3>
+        {% if multiple.is_summative == 1 %}
+        <h5 id='question-type-text'>Summative</h5>
+        {% else %}
+        <h5 id='question-type-text'>Formative</h5>
+        {% endif %}
       </div>
 
       <div id="cont">

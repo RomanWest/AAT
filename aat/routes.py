@@ -55,7 +55,6 @@ def logout():
 fillblankroute()
 filleditroute()
 
-
 @app.route("/Create-Formative")
 def createFormative():
     multiple_all = Multiple.query.all()
