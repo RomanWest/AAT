@@ -15,6 +15,9 @@ Answer : {{question.correct}} &nbsp;
 <div class="question-date">
     <div>Created : {{question.date_created}}</div>
     <a href="{{ url_for('FillEdit', fill_id=question.id) }}">Edit</a>
+    <form method = 'POST' action=''>
+    <input class="button" type = submit name = "{{question.id}}" value = "Delete question {{question.id}}">
+    </form> 
 </div>
 </div>
 <br />

@@ -2,12 +2,11 @@ from datetime import datetime
 from flask import render_template, url_for, request, redirect, flash, g, current_app, session
 from aat import app, db
 from aat.models import User, Multiple, Fill
-from aat.forms import RegistrationForm, LoginForm, FillQForm
+from aat.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat.testroute import test
-from aat.Fillinblankroute import fillblankroute
 from aat.MultipleChoice import MultipleRoute, MultipleEditRoute
-from aat.FillEditRoute import filleditroute
+from aat.Fill import filleditroute, fillblankroute, FillQForm
 
 @app.route("/Staff-Home")
 def staffhome():

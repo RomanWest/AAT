@@ -28,12 +28,4 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password',validators=[DataRequired()])
     submit = SubmitField('Login')
 
-class FillQForm(FlaskForm):
-    question = StringField('Question', validators=[DataRequired()])
-    module_code = StringField('Module', validators=[DataRequired()])
-    correct = StringField('Answer', validators=[DataRequired()])
-    feedback = StringField('Incorrect Answer Feedback',validators = [DataRequired()])
-    is_summative = BooleanField('Is summative?')
-    difficulty = SelectField('Difficulty', choices=[('easy','Easy'), ('hard', 'Hard')], validators=[DataRequired()])
-    submit = SubmitField('Save')
 
