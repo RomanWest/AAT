@@ -92,8 +92,8 @@ def viewStudent():
 @app.route("/Create-Summative")
 def createSummative():
     multiple_all = Multiple.query.all()
-    print(multiple_all)
-    return render_template('Create Summative.html', multiple_all=multiple_all)
+    fill_all = Fill.query.all()
+    return render_template('Create Summative.html', multiple_all=multiple_all, fill_all=fill_all)
 
 @app.route("/Create-Question")
 def createQuestion():
