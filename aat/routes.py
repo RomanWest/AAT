@@ -6,7 +6,7 @@ from aat.forms import RegistrationForm, LoginForm, FillQForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat.testroute import test
 from aat.Fillinblankroute import fillblankroute
-from aat.MultipleChoice import MCForm
+from aat.MultipleChoice import MultipleRoute, MultipleEditRoute
 from aat.FillEditRoute import filleditroute
 
 @app.route("/Staff-Home")
@@ -98,16 +98,8 @@ def createSummative():
 def createQuestion():
     return render_template('Create Question.html')
 
-
-@app.route("/Create-Multiple-Choice-Question", methods=['GET', 'POST'])
-def createMultipleChoiceQuestion():
-    form = MCForm()
-    if form.validate_on_submit():
-        quest = Multiple(question=form.question.data, correct=form.correct.data, module_code=form.module_code.data, incorrect_1=form.incorrect_1.data, incorrect_2=form.incorrect_2.data, incorrect_3=form.incorrect_3.data, difficulty=form.difficulty.data, is_summative=form.is_summative.data, feedback=form.feedback.data)
-        db.session.add(quest)
-        db.session.commit()
-        return redirect(url_for('staffhome'))
-    return render_template('Create Multiple Choice Question.html', form = form)
+MultipleRoute()
+MultipleEditRoute()
 
 @app.route("/Preview-Assessment")
 def previewAssessment():

@@ -3,6 +3,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Regexp, InputRequired
 from aat.models import Multiple
+from aat import app, db
+from sqlalchemy import desc
 
 class MCForm(FlaskForm):
     question = StringField('question', validators=[DataRequired(), Length(min=3)])
@@ -20,3 +22,22 @@ class MCForm(FlaskForm):
         quest = Multiple.query.filter_by(question=question.data).first()
         if quest is not None:
             raise ValidationError('This Question is already in the database')
+
+
+def MultipleEditRoute():
+    @app.route("/Edit-Multiple-Choice-Question",methods=['GET', 'POST'])
+    def MultipleEdit():
+        questions = Multiple.query.order_by(desc(Multiple.date_created)).all()
+        return render_template("MultipleEdit.html", questions = questions)
+
+
+def MultipleRoute():
+    @app.route("/Create-Multiple-Choice-Question", methods=['GET', 'POST'])
+    def createMultipleChoiceQuestion():
+        form = MCForm()
+        if form.validate_on_submit():
+            quest = Multiple(question=form.question.data, correct=form.correct.data, module_code=form.module_code.data, incorrect_1=form.incorrect_1.data, incorrect_2=form.incorrect_2.data, incorrect_3=form.incorrect_3.data, difficulty=form.difficulty.data, is_summative=form.is_summative.data, feedback=form.feedback.data)
+            db.session.add(quest)
+            db.session.commit()
+            return redirect(url_for('staffhome'))
+        return render_template('Create Multiple Choice Question.html', form = form)
