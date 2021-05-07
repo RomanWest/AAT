@@ -70,7 +70,7 @@
         <div id="col5">
           <h3>Add to assessment</h3>
           <label class="checkcontainer">
-            <input type="checkbox" >
+            <input type="checkbox" class = "checkbx" id = "questionChecker {{multiple.id}}" onclick="questionCheck()">
             <span class="checkmark"></span>
           </label>
         </div>
@@ -83,7 +83,7 @@
     {% for fill in fill_all %}
     <div class="question-preview-head">
       <div id="title">
-        <h1>Fill in the Blank Question {{ fill.id }}</h1>
+        <h1>Fill in the Blank Question {{ multiple_all|length + fill.id }}</h1>
       </div>
     </div>
 
@@ -123,7 +123,7 @@
         <div id="col5">
           <h3>Add to assessment</h3>
           <label class="checkcontainer">
-            <input type="checkbox" >
+            <input type="checkbox" class = "checkbx" id = "questionChecker {{multiple_all|length + fill.id}}" onclick="questionCheck()">
             <span class="checkmark"></span>
           </label>
         </div>
