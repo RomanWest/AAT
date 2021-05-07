@@ -15,17 +15,12 @@
       <option value="Module2">Summative</option>
     </select>
   </div>
- 
+
   <div class="question-preview">
     {% for multiple in multiple_all %}
     <div class="question-preview-head">
       <div id="title">
         <h1>Question Preview {{ multiple.id }}</h1>
-      </div>
-
-      <div id="type">
-        <h1>Question Type</h1>
-        <h5>{{ multiple.is_summative }}</h5>
       </div>
     </div>
 
@@ -74,7 +69,7 @@
         <div id="col5">
           <h3>Add to assessment</h3>
           <label class="checkcontainer">
-            <input type="checkbox" >
+            <input type="checkbox">
             <span class="checkmark"></span>
           </label>
         </div>
@@ -122,17 +117,17 @@
           <h3>Incorrect Answer Feedback</h3>
           <h5>{{ fill.feedback }}</h5>
         </div>
-        
+
         <div id="col5">
           <h3>Add to assessment</h3>
           <label class="checkcontainer">
-            <input type="checkbox" >
+            <input type="checkbox">
             <span class="checkmark"></span>
           </label>
         </div>
       </div>
 
-    </div> 
+    </div>
     {% endfor %}
 
     <div class="foot">
