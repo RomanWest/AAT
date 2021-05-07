@@ -639,22 +639,28 @@ td {
 
 #col1 {
   margin-bottom: 1rem;
-  min-width: 20%;
+  min-width: 15%;
 }
 
 #col2 {
   margin-bottom: 1rem;
-  min-width: 20%;
+  min-width: 15%;
 }
 
 #col3 {
   margin-bottom: 1rem;
-  min-width: 20%;
+  min-width: 15%;
 }
 
 #col4 {
   margin-bottom: 1rem;
-  min-width: 20%;
+  min-width: 15%;
+}
+
+#col5 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  min-width: 15%;
 }
 
 #col4 h5{
