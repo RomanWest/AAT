@@ -417,6 +417,26 @@ td {
   background-color: #aaaaaa;
 }
 
+ /* FILL EDIT PAGE */
+.question-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.question {
+  background-color: rgb(30, 255, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 2rem;
+  width: 80%;
+  padding: 1rem;
+}
+.question-inner-container{
+  margin-bottom:2rem;
+}
 /* login*/
 
 .logintitle {

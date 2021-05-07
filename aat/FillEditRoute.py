@@ -5,10 +5,13 @@ from aat.models import Fill
 from sqlalchemy import desc
 
 
-
-
 def filleditroute():
     @app.route("/Edit-Fill-in-the-Blank",methods=['GET', 'POST'])
-    def FillEdit():
-        questions = Fill.query.order_by(desc(Fill.date_created)).all()
-        return render_template("Fill Edit.html", questions = questions)
+    def FillEditList():
+        questions = Fill.query.order_by(desc(-Fill.date_created)).all()
+        return render_template("Fill edit list.html", questions = questions)
+
+    @app.route("/Edit-Fill-in-the-Blank/<int:fill_id>",methods=['GET', 'POST'])
+    def FillEdit(fill_id):
+        question = Fill.query.get_or_404(fill_id)
+        return render_template("fillEdit.html", question=question)
