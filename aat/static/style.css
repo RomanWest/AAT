@@ -657,12 +657,17 @@ td {
   min-width: 15%;
 }
 
+<<<<<<< HEAD
 #col4 {
   margin-bottom: 1rem;
   min-width: 15%;
 }
 
 #col5 {
+=======
+#col5 {
+  margin-top: 1rem;
+>>>>>>> 69a871be589c49b09d54c0aecea34ab36c509cca
   margin-bottom: 1rem;
   min-width: 15%;
 }
