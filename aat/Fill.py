@@ -16,6 +16,7 @@ class FillQForm(FlaskForm):
     difficulty = SelectField('Difficulty', choices=[('easy','Easy'), ('hard', 'Hard')], validators=[DataRequired()])
     submit = SubmitField('Save')
 
+
 def fillblankroute():
     @app.route("/Create-Fill-in-the-Blank",methods=['GET', 'POST'])
     def FillintheBlank():
@@ -66,3 +67,21 @@ def filleditroute():
             return redirect(url_for('staffhome'))
         
         return render_template("fillEdit.html", fill=fill, form=form)
+    
+    @app.route("/DeleteFill/<int:fill_id>", methods=['GET', 'POST'])
+    def DeleteFill(fill_id):
+        fill = db.session.query(Fill).get(fill_id)
+        if request.method == 'POST':
+
+            if request.form.get("delete"):
+                db.session.delete(fill)
+                db.session.commit()
+                flash("Question deleted.")
+                return redirect(url_for("FillEditList"))
+
+            if request.form.get("keep"):
+                return redirect(url_for("FillEditList"))
+
+        return render_template("fillDelete.html", fill=fill)
+
+        
