@@ -52,8 +52,10 @@ def logout():
     flash('Logout successful!')
     return redirect(url_for('login'))
 
+#for fill in blank questions:
 fillblankroute()
 filleditroute()
+
 
 @app.route("/Create-Formative")
 def createFormative():
