@@ -38,5 +38,5 @@ db.session.commit()
 Assessment.query.delete()
 db.session.commit()
 db.session.add(Assessment(assessment_name="Test", module_code="Fruit123", admin_created=True, 
-    q1_type="Multiple", q1_id="1", q2_type="Fill", q2_id="1", q3_type="Fill", q3_id="3"))
+    q1_type="Multiple", q1_id=1, q2_type="Fill", q2_id="1", q3_type="Fill", q3_id="3"))
 db.session.commit()

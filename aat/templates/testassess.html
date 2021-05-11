@@ -1,15 +1,42 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="testassess">
+    <div class="question-preview"></div>
+    <div class="question-preview-head">
+        <div id="title">
+            <h1>Assessment Name: {{ assessment.assessment_name }} &nbsp; Module Code: {{ assessment.module_code }}</h1>
+        </div>
+    </div>
 
-<h5>Assessment Name: {{ assessment.assessment_name }}</h5>
+    <div id="title">
+        <h1>Question {{ q1.id }}</h1>        
+      </div>
+    <div class="question">
+        <div id="top">
+            <h5 id='question-text'> {{ q1.question }} </h5>
+        </div>
+    </div>
 
-<h5>Module Code: {{ assessment.module_code }}</h5>
+    <div id="title">
+        <h1>Question {{ q2.id }}</h1>        
+      </div>
+    <div class="question">
+        <div id="top">
+            <h5 id='question-text'>{{ q2.question }}</h5>
+        </div>
+    </div>
 
-<h5>Multiple Questions: {{ assessment.multiple_all }}</h5>
-
-<h5>Questions? {{ assessment.q1_type }} </h5>
-
+    <div id="title">
+        <h1>Question {{ q3.id }}</h1>        
+      </div>
+    <div class="question">
+        <div id="top">
+            <h5 id='question-text'>{{ q3.question }} </h5>
+        </div>
+    </div>
 </div>
 
+
+
+</div>
 {% endblock content %}

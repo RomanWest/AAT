@@ -53,6 +53,19 @@ class Fill(db.Model):
 	feedback = db.Column(db.String,nullable=False)
 		
 
+multiple_q = db.Table(
+    "multiple_q",
+    db.Column("multiple_id", db.Integer, db.ForeignKey("multiple.id")),
+    db.Column("assessment_id", db.Integer, db.ForeignKey("assessment.id")),
+    
+)
+
+fill_q = db.Table(
+    "fill_q",
+    db.Column("fill_id", db.Integer, db.ForeignKey("fill.id")),
+    db.Column("assessment_id", db.Integer, db.ForeignKey("assessment.id")),
+    
+)
 
 #Assessment is a collection of 3 questions that could be fill or multiple
 class Assessment(db.Model):
@@ -63,11 +76,15 @@ class Assessment(db.Model):
 	module_code = db.Column(db.String,nullable=False)
 	admin_created = db.Column(db.Boolean,nullable=False)
 	q1_type = db.Column(db.String, nullable=False)
-	q1_id = db.Column(db.String, nullable=False)
+	q1_id = db.Column(db.Integer, nullable=False)
 	q2_type = db.Column(db.String, nullable=False)
-	q2_id = db.Column(db.String, nullable=False)
+	q2_id = db.Column(db.Integer, nullable=False)
 	q3_type = db.Column(db.String, nullable=False)
-	q3_id = db.Column(db.String, nullable=False)
+	q3_id = db.Column(db.Integer, nullable=False)
+	multiple_q = db.relationship("Multiple", secondary=multiple_q, primaryjoin=(multiple_q.c.assessment_id==id), 
+				backref=db.backref("multiple_q"), lazy="dynamic")
+	fill_q = db.relationship("Fill", secondary=fill_q, primaryjoin=(fill_q.c.assessment_id==id),
+				backref=db.backref("fill_q"), lazy="dynamic")
 
 	def __repr__(self):
 		return f"Assessment('{self.assessment_name}')"
