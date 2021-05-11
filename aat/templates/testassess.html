@@ -1,15 +1,41 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="testassess">
+    <div class="question-preview-head">
+        <div id="title">
+            <h5>Assessment Name: {{ assessment.assessment_name }} &nbsp; Module Code: {{ assessment.module_code }}</h5>
+        </div>
+    </div>
 
-<h5>Assessment Name: {{ assessment.assessment_name }}</h5>
+    <div class="question">
+        <div id="top">
+            <h5 id='question-text'>Should be Multiple: {{ q1.question }} </h5>
+        </div>
+    </div>
 
-<h5>Module Code: {{ assessment.module_code }}</h5>
+    <!-- <div class="question">
+        <div id="top">
+            {% if q1_type == 'Multiple' %}
+            <h5 id='question-text'>{{ Multiple.question }} </h5>
+            {% elif q1_type == 'Fill' %}
+            <h5 id='question-text'>{{ Fill.question }} </h5>
+            {% endif %}
+        </div>
+    </div> -->
 
-<h5>Multiple Questions: {{ assessment.multiple_all }}</h5>
+    <div class="question">
+        <div id="top">
+            <h5 id='question-text'>Should be Fill: {{ q2.question }} </h5>
+        </div>
+    </div>
 
-<h5>Questions? {{ assessment.q1_type }} </h5>
+    <div class="question">
+        <div id="top">
+            <h5 id='question-text'>Should be Fill: {{ q3.question }} </h5>
+        </div>
+    </div>
+
+
 
 </div>
-
 {% endblock content %}
