@@ -1,13 +1,21 @@
 from datetime import datetime 
 from flask import render_template, url_for, request, redirect, flash, g, current_app, session
+from flask_wtf.form import FlaskForm
+from wtforms.fields.core import StringField
+from wtforms.validators import DataRequired
 from aat import app, db
 from aat.models import Assessment, User, Multiple, Fill
 from aat.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat import app, db
 
-def testassess_route():
+class Answer_Form(FlaskForm):
+    answer = StringField('answer', validators=[DataRequired()])
 
+
+
+
+def testassess_route():
 
     @app.route("/Attempt-Assessment/<int:assessment_id>",methods=['GET','POST'])
     def testassess(assessment_id):
@@ -18,16 +26,15 @@ def testassess_route():
         q1_multi = Multiple.query.filter_by(id = assessment.q1_id).first()
         q1_fill = Fill.query.filter_by(id = assessment.q1_id).first()
 
-        if Assessment.q1_type == 'Multiple':
+        if assessment.q1_type == "Multiple" :
             q1 = q1_multi
         else:
             q1 = q1_fill
 
-
         q2_multi = Multiple.query.filter_by(id = assessment.q2_id).first()
         q2_fill = Fill.query.filter_by(id = assessment.q2_id).first()
 
-        if Assessment.q2_type == 'Multiple':
+        if assessment.q2_type == "Multiple":
             q2 = q2_multi
         else:
             q2 = q2_fill
@@ -35,12 +42,12 @@ def testassess_route():
         q3_multi = Multiple.query.filter_by(id = assessment.q3_id).first()
         q3_fill = Fill.query.filter_by(id = assessment.q3_id).first()
 
-        if Assessment.q3_type == 'Multiple':
+        if assessment.q3_type == "Multiple":
             q3 = q3_multi
         else:
             q3 = q3_fill
 
-  
+       
         print(assessment)
         return render_template('testassess.html', assessment=assessment, 
             multiple_all=multiple_all, fill_all=fill_all, 

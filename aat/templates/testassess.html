@@ -1,39 +1,40 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="testassess">
+    <div class="question-preview"></div>
     <div class="question-preview-head">
         <div id="title">
-            <h5>Assessment Name: {{ assessment.assessment_name }} &nbsp; Module Code: {{ assessment.module_code }}</h5>
+            <h1>Assessment Name: {{ assessment.assessment_name }} &nbsp; Module Code: {{ assessment.module_code }}</h1>
         </div>
     </div>
 
+    <div id="title">
+        <h1>Question {{ q1.id }}</h1>        
+      </div>
     <div class="question">
         <div id="top">
-            <h5 id='question-text'>Should be Multiple: {{ q1.question }} </h5>
+            <h5 id='question-text'> {{ q1.question }} </h5>
         </div>
     </div>
 
-    <!-- <div class="question">
-        <div id="top">
-            {% if q1_type == 'Multiple' %}
-            <h5 id='question-text'>{{ Multiple.question }} </h5>
-            {% elif q1_type == 'Fill' %}
-            <h5 id='question-text'>{{ Fill.question }} </h5>
-            {% endif %}
-        </div>
-    </div> -->
-
+    <div id="title">
+        <h1>Question {{ q2.id }}</h1>        
+      </div>
     <div class="question">
         <div id="top">
-            <h5 id='question-text'>Should be Fill: {{ q2.question }} </h5>
+            <h5 id='question-text'>{{ q2.question }} </h5>
         </div>
     </div>
 
+    <div id="title">
+        <h1>Question {{ q3.id }}</h1>        
+      </div>
     <div class="question">
         <div id="top">
-            <h5 id='question-text'>Should be Fill: {{ q3.question }} </h5>
+            <h5 id='question-text'>{{ q3.question }} </h5>
         </div>
     </div>
+</div>
 
 
 
