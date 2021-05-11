@@ -1,0 +1,7 @@
+{% extends "layout.html" %} {% block content %}
+{{question}}
+<form class="question-maker-container" method="POST" action="">
+    <label for="studentanswer">Answer:</label>
+    <input type="text" id="studentanswer" name="answer" placeholder="Answer...">
+    <button type="submit">Confirm</button></form>
+{%endblock content%}
