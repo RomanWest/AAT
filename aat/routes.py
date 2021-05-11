@@ -6,7 +6,7 @@ from aat.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat.testroute import test
 from aat.MultipleChoice import MultipleRoute, MultipleEditRoute
-from aat.Fill import filleditroute, fillblankroute
+from aat.Fill import filleditroute, fillblankroute, test_fill_route
 from aat.Assessment import testassess_route
 
 @app.route("/Staff-Home")
@@ -55,6 +55,7 @@ def logout():
 #for fill in blank questions:
 fillblankroute()
 filleditroute()
+test_fill_route()
 
 
 @app.route("/Create-Formative")
