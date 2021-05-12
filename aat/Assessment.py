@@ -1,7 +1,7 @@
 from datetime import datetime 
 from flask import render_template, url_for, request, redirect, flash, g, current_app, session
 from flask_wtf.form import FlaskForm
-from wtforms.fields.core import StringField
+from wtforms.fields.core import StringField, RadioField
 from wtforms.fields.simple import SubmitField
 from wtforms.validators import DataRequired
 from aat import app, db
@@ -12,10 +12,13 @@ from aat import app, db
 
 # Need to look at form 
 class Answer_Form(FlaskForm):
-    answer_1 = StringField('answer', validators=[DataRequired()])
-    answer_2 = StringField('answer', validators=[DataRequired()])
-    answer_3 = StringField('answer', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+        answer_1_fill = StringField('answer1', validators=[DataRequired()])
+        answer_2_fill = StringField('answer2', validators=[DataRequired()])
+        answer_3_fill = StringField('answer3', validators=[DataRequired()])
+        answer_1_multi = RadioField('answer1', validators=[DataRequired()])
+        answer_2_multi = RadioField('answer2', validators=[DataRequired()])
+        answer_3_multi = RadioField('answer3', validators=[DataRequired()])
+        submit = SubmitField('Submit')
 
 
 def testassess_route():
@@ -25,6 +28,7 @@ def testassess_route():
         assessment = Assessment.query.get_or_404(assessment_id)
         multiple_all = Multiple.query.all()
         fill_all = Fill.query.all()
+        form = Answer_Form()
         
         q1_multi = Multiple.query.filter_by(id = assessment.q1_id).first()
         q1_fill = Fill.query.filter_by(id = assessment.q1_id).first()
@@ -49,26 +53,43 @@ def testassess_route():
             q3 = q3_multi
         else:
             q3 = q3_fill
+        
+        # Need to look at form submission
 
+   
 
         return render_template('testassess.html', assessment=assessment, 
             multiple_all=multiple_all, fill_all=fill_all, 
             q1_multi=q1_multi, q1_fill=q1_fill, q1=q1,
             q2_multi=q2_multi, q2_fill=q2_fill, q2=q2,
-            q3_multi=q3_multi, q3_fill=q3_fill, q3=q3
+            q3_multi=q3_multi, q3_fill=q3_fill, q3=q3,
+            form=form
             )
 
-# Need to look at form submission
-
     def attempt_answers():
-        form = Answer_Form()
-        if form.validate_on_submit():
-            attempt = Attempts(answer_1=form.answer_1.data, 
-                            answer_2=form.answer_2.data, 
-                            answer_3=form.answer_3.data, 
+            form = Answer_Form()
+            if form.validate_on_submit():
+                assessment = Assessment.query.get_or_404()
+                if assessment.q1_type == "Multiple" :
+                    answer_options = q1_multi
+                    answer_1=form.answer_1_multi.data
+                else:
+                    answer_1=form.answer_1_fill.data
+                
+                if assessment.q2_type == "Multiple" :
+                    answer_2=form.answer_2_multi.data
+                else:
+                    answer_2=form.answer_2_fill.data
+                
+                if assessment.q3_type == "Multiple" :
+                    answer_3=form.answer_3_multi.data
+                else:
+                    answer_3=form.answer_3_fill.data
 
-                            )
-            db.session.add(attempt)
-            db.session.commit()
-            flash("Assessment submitted")
-            return redirect(url_for('studenthome'))
+
+                attempt = Attempts(answer_1=answer_1, answer_2=answer_2, answer_3=answer_3)
+
+                db.session.add(attempt)
+                db.session.commit()
+                flash("Assessment submitted")
+                return redirect(url_for('studenthome'))
