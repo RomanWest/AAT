@@ -716,6 +716,36 @@ td {
   transition: 0.3s;
 }
 
+.answer-input {
+  width: 75%;
+  height: 1rem;
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  background-color: #e7e7e7;
+}
+
+
+.save-assess-btn {
+  float: right;
+  height: 3rem;
+  width: 20%;
+  align-self: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  border-radius: 1rem;
+  outline: none;
+  border: none;
+  transition: 0.3s;
+  margin: 1rem;
+  background-color: #ffffff;
+}
+
+.save-assess-btn:hover {
+  background-color: #aaaaaa;
+}
+
 /* The container */
 .checkcontainer {
   display: inline-flex;
