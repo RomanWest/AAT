@@ -13,7 +13,7 @@ class FillQForm(FlaskForm):
     correct = StringField('Answer', validators=[DataRequired()])
     feedback = StringField('Incorrect Answer Feedback',validators = [DataRequired()])
     is_summative = BooleanField('Is summative?')
-    difficulty = SelectField('Difficulty', choices=[('easy','Easy'), ('hard', 'Hard')], validators=[DataRequired()])
+    difficulty = SelectField('Difficulty', choices=[('easy','Easy'), ('medium', 'Medium'), ('hard', 'Hard')], validators=[DataRequired()])
     submit = SubmitField('Save')
 
 
@@ -99,7 +99,7 @@ def test_fill_route():
 
         if request.method == 'POST':
             answer = request.form.get("answer")
-            if answer == fill.correct:
+            if answer.lower() == fill.correct.lower():
                 flash("right")
             else:
                 flash(fill.feedback)

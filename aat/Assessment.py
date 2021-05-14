@@ -32,37 +32,40 @@ def testassess_route():
         #grab the questuions from the question tables
         
         q1_multi = Multiple.query.filter_by(id = assessment.q1_id).first()
-        q1_fill = Fill.query.filter_by(id = assessment.q1_id).first()
+        q1_fill = db.session.query(Fill).get(assessment.q1_id)
 
-        print("hello")
         if assessment.q1_type == "Multiple" :
-            q1 = q1_multi
+            q1 = q1_multi.question
+            correct_1 = q1_multi.correct
+
         else:
-            q1 = q1_fill
-        correct_1 = q1.correct
+            q1 = (q1_fill.question).replace(q1_fill.correct, "_______")
+            correct_1 = q1_fill.correct
 
         q2_multi = Multiple.query.filter_by(id = assessment.q2_id).first()
-        q2_fill = Fill.query.filter_by(id = assessment.q2_id).first()
+        q2_fill = db.session.query(Fill).get(assessment.q2_id)
 
         if assessment.q2_type == "Multiple":
             q2 = q2_multi
+            correct_2 = q2_multi.correct
+
         else:
-            q2 = q2_fill
-        correct_2 = q2.correct
+            q2 = (q2_fill.question).replace(q2_fill.correct, "_______")
+            correct_2 = q2_fill.correct
 
         q3_multi = Multiple.query.filter_by(id = assessment.q3_id).first()
-        q3_fill = Fill.query.filter_by(id = assessment.q3_id).first()
+        q3_fill = db.session.query(Fill).get(assessment.q3_id)
 
         if assessment.q3_type == "Multiple":
             q3 = q3_multi
+            correct_2 = q3_multi.correct
+
         else:
-            q3 = q3_fill
-        
-        correct_3 = q3.correct
+            q3 = (q3_fill.question).replace(q3_fill.correct, "_______")
+            correct_3 = q3_fill.correct
 
         # Need to look at form submission
         #get the answers from the form and then put into attempts table
-        print("hello")
         form = Answer_Form()
         if request.method=="POST":
             if assessment.q1_type == "Multiple" :
