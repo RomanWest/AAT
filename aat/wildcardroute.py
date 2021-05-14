@@ -2,9 +2,18 @@ from aat import app, db
 from aat.models import User, Multiple, Fill
 from flask import render_template, url_for, request, redirect, flash, g, current_app, session
 from flask_login import login_user, logout_user, login_required, current_user
+from flask_wtf.form import FlaskForm
+from wtforms.fields.core import StringField
 import random
 
+class random_Form(FlaskForm):
+    q1 = StringField('answer')
+    q2 = StringField('answer')
+    q3 = StringField('answer')
+
+
 rand_questions = []
+
 
 @app.route("/Generate-Quiz",methods = ["GET","POST"])
 def generateQuiz():
@@ -16,6 +25,7 @@ def generateQuiz():
 @app.route("/random",methods = ["POST"])
 def Random():
 	rand_questions.clear()
+	form = random_Form()
 	Q1_module = request.form["Q1_module"]
 	Q1_diff = request.form["Q1_diff"]
 	Q2_module = request.form["Q2_module"]
@@ -48,7 +58,7 @@ def Random():
 			q = getFill(data[i][0],data[i][1],rand_questions)
 			rand_questions.append("Fill")
 			rand_questions.append(q)
-	return render_template('random.html',data = data,questions = rand_questions,MCQ=MCQ)
+	return render_template('random.html',data = data,questions = rand_questions,MCQ=MCQ,form=form)
 
 
 

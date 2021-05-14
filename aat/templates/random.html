@@ -17,12 +17,7 @@
           <input type="radio" id="test4" name="q1" value="{{ MCQ[0][3] }}">
           <label for="test4">{{ MCQ[0][3] }}</label><br>
       {% else %}
-        <p> Fill in the blank test: {{ questions[1].question }} </p>
-          <label for="test1">test is:</label>
-          <select name="q1" id="test1">
-            <option value="{{ questions[1].correct }}">{{ questions[1].correct }}</option>
-            <option value="test2">test2</option>
-          </select>
+        <p> {{ questions[1].question }} {{ form.q1 }} </p>
         {% endif %}
         <br>
       <span> <button type="button" name="button" onclick="getq2()">next</button> </span>
@@ -40,12 +35,8 @@
           <input type="radio" id="test4" name="q2" value="{{ MCQ[1][3] }}">
           <label for="test4">{{ MCQ[1][3] }}</label><br>
       {% else %}
-        <p> Fill in the blank test: {{ questions[3].question }} </p>
-          <label for="test1">test is:</label>
-          <select name="q2" id="test1">
-            <option value="{{ questions[3].correct }}">{{ questions[3].correct }}</option>
-            <option value="test2">test2</option>
-          </select>
+        <p> {{ questions[3].question }} {{ form.q2 }} </p>
+
         {% endif %}
         <br>
       <span> <button type="button" name="button" onclick="getq1()">previous</button> </span> <span> <button type="button" name="button" onclick="getq3()">next</button></span>
@@ -54,7 +45,7 @@
       <p> QUESTION 3 </p>
       {% if questions[4] == "MCQ" %}
         <p> Multiple choice test: {{ questions[5].question }} </p>
-          <input type="radio" id="test1" name="q3" value="{{ MCQ[2][0] }}">
+          <input type="radio" id="test1" name="q3" value="{{ MCQ[2][0] }}" required>
           <label for="test1">{{ MCQ[2][0] }}</label><br>
           <input type="radio" id="test2" name="q3" value="{{ MCQ[2][1] }}">
           <label for="test2">{{ MCQ[2][1] }}</label><br>
@@ -63,12 +54,8 @@
           <input type="radio" id="test4" name="q3" value="{{ MCQ[2][3] }}">
           <label for="test4">{{ MCQ[2][3] }}</label><br>
       {% else %}
-        <p> Fill in the blank test: {{ questions[5].question }} </p>
-          <label for="test1">test is:</label>
-          <select name="q3" id="test1">
-            <option value="{{ questions[5].correct }}">{{ questions[5].correct }}</option>
-            <option value="test2">test2</option>
-          </select>
+        <p> {{ questions[5].question }}  {{ form.q3(required=True) }} </p>
+
         {% endif %}
         <br>
       <span> <button type="button" name="button" onclick="getq2()">previous</button> </span> <span> <button type="submit" name="submit">submit</button></span>

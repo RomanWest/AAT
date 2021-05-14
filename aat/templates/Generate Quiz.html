@@ -3,11 +3,13 @@
 <div class="student-view-attempts">
 	<form method="POST"  action="{{ url_for("Random") }}">
 		<div>
+			<span> 	Question 1 module: </span>
 			<select name="Q1_module">
 				<option value="{{ current_user.module_1 }}"">{{ current_user.module_1 }}</option>
 				<option value="{{ current_user.module_2 }}">{{ current_user.module_2 }}</option>
 				<option value="{{ current_user.module_3 }}">{{ current_user.module_3 }}</option>
 			</select>
+			<span> Question 1 difficulty: </span>
 			<select name="Q1_diff">
 				<option selected value="easy">Easy</option>
 				<option value="medium">Medium</option>
@@ -15,11 +17,13 @@
 			</select>
 		</div>
 		<div>
+			<span> 	Question 2 module: </span>
 			<select name="Q2_module">
 				<option value="{{ current_user.module_1 }}"">{{ current_user.module_1 }}</option>
 				<option value="{{ current_user.module_2 }}">{{ current_user.module_2 }}</option>
 				<option value="{{ current_user.module_3 }}">{{ current_user.module_3 }}</option>
 			</select>
+			<span> Question 2 difficulty: </span>
 			<select name="Q2_diff">
 				<option selected value="easy">Easy</option>
 				<option value="medium">Medium</option>
@@ -27,11 +31,13 @@
 			</select>
 		</div>
 		<div>
+			<span> 	Question 3 module: </span>
 			<select name="Q3_module">
 				<option value="{{ current_user.module_1 }}"">{{ current_user.module_1 }}</option>
 				<option value="{{ current_user.module_2 }}">{{ current_user.module_2 }}</option>
 				<option value="{{ current_user.module_3 }}">{{ current_user.module_3 }}</option>
 			</select>
+			<span> Question 3 difficulty: </span>
 			<select name="Q3_diff">
 				<option selected value="easy">Easy</option>
 				<option value="medium">Medium</option>
