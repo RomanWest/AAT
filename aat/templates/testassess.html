@@ -11,11 +11,13 @@
     <div id="title">
         <h1>Question 1</h1>
     </div>
+
+    <form method="POST" action="">
+        {{ form.csrf_token }}
     <div class="question">
         <div id="top">
-            <h5 id='question-text'> {{ q1 }} 
-                <form method="POST" action="">
-                    {{ form.csrf_token }}
+            <h5 id='question-text'> {{ q1 }} <br>
+                
     
                     {% if assessment.q1_type == 'Multiple' %}
                     
@@ -45,7 +47,7 @@
     
                     {% endif %}
     
-                </form>
+                
             </h5>
 
         </div>
@@ -57,9 +59,8 @@
     </div>
     <div class="question">
         <div id="top">
-            <h5 id='question-text'> {{ q2 }} 
-                <form method="POST" action="">
-                    {{ form.csrf_token }}
+            <h5 id='question-text'> {{ q2 }} <br>
+               
     
                     {% if assessment.q2_type == 'Multiple' %}
                     
@@ -85,11 +86,11 @@
     
                     {% else %}
     
-                    {{ form.answer_1_fill (class = "answer-input") }}
+                    {{ form.answer_2_fill (class = "answer-input") }}
     
                     {% endif %}
     
-                </form>
+                
             </h5>
 
         </div>
@@ -101,9 +102,8 @@
     </div>
     <div class="question">
         <div id="top">
-            <h5 id='question-text'> {{ q3 }} 
-                <form method="POST" action="">
-                    {{ form.csrf_token }}
+            <h5 id='question-text'> {{ q3 }} <br>
+                
     
                     {% if assessment.q3_type == 'Multiple' %}
                     
@@ -129,15 +129,16 @@
     
                     {% else %}
     
-                    {{ form.answer_1_fill (class = "answer-input") }}
+                    {{ form.answer_3_fill (class = "answer-input") }}
     
                     {% endif %}
     
-                </form></h5>
+                </h5>
 
         </div>
     </div>
     <h5>{{form.submit (class="save-assess-btn")}}</h5>
+</form>
 </div>
 </div>
 
