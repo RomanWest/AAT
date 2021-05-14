@@ -101,38 +101,12 @@ def createSummative():
 def createQuestion():
     return render_template('Create Question.html')
 
-<<<<<<< HEAD
-@app.route("/Create-Fill-in-the-Blank", methods=['GET', 'POST'])
-def FillintheBlank():
-    form = FillQForm()
-    if form.validate_on_submit():
-        question = Fill(question=form.question.data,
-                        module_code=form.module.data,
-                        correct=form.answer.data,
-                        feedback=form.incorrectfeedback.data,
-                        difficulty=form.difficulty.data,
-                        is_summative=form.issummative.data
-                        )
-        db.session.add(question)
-        db.session.commit()
-        return redirect(url_for('staffhome'))
-
-    return render_template("Fill in blank.html", form=form)
 
 
-@app.route("/Create-Multiple-Choice-Question", methods=['GET', 'POST'])
-def createMultipleChoiceQuestion():
-    form = MCForm()
-    if form.validate_on_submit():
-        quest = Multiple(question=form.question.data, correct=form.correct.data, module_code=form.module_code.data, incorrect_1=form.incorrect_1.data, incorrect_2=form.incorrect_2.data, incorrect_3=form.incorrect_3.data, difficulty=form.difficulty.data, is_formative=form.is_formative.data, feedback=form.feedback.data)
-        db.session.add(quest)
-        db.session.commit()
-        return redirect(url_for('staffhome'))
-    return render_template('Create Multiple Choice Question.html', form = form)
-=======
+
 MultipleRoute()
 MultipleEditRoute()
->>>>>>> de8537bf581e8a89f3d78985acd23546a96eaec7
+
 
 @app.route("/Preview-Assessment")
 def previewAssessment():

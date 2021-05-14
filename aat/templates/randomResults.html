@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div style="display:block">
+	<p> Q1: {{ names[0] }} </p>
+	<p> Your answer: {{ data[0] }}</p>
+	<p> Correct answer: {{ correct[0] }} </p>
+	{% if correct[0] == data[0] %}
+		<p> Well done! </p>
+		<p> 1/1 Marks </p>
+	{% else %}
+		<p> Feedback: {{ feedback[0] }} </p>
+		<p> 0/1 Marks </p>
+	{% endif %}
+</div>
+<div style="display:block">
+	<p> Q2: {{ names[1] }} </p>
+	<p> Your answer: {{ data[1] }}</p>
+	<p> Correct answer: {{ correct[1] }} </p>
+	{% if correct[1] == data[1] %}
+		<p> Well done! </p>
+		<p> 1/1 Marks </p>
+	{% else %}
+		<p> Feedback: {{ feedback[1] }} </p>
+		<p> 0/1 Marks </p>
+	{% endif %}
+</div>
+<div style="display:block">
+	<p> Q3: {{ names[2] }} </p>
+	<p> Your answer: {{ data[2] }}</p>
+	<p> Correct answer: {{ correct[2] }} </p>
+	{% if correct[2] == data[2] %}
+		<p> Well done! </p>
+		<p> 1/1 Marks </p>
+	{% else %}
+		<p> Feedback: {{ feedback[1] }} </p>
+		<p> 0/1 Marks </p>
+	{% endif %}
+</div>
+<br>
+<p style="display:block"> Total Marks: {{ score }} / 3 </p>
+
+<div>
+	<a class="button student-home-btn" href="{{ url_for("generateQuiz") }}">Generate Practice Quiz</a>
+</div>
+
+{% endblock %}

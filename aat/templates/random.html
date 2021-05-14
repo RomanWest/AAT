@@ -3,28 +3,24 @@
 {% block content %}
 
 <div>
-  <form action="">
+  <form action="{{ url_for("randomResults") }}" method="POST">
   	<div id="q1" style="display:block">
       <p> QUESTION 1 </p>
-      <p> question type: {{ questions[0]["type"] }}</p>
-      <p> question id: {{ questions[0]["id"] }}</p>
-      <p> question difficulty: {{ questions[0]["difficulty"] }}</p>
-      <p> question module: {{ questions[0]["code"] }}</p>
-      {% if questions[0]["type"] == "MLC" %}
-        <p> Multiple choice test: </p>
-          <input type="radio" id="test1" name="q1MLC" value="test1">
-          <label for="test1">test1</label><br>
-          <input type="radio" id="test2" name="q1MLC" value="test2">
-          <label for="test2">test2</label><br>
-          <input type="radio" id="test3" name="q1MLC" value="test3">
-          <label for="test3">test3</label><br>
-          <input type="radio" id="test4" name="q1MLC" value="test4">
-          <label for="test4">test4</label><br>
+      {% if questions[0] == "MCQ" %}
+        <p> Multiple choice test: {{ questions[1].question }} </p>
+          <input type="radio" id="test1" name="q1" value="{{ MCQ[0][0] }}">
+          <label for="test1">{{ MCQ[0][0] }}</label><br>
+          <input type="radio" id="test2" name="q1" value="{{ MCQ[0][1] }}">
+          <label for="test2">{{ MCQ[0][1] }}</label><br>
+          <input type="radio" id="test3" name="q1" value="{{ MCQ[0][2] }}">
+          <label for="test3">{{ MCQ[0][2] }}</label><br>
+          <input type="radio" id="test4" name="q1" value="{{ MCQ[0][3] }}">
+          <label for="test4">{{ MCQ[0][3] }}</label><br>
       {% else %}
-        <p> Fill in the blank test: </p>
+        <p> Fill in the blank test: {{ questions[1].question }} </p>
           <label for="test1">test is:</label>
-          <select name="q1Fill" id="test1">
-            <option value="test1">test1</option>
+          <select name="q1" id="test1">
+            <option value="{{ questions[1].correct }}">{{ questions[1].correct }}</option>
             <option value="test2">test2</option>
           </select>
         {% endif %}
@@ -33,30 +29,49 @@
     </div>
     <div id="q2" style="display:none">
       <p> QUESTION 2 </p>
-      <p> question type: {{ questions[1]["type"] }}</p>
-      <p> question id: {{ questions[1]["id"] }}</p>
-      <p> question difficulty: {{ questions[1]["difficulty"] }}</p>
-      <p> question module: {{ questions[1]["code"] }}</p>
-      {% if questions[1]["type"] == "MLC" %}
-        <p> Multiple choice test: </p>
-          <input type="radio" id="2test1" name="q2MLC" value="test1">
-          <label for="2test1">test1</label><br>
-          <input type="radio" id="2test2" name="q2MLC" value="test2">
-          <label for="2test2">test2</label><br>
-          <input type="radio" id="2test3" name="q2MLC" value="test3">
-          <label for="2test3">test3</label><br>
-          <input type="radio" id="2test4" name="q2MLC" value="test4">
-          <label for="2test4">test4</label><br>
+      {% if questions[2] == "MCQ" %}
+        <p> Multiple choice test: {{ questions[3].question }} </p>
+          <input type="radio" id="test1" name="q2" value="{{ MCQ[1][0] }}">
+          <label for="test1">{{ MCQ[1][0] }}</label><br>
+          <input type="radio" id="test2" name="q2" value="{{ MCQ[1][1] }}">
+          <label for="test2">{{ MCQ[1][1] }}</label><br>
+          <input type="radio" id="test3" name="q2" value="{{ MCQ[1][2] }}">
+          <label for="test3">{{ MCQ[1][2] }}</label><br>
+          <input type="radio" id="test4" name="q2" value="{{ MCQ[1][3] }}">
+          <label for="test4">{{ MCQ[1][3] }}</label><br>
       {% else %}
-        <p> Fill in the blank test: </p>
-          <label for="2test1">test is:</label>
-          <select name="q2Fill" id="2test1">
-            <option value="test1">test1</option>
+        <p> Fill in the blank test: {{ questions[3].question }} </p>
+          <label for="test1">test is:</label>
+          <select name="q2" id="test1">
+            <option value="{{ questions[3].correct }}">{{ questions[3].correct }}</option>
             <option value="test2">test2</option>
           </select>
         {% endif %}
         <br>
-      <span> <button type="button" name="button" onclick="getq1()">previous</button> </span> <span> <button type="submit" name="submit">submit</button></span>
+      <span> <button type="button" name="button" onclick="getq1()">previous</button> </span> <span> <button type="button" name="button" onclick="getq3()">next</button></span>
+    </div>
+    <div id="q3" style="display:none">
+      <p> QUESTION 3 </p>
+      {% if questions[4] == "MCQ" %}
+        <p> Multiple choice test: {{ questions[5].question }} </p>
+          <input type="radio" id="test1" name="q3" value="{{ MCQ[2][0] }}">
+          <label for="test1">{{ MCQ[2][0] }}</label><br>
+          <input type="radio" id="test2" name="q3" value="{{ MCQ[2][1] }}">
+          <label for="test2">{{ MCQ[2][1] }}</label><br>
+          <input type="radio" id="test3" name="q3" value="{{ MCQ[2][2] }}">
+          <label for="test3">{{ MCQ[2][2] }}</label><br>
+          <input type="radio" id="test4" name="q3" value="{{ MCQ[2][3] }}">
+          <label for="test4">{{ MCQ[2][3] }}</label><br>
+      {% else %}
+        <p> Fill in the blank test: {{ questions[5].question }} </p>
+          <label for="test1">test is:</label>
+          <select name="q3" id="test1">
+            <option value="{{ questions[5].correct }}">{{ questions[5].correct }}</option>
+            <option value="test2">test2</option>
+          </select>
+        {% endif %}
+        <br>
+      <span> <button type="button" name="button" onclick="getq2()">previous</button> </span> <span> <button type="submit" name="submit">submit</button></span>
     </div>
  </form>
 </div>
@@ -64,10 +79,17 @@
 function getq2() {
   document.getElementById("q2").style.display = "block";
   document.getElementById("q1").style.display = "none";
+  document.getElementById("q3").style.display = "none";
 }
 function getq1() {
   document.getElementById("q1").style.display = "block";
   document.getElementById("q2").style.display = "none";
+  document.getElementById("q3").style.display = "none";
+}
+function getq3() {
+  document.getElementById("q3").style.display = "block";
+  document.getElementById("q2").style.display = "none";
+  document.getElementById("q1").style.display = "none";
 }
 </script>
 
