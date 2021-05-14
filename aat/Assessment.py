@@ -72,19 +72,19 @@ def testassess_route():
                 answer_1=request.form.getlist("answer_1_multi")[0]
                 print(answer_1)
             else:
-                answer_1=request.form.get("answer")
+                answer_1=request.form.get("answer").lower()
         
             if assessment.q2_type == "Multiple" :
                 answer_1=request.form.getlist("answer_2_multi")[0]
             
             else:
-                answer_2=form.answer_2_fill.data
+                answer_2=form.answer_2_fill.data.lower()
         
             if assessment.q3_type == "Multiple" :
                 answer_1=request.form.getlist("answer_3_multi")[0]
             
             else:
-                answer_3=form.answer_3_fill.data
+                answer_3=form.answer_3_fill.data.lower()
                 
             answerscorrect = 0.0
             if answer_1 == correct_1:
@@ -120,11 +120,17 @@ def testassess_route():
                                 percentage_correct=percentage_correct, module_code = assessment.module_code,
                                 is_summative = assessment.is_summative, attempt_no = attempt
                                 )
+            #do we show marks for summative assessment?
+            if assessment.is_summative == 1:
 
-            db.session.add(attempt)
-            db.session.commit()
-            flash("Assessment submitted")
-            return redirect(url_for('studenthome'))
+                db.session.add(attempt)
+                db.session.commit()
+                flash("Assessment submitted")
+                return redirect(url_for('studenthome'))
+            else:
+                db.session.add(attempt)
+                db.session.commit()
+                return redirect(url_for("feedback"))
 
         return render_template('testassess.html', assessment=assessment, 
             multiple_all=multiple_all, fill_all=fill_all, 
@@ -135,4 +141,6 @@ def testassess_route():
             )
 
 
-  
+    # @app.route("/feedback")
+    # def feedback:
+        
