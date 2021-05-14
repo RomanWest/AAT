@@ -82,6 +82,7 @@ def testassess_route():
             
             else:
                 answer_3=form.answer_3_fill.data
+                
             answerscorrect = 0.0
             if answer_1 == correct_1:
                 correct_1 = True
