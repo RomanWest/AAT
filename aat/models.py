@@ -21,7 +21,7 @@ class Attempts(db.Model):
 	correct_3 = db.Column(db.Boolean, nullable=False)
 	percentage_correct = db.Column(db.Float, nullable=False)
 	module_code = db.Column(db.String,nullable=False)
-	date_created = db.Column(db.DateTime, nullable=False, default=datetime.today().strftime("%d-%m-%Y"))
+	date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 	is_summative = db.Column(db.Boolean,nullable=False)
 
 #multiple means multiple choice type question
@@ -72,6 +72,7 @@ class Assessment(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	#lecturer that made it
 	user_id = db.Column(db.Integer)
+	is_summative = db.Column(db.Boolean,nullable=False)
 	assessment_name = db.Column(db.String, nullable=False)
 	module_code = db.Column(db.String,nullable=False)
 	admin_created = db.Column(db.Boolean,nullable=False)

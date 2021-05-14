@@ -11,11 +11,12 @@
     <div id="title">
         <h1>Question 1</h1>
     </div>
+    <form method="POST" action="">
+        {{ form.csrf_token }}
     <div class="question">
         <div id="top">
             <h5 id='question-text'> {{ q1.question }} 
-                <form method="POST" action="">
-                    {{ form.csrf_token }}
+                
     
                     {% if assessment.q1_type == 'Multiple' %}
     
@@ -32,12 +33,12 @@
                     {{ q1.incorrect_3 }} </input><br>
     
                     {% else %}
-    
-                    {{ form.answer_1_fill (class = "answer-input") }}
+                    <input type="text" name="answer" id="answer">
+                    
     
                     {% endif %}
     
-                </form>
+            
             </h5>
 
         </div>
@@ -50,8 +51,6 @@
     <div class="question">
         <div id="top">
             <h5 id='question-text'>{{ q2.question }}
-                <form method="POST" action="">
-                    {{ form.csrf_token }}
     
                     {% if assessment.q2_type == 'Multiple' %}
     
@@ -73,7 +72,7 @@
     
                     {% endif %}
     
-                </form>
+                
             </h5>
 
         </div>
@@ -86,8 +85,6 @@
     <div class="question">
         <div id="top">
             <h5 id='question-text'>{{ q3.question }}             
-                <form method="POST" action="">
-                {{ form.csrf_token }}
 
                 {% if assessment.q3_type == 'Multiple' %}
 
@@ -105,7 +102,7 @@
 
                 {% else %}
 
-                {{ form.answer_2_fill (class = "answer-input") }}
+                {{ form.answer_3_fill (class = "answer-input") }}
 
                 {% endif %}
 
