@@ -76,14 +76,16 @@ class Assessment(db.Model):
 	module_code = db.Column(db.String,nullable=False)
 	admin_created = db.Column(db.Boolean,nullable=False)
 	q1_type = db.Column(db.String, nullable=False)
-	q1_id = db.Column(db.String, nullable=False)
+	q1_id = db.Column(db.Integer, nullable=False)
 	q2_type = db.Column(db.String, nullable=False)
-	q2_id = db.Column(db.String, nullable=False)
+	q2_id = db.Column(db.Integer, nullable=False)
 	q3_type = db.Column(db.String, nullable=False)
-	q3_id = db.Column(db.String, nullable=False)
-	multiple_q = db.relationship("Multiple", secondary=multiple_q, backref="assessments", lazy="select")
-	fill_q = db.relationship("Fill", secondary=fill_q, backref="assessments", lazy="select")
-	
+	q3_id = db.Column(db.Integer, nullable=False)
+	multiple_q = db.relationship("Multiple", secondary=multiple_q, primaryjoin=(multiple_q.c.assessment_id==id), 
+				backref=db.backref("multiple_q"), lazy="dynamic")
+	fill_q = db.relationship("Fill", secondary=fill_q, primaryjoin=(fill_q.c.assessment_id==id),
+				backref=db.backref("fill_q"), lazy="dynamic")
+
 	def __repr__(self):
 		return f"Assessment('{self.assessment_name}')"
 

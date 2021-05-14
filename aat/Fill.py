@@ -85,3 +85,23 @@ def filleditroute():
         return render_template("fillDelete.html", fill=fill)
 
         
+def test_fill_route():
+    @app.route("/testFill")
+    def test_fill_all():
+        questions = Fill.query.order_by(desc(-Fill.date_created)).all()
+
+        return render_template("testFillAll.html", questions=questions)
+
+    @app.route("/testFill/<int:fill_id>", methods=['GET', 'POST'])
+    def test_fill(fill_id):
+        fill = db.session.query(Fill).get(fill_id)
+        question = (fill.question).replace(fill.correct, "_______")
+
+        if request.method == 'POST':
+            answer = request.form.get("answer")
+            if answer == fill.correct:
+                flash("right")
+            else:
+                flash(fill.feedback)
+
+        return render_template("testFill.html", fill=fill, question=question)

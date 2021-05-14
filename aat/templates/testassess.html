@@ -1,15 +1,122 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="testassess">
+    <div class="question-preview"></div>
+    <div class="question-preview-head">
+        <div id="title">
+            <h1>Assessment Name: {{ assessment.assessment_name }} &nbsp; Module Code: {{ assessment.module_code }}</h1>
+        </div>
+    </div>
+    <div class="admin-create-summative">
+    <div id="title">
+        <h1>Question 1</h1>
+    </div>
+    <div class="question">
+        <div id="top">
+            <h5 id='question-text'> {{ q1.question }} 
+                <form method="POST" action="">
+                    {{ form.csrf_token }}
+    
+                    {% if assessment.q1_type == 'Multiple' %}
+    
+                    <input type="radio" name="answer_1_multi" id="option1" value="{{ q1.correct }}"> 
+                    {{ q1.correct }}</input><br>
+    
+                    <input type="radio" name="answer_1_multi" id="option2" value="{{ q1.incorrect_1 }}">
+                    {{ q1.incorrect_1 }} </input><br>
+    
+                    <input type="radio" name="answer_1_multi" id="option3" value="{{ q1.incorrect_2 }}">
+                    {{ q1.incorrect_2 }} </input><br>
+    
+                    <input type="radio" name="answer_1_multi" id="option4" value="{{ q1.incorrect_3 }}">
+                    {{ q1.incorrect_3 }} </input><br>
+    
+                    {% else %}
+    
+                    {{ form.answer_1_fill (class = "answer-input") }}
+    
+                    {% endif %}
+    
+                </form>
+            </h5>
 
-<h5>Assessment Name: {{ assessment.assessment_name }}</h5>
+        </div>
 
-<h5>Module Code: {{ assessment.module_code }}</h5>
+    </div>
 
-<h5>Multiple Questions: {{ assessment.multiple_all }}</h5>
+    <div id="title">
+        <h1>Question 2</h1>
+    </div>
+    <div class="question">
+        <div id="top">
+            <h5 id='question-text'>{{ q2.question }}
+                <form method="POST" action="">
+                    {{ form.csrf_token }}
+    
+                    {% if assessment.q2_type == 'Multiple' %}
+    
+                    <input type="radio" name="answer_2_multi" id="option1" value="{{ q2.correct }}"> 
+                    {{ q2.correct }}</input><br>
+    
+                    <input type="radio" name="answer_2_multi" id="option2" value="{{ q2.incorrect_1 }}">
+                    {{ q2.incorrect_1 }} </input><br>
+    
+                    <input type="radio" name="answer_2_multi" id="option3" value="{{ q2.incorrect_2 }}">
+                    {{ q2.incorrect_2 }} </input><br>
+    
+                    <input type="radio" name="answer_2_multi" id="option4" value="{{ q2.incorrect_3 }}">
+                    {{ q2.incorrect_3 }} </input><br>
+    
+                    {% else %}
+    
+                    {{ form.answer_2_fill (class = "answer-input") }}
+    
+                    {% endif %}
+    
+                </form>
+            </h5>
 
-<h5>Questions? {{ assessment.q1_type }} </h5>
+        </div>
+        </div>
+    </div>
 
+    <div id="title">
+        <h1>Question 3</h1>
+    </div>
+    <div class="question">
+        <div id="top">
+            <h5 id='question-text'>{{ q3.question }}             
+                <form method="POST" action="">
+                {{ form.csrf_token }}
+
+                {% if assessment.q3_type == 'Multiple' %}
+
+                <input type="radio" name="answer_3_multi" id="option1" value="{{ q3.correct }}"> 
+                {{ q3.correct }}</input><br>
+
+                <input type="radio" name="answer_3_multi" id="option2" value="{{ q3.incorrect_1 }}">
+                {{ q3.incorrect_1 }} </input><br>
+
+                <input type="radio" name="answer_3_multi" id="option3" value="{{ q3.incorrect_2 }}">
+                {{ q3.incorrect_2 }} </input><br>
+
+                <input type="radio" name="answer_3_multi" id="option4" value="{{ q3.incorrect_3 }}">
+                {{ q3.incorrect_3 }} </input><br>
+
+                {% else %}
+
+                {{ form.answer_2_fill (class = "answer-input") }}
+
+                {% endif %}
+
+            </form></h5>
+
+        </div>
+    </div>
+    <h5>{{form.submit (class="save-assess-btn")}}</h5>
+</div>
 </div>
 
+
+</div>
 {% endblock content %}
