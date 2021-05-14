@@ -89,7 +89,7 @@ db.session.add(Multiple(question="How many faces does a square have?", correct="
 db.session.commit()
 db.session.add(Multiple(question="How many degrees do all of the angles in a square add up to?", correct="Three Hundred and Sixty", module_code="Maths123",
     incorrect_1="One Hundred and Eighty", incorrect_2="Ninety", incorrect_3="Thirty", difficulty="hard", is_summative=False, feedback="Refer to Maths123 module!"))
-    db.session.commit()
+db.session.commit()
 db.session.add(Multiple(question="What is pythagoras's theorum?", correct="a^2 + b^2 = c^2", module_code="Maths123",
     incorrect_1="a + b = c", incorrect_2="a + b = 2c", incorrect_3="e = m c^2", difficulty="hard", is_summative=False, feedback="Refer to Maths123 module!"))
 db.session.commit()
