@@ -113,11 +113,6 @@ def createQuestion():
 
 
 
-
-MultipleRoute()
-MultipleEditRoute()
-
-
 @app.route("/Preview-Assessment")
 def previewAssessment():
     return render_template('Preview Assessment.html')
