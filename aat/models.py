@@ -60,6 +60,7 @@ class Assessment(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	#lecturer that made it
 	user_id = db.Column(db.Integer)
+	is_summative = db.Column(db.Boolean,nullable=False)
 	assessment_name = db.Column(db.String, nullable=False)
 	module_code = db.Column(db.String,nullable=False)
 	admin_created = db.Column(db.Boolean,nullable=False)
