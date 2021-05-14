@@ -15,26 +15,25 @@
         {{ form.csrf_token }}
     <div class="question">
         <div id="top">
-            <h5 id='question-text'> {{ q1.question }} 
+            <h5 id='question-text'> {{ q1 }} 
                 
     
                     {% if assessment.q1_type == 'Multiple' %}
     
-                    <input type="radio" name="answer_1_multi" id="option1" value="{{ q1.correct }}"> 
-                    {{ q1.correct }}</input><br>
+                    <input type="radio" name="answer_1_multi" id="option1" value="{{ q1_multi.correct }}"> 
+                    {{ q1_multi.correct }}</input><br>
     
-                    <input type="radio" name="answer_1_multi" id="option2" value="{{ q1.incorrect_1 }}">
-                    {{ q1.incorrect_1 }} </input><br>
+                    <input type="radio" name="answer_1_multi" id="option2" value="{{ q1_multi.incorrect_1 }}">
+                    {{ q1_multi.incorrect_1 }} </input><br>
     
-                    <input type="radio" name="answer_1_multi" id="option3" value="{{ q1.incorrect_2 }}">
-                    {{ q1.incorrect_2 }} </input><br>
+                    <input type="radio" name="answer_1_multi" id="option3" value="{{ q1_multi.incorrect_2 }}">
+                    {{ q1_multi.incorrect_2 }} </input><br>
     
-                    <input type="radio" name="answer_1_multi" id="option4" value="{{ q1.incorrect_3 }}">
-                    {{ q1.incorrect_3 }} </input><br>
+                    <input type="radio" name="answer_1_multi" id="option4" value="{{ q1_multi.incorrect_3 }}">
+                    {{ q1_multi.incorrect_3 }} </input><br>
     
                     {% else %}
-                    <input type="text" name="answer" id="answer">
-                    
+                    {{ form.answer_1_fill (class = "answer-input") }}                    
     
                     {% endif %}
     
@@ -50,21 +49,21 @@
     </div>
     <div class="question">
         <div id="top">
-            <h5 id='question-text'>{{ q2.question }}
+            <h5 id='question-text'>{{ q2 }}
     
                     {% if assessment.q2_type == 'Multiple' %}
     
-                    <input type="radio" name="answer_2_multi" id="option1" value="{{ q2.correct }}"> 
-                    {{ q2.correct }}</input><br>
+                    <input type="radio" name="answer_2_multi" id="option1" value="{{ q2_multi.correct }}"> 
+                    {{ q2_multi.correct }}</input><br>
     
-                    <input type="radio" name="answer_2_multi" id="option2" value="{{ q2.incorrect_1 }}">
-                    {{ q2.incorrect_1 }} </input><br>
+                    <input type="radio" name="answer_2_multi" id="option2" value="{{ q2_multi.incorrect_1 }}">
+                    {{ q2_multi.incorrect_1 }} </input><br>
     
-                    <input type="radio" name="answer_2_multi" id="option3" value="{{ q2.incorrect_2 }}">
-                    {{ q2.incorrect_2 }} </input><br>
+                    <input type="radio" name="answer_2_multi" id="option3" value="{{ q2_multi.incorrect_2 }}">
+                    {{ q2_multi.incorrect_2 }} </input><br>
     
-                    <input type="radio" name="answer_2_multi" id="option4" value="{{ q2.incorrect_3 }}">
-                    {{ q2.incorrect_3 }} </input><br>
+                    <input type="radio" name="answer_2_multi" id="option4" value="{{ q2_multi.incorrect_3 }}">
+                    {{ q2_multi.incorrect_3 }} </input><br>
     
                     {% else %}
     
@@ -84,21 +83,21 @@
     </div>
     <div class="question">
         <div id="top">
-            <h5 id='question-text'>{{ q3.question }}             
+            <h5 id='question-text'>{{ q3 }}             
 
                 {% if assessment.q3_type == 'Multiple' %}
 
-                <input type="radio" name="answer_3_multi" id="option1" value="{{ q3.correct }}"> 
-                {{ q3.correct }}</input><br>
+                <input type="radio" name="answer_3_multi" id="option1" value="{{ q3_multi.correct }}"> 
+                {{ q3_multi.correct }}</input><br>
 
-                <input type="radio" name="answer_3_multi" id="option2" value="{{ q3.incorrect_1 }}">
-                {{ q3.incorrect_1 }} </input><br>
+                <input type="radio" name="answer_3_multi" id="option2" value="{{ q3_multi.incorrect_1 }}">
+                {{ q3_multi.incorrect_1 }} </input><br>
 
-                <input type="radio" name="answer_3_multi" id="option3" value="{{ q3.incorrect_2 }}">
-                {{ q3.incorrect_2 }} </input><br>
+                <input type="radio" name="answer_3_multi" id="option3" value="{{ q3_multi.incorrect_2 }}">
+                {{ q3_multi.incorrect_2 }} </input><br>
 
-                <input type="radio" name="answer_3_multi" id="option4" value="{{ q3.incorrect_3 }}">
-                {{ q3.incorrect_3 }} </input><br>
+                <input type="radio" name="answer_3_multi" id="option4" value="{{ q3_multi.incorrect_3 }}">
+                {{ q3_multi.incorrect_3 }} </input><br>
 
                 {% else %}
 
