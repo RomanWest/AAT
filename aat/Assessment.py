@@ -46,7 +46,7 @@ def testassess_route():
         q2_fill = db.session.query(Fill).get(assessment.q2_id)
 
         if assessment.q2_type == "Multiple":
-            q2 = q2_multi
+            q2 = q2_multi.question
             correct_2 = q2_multi.correct
 
         else:
@@ -57,8 +57,8 @@ def testassess_route():
         q3_fill = db.session.query(Fill).get(assessment.q3_id)
 
         if assessment.q3_type == "Multiple":
-            q3 = q3_multi
-            correct_2 = q3_multi.correct
+            q3 = q3_multi.question
+            correct_3 = q3_multi.correct
 
         else:
             q3 = (q3_fill.question).replace(q3_fill.correct, "_______")
@@ -70,19 +70,16 @@ def testassess_route():
         if request.method=="POST":
             if assessment.q1_type == "Multiple" :
                 answer_1=request.form.getlist("answer_1_multi")[0]
-                print(answer_1)
             else:
-                answer_1=request.form.get("answer")
+                answer_1=form.answer_1_fill.data
         
             if assessment.q2_type == "Multiple" :
-                answer_1=request.form.getlist("answer_2_multi")[0]
-            
+                answer_2=request.form.getlist("answer_2_multi")[0]
             else:
                 answer_2=form.answer_2_fill.data
         
             if assessment.q3_type == "Multiple" :
-                answer_1=request.form.getlist("answer_3_multi")[0]
-            
+                answer_3=request.form.getlist("answer_3_multi")[0]
             else:
                 answer_3=form.answer_3_fill.data
                 
@@ -92,11 +89,13 @@ def testassess_route():
                 answerscorrect += 1
             else:
                 correct_1 = False
+
             if answer_2 == correct_2:
                 correct_2 = True
                 answerscorrect += 1
             else:
                 correct_2=False
+
             if answer_3 == correct_3:
                 correct_3 = True
                 answerscorrect += 1
