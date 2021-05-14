@@ -18,18 +18,26 @@
                     {{ form.csrf_token }}
     
                     {% if assessment.q1_type == 'Multiple' %}
-    
-                    <input type="radio" name="answer_1_multi" id="option1" value="{{ q1.correct }}"> 
-                    {{ q1.correct }}</input><br>
-    
-                    <input type="radio" name="answer_1_multi" id="option2" value="{{ q1.incorrect_1 }}">
-                    {{ q1.incorrect_1 }} </input><br>
-    
-                    <input type="radio" name="answer_1_multi" id="option3" value="{{ q1.incorrect_2 }}">
-                    {{ q1.incorrect_2 }} </input><br>
-    
-                    <input type="radio" name="answer_1_multi" id="option4" value="{{ q1.incorrect_3 }}">
-                    {{ q1.incorrect_3 }} </input><br>
+                    
+                    {% set randomiser = [q1.correct, q1.incorrect_1, q1.incorrect_2, q1.incorrect_3] %}
+                    {% set ran = range(0, 4) | random %}
+                    <input type="radio" name="answer_1_multi" id="option1" value="{{ randomiser[ran] }}"> 
+                    {{ randomiser[ran] }}</input><br>
+                    {% set temp = randomiser.pop(ran) %}
+                    
+                    {% set ran = range(0, 3) | random %}
+                    <input type="radio" name="answer_1_multi" id="option2" value="{{ randomiser[ran] }}"> 
+                    {{ randomiser[ran] }}</input><br>
+                    {% set temp = randomiser.pop(ran) %}
+                    
+                    {% set ran = range(0, 2) | random %}
+                    <input type="radio" name="answer_1_multi" id="option3" value="{{ randomiser[ran] }}"> 
+                    {{ randomiser[ran] }}</input><br>
+                    {% set temp = randomiser.pop(ran) %}
+                    
+                    {% set ran = 0 %}
+                    <input type="radio" name="answer_1_multi" id="option4" value="{{ randomiser[ran] }}"> 
+                    {{ randomiser[ran] }}</input><br>
     
                     {% else %}
     
@@ -55,17 +63,25 @@
     
                     {% if assessment.q2_type == 'Multiple' %}
     
-                    <input type="radio" name="answer_2_multi" id="option1" value="{{ q2.correct }}"> 
-                    {{ q2.correct }}</input><br>
-    
-                    <input type="radio" name="answer_2_multi" id="option2" value="{{ q2.incorrect_1 }}">
-                    {{ q2.incorrect_1 }} </input><br>
-    
-                    <input type="radio" name="answer_2_multi" id="option3" value="{{ q2.incorrect_2 }}">
-                    {{ q2.incorrect_2 }} </input><br>
-    
-                    <input type="radio" name="answer_2_multi" id="option4" value="{{ q2.incorrect_3 }}">
-                    {{ q2.incorrect_3 }} </input><br>
+                    {% set randomiser = [q2.correct, q2.incorrect_1, q2.incorrect_2, q2.incorrect_3] %}
+                    {% set ran = range(0, 4) | random %}
+                    <input type="radio" name="answer_1_multi" id="option1" value="{{ randomiser[ran] }}"> 
+                    {{ randomiser[ran] }}</input><br>
+                    {% set temp = randomiser.pop(ran) %}#
+                    
+                    {% set ran = range(0, 3) | random %}
+                    <input type="radio" name="answer_1_multi" id="option2" value="{{ randomiser[ran] }}"> 
+                    {{ randomiser[ran] }}</input><br>
+                    {% set temp = randomiser.pop(ran) %}
+                    
+                    {% set ran = range(0, 2) | random %}
+                    <input type="radio" name="answer_1_multi" id="option3" value="{{ randomiser[ran] }}"> 
+                    {{ randomiser[ran] }}</input><br>
+                    {% set temp = randomiser.pop(ran) %}
+                    
+                    {% set ran = 0 %}
+                    <input type="radio" name="answer_1_multi" id="option4" value="{{ randomiser[ran] }}"> 
+                    {{ randomiser[ran] }}</input><br>
     
                     {% else %}
     
@@ -91,17 +107,25 @@
 
                 {% if assessment.q3_type == 'Multiple' %}
 
-                <input type="radio" name="answer_3_multi" id="option1" value="{{ q3.correct }}"> 
-                {{ q3.correct }}</input><br>
-
-                <input type="radio" name="answer_3_multi" id="option2" value="{{ q3.incorrect_1 }}">
-                {{ q3.incorrect_1 }} </input><br>
-
-                <input type="radio" name="answer_3_multi" id="option3" value="{{ q3.incorrect_2 }}">
-                {{ q3.incorrect_2 }} </input><br>
-
-                <input type="radio" name="answer_3_multi" id="option4" value="{{ q3.incorrect_3 }}">
-                {{ q3.incorrect_3 }} </input><br>
+                {% set randomiser = [q3.correct, q3.incorrect_1, q3.incorrect_2, q3.incorrect_3] %}
+                    {% set ran = range(0, 4) | random %}
+                    <input type="radio" name="answer_1_multi" id="option1" value="{{ randomiser[ran] }}"> 
+                    {{ randomiser[ran] }}</input><br>
+                    {% set temp = randomiser.pop(ran) %}#
+                    
+                    {% set ran = range(0, 3) | random %}
+                    <input type="radio" name="answer_1_multi" id="option2" value="{{ randomiser[ran] }}"> 
+                    {{ randomiser[ran] }}</input><br>
+                    {% set temp = randomiser.pop(ran) %}
+                    
+                    {% set ran = range(0, 2) | random %}
+                    <input type="radio" name="answer_1_multi" id="option3" value="{{ randomiser[ran] }}"> 
+                    {{ randomiser[ran] }}</input><br>
+                    {% set temp = randomiser.pop(ran) %}
+                    
+                    {% set ran = 0 %}
+                    <input type="radio" name="answer_1_multi" id="option4" value="{{ randomiser[ran] }}"> 
+                    {{ randomiser[ran] }}</input><br>
 
                 {% else %}
 
