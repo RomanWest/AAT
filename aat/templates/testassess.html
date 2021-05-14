@@ -10,17 +10,20 @@
     <div class="admin-create-summative">
     <div id="title">
         <h1>Question 1</h1>
+        {% set randomQ = [q1, q2, q3] %}
+        {% set assessRef = [assessment.q1_type, assessment.q2_type, assessment.q3_type] %}
+        {% set ran = range(0 , 3) | random %}
     </div>
     <div class="question">
         <div id="top">
-            <h5 id='question-text'> {{ q1.question }} 
+            <h5 id='question-text'> {{ randomQ[ran].question }} 
                 <form method="POST" action="">
                     {{ form.csrf_token }}
     
-                    {% if assessment.q1_type == 'Multiple' %}
+                    {% if assessRef[ran] == 'Multiple' %}
                     
-                    {% set randomiser = [q1.correct, q1.incorrect_1, q1.incorrect_2, q1.incorrect_3] %}
-                    {% set ran = range(0, 4) | random %}
+                    {% set randomiser = [randomQ[ran].correct, randomQ[ran].incorrect_1, randomQ[ran].incorrect_2, randomQ[ran].incorrect_3] %}
+                    {% set ran = range(0 , 4) | random %}
                     <input type="radio" name="answer_1_multi" id="option1" value="{{ randomiser[ran] }}"> 
                     {{ randomiser[ran] }}</input><br>
                     {% set temp = randomiser.pop(ran) %}
@@ -46,6 +49,8 @@
                     {% endif %}
     
                 </form>
+                {% set temp = randomQ.pop(ran) %}
+                {% set temp = assessRef.pop(ran) %}
             </h5>
 
         </div>
@@ -54,20 +59,21 @@
 
     <div id="title">
         <h1>Question 2</h1>
+        {% set ran = range(0 , 2) | random %}
     </div>
     <div class="question">
         <div id="top">
-            <h5 id='question-text'>{{ q2.question }}
+            <h5 id='question-text'> {{ randomQ[ran].question }} 
                 <form method="POST" action="">
                     {{ form.csrf_token }}
     
-                    {% if assessment.q2_type == 'Multiple' %}
-    
-                    {% set randomiser = [q2.correct, q2.incorrect_1, q2.incorrect_2, q2.incorrect_3] %}
-                    {% set ran = range(0, 4) | random %}
+                    {% if assessRef[ran] == 'Multiple' %}
+                    
+                    {% set randomiser = [randomQ[ran].correct, randomQ[ran].incorrect_1, randomQ[ran].incorrect_2, randomQ[ran].incorrect_3] %}
+                    {% set ran = range(0 , 4) | random %}
                     <input type="radio" name="answer_1_multi" id="option1" value="{{ randomiser[ran] }}"> 
                     {{ randomiser[ran] }}</input><br>
-                    {% set temp = randomiser.pop(ran) %}#
+                    {% set temp = randomiser.pop(ran) %}
                     
                     {% set ran = range(0, 3) | random %}
                     <input type="radio" name="answer_1_multi" id="option2" value="{{ randomiser[ran] }}"> 
@@ -85,11 +91,13 @@
     
                     {% else %}
     
-                    {{ form.answer_2_fill (class = "answer-input") }}
+                    {{ form.answer_1_fill (class = "answer-input") }}
     
                     {% endif %}
     
                 </form>
+                {% set temp = randomQ.pop(ran) %}
+                {% set temp = assessRef.pop(ran) %}
             </h5>
 
         </div>
@@ -98,20 +106,21 @@
 
     <div id="title">
         <h1>Question 3</h1>
+        {% set ran = 0 %}
     </div>
     <div class="question">
         <div id="top">
-            <h5 id='question-text'>{{ q3.question }}             
+            <h5 id='question-text'> {{ randomQ[ran].question }} 
                 <form method="POST" action="">
-                {{ form.csrf_token }}
-
-                {% if assessment.q3_type == 'Multiple' %}
-
-                {% set randomiser = [q3.correct, q3.incorrect_1, q3.incorrect_2, q3.incorrect_3] %}
-                    {% set ran = range(0, 4) | random %}
+                    {{ form.csrf_token }}
+    
+                    {% if assessRef[ran] == 'Multiple' %}
+                    
+                    {% set randomiser = [randomQ[ran].correct, randomQ[ran].incorrect_1, randomQ[ran].incorrect_2, randomQ[ran].incorrect_3] %}
+                    {% set ran = range(0 , 4) | random %}
                     <input type="radio" name="answer_1_multi" id="option1" value="{{ randomiser[ran] }}"> 
                     {{ randomiser[ran] }}</input><br>
-                    {% set temp = randomiser.pop(ran) %}#
+                    {% set temp = randomiser.pop(ran) %}
                     
                     {% set ran = range(0, 3) | random %}
                     <input type="radio" name="answer_1_multi" id="option2" value="{{ randomiser[ran] }}"> 
@@ -126,14 +135,16 @@
                     {% set ran = 0 %}
                     <input type="radio" name="answer_1_multi" id="option4" value="{{ randomiser[ran] }}"> 
                     {{ randomiser[ran] }}</input><br>
-
-                {% else %}
-
-                {{ form.answer_2_fill (class = "answer-input") }}
-
-                {% endif %}
-
-            </form></h5>
+    
+                    {% else %}
+    
+                    {{ form.answer_1_fill (class = "answer-input") }}
+    
+                    {% endif %}
+    
+                </form>
+                {% set temp = randomQ.pop(ran) %}
+                {% set temp = assessRef.pop(ran) %}</h5>
 
         </div>
     </div>
