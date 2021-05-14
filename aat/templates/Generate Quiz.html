@@ -4,9 +4,9 @@
 	<form method="POST"  action="{{ url_for("Random") }}">
 		<div>
 			<select name="Q1_module">
-				{% for module in modules %}
-					<option value="{{ module }}">{{ module }}</option>
-				{% endfor %}
+				<option value="{{ current_user.module_1 }}"">{{ current_user.module_1 }}</option>
+				<option value="{{ current_user.module_2 }}">{{ current_user.module_2 }}</option>
+				<option value="{{ current_user.module_3 }}">{{ current_user.module_3 }}</option>
 			</select>
 			<select name="Q1_diff">
 				<option selected value="easy">Easy</option>
@@ -16,11 +16,23 @@
 		</div>
 		<div>
 			<select name="Q2_module">
-				{% for module in modules %}
-					<option value="{{ module }}">{{ module }}</option>
-				{% endfor %}
+				<option value="{{ current_user.module_1 }}"">{{ current_user.module_1 }}</option>
+				<option value="{{ current_user.module_2 }}">{{ current_user.module_2 }}</option>
+				<option value="{{ current_user.module_3 }}">{{ current_user.module_3 }}</option>
 			</select>
 			<select name="Q2_diff">
+				<option selected value="easy">Easy</option>
+				<option value="medium">Medium</option>
+				<option value="hard">Hard</option>
+			</select>
+		</div>
+		<div>
+			<select name="Q3_module">
+				<option value="{{ current_user.module_1 }}"">{{ current_user.module_1 }}</option>
+				<option value="{{ current_user.module_2 }}">{{ current_user.module_2 }}</option>
+				<option value="{{ current_user.module_3 }}">{{ current_user.module_3 }}</option>
+			</select>
+			<select name="Q3_diff">
 				<option selected value="easy">Easy</option>
 				<option value="medium">Medium</option>
 				<option value="hard">Hard</option>

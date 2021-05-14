@@ -111,6 +111,13 @@ def viewStudent():
 def createQuestion():
     return render_template('Create Question.html')
 
+
+
+
+MultipleRoute()
+MultipleEditRoute()
+
+
 @app.route("/Preview-Assessment")
 def previewAssessment():
     return render_template('Preview Assessment.html')
