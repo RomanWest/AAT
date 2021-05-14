@@ -104,15 +104,13 @@ def testassess_route():
                 correct_3 = False
 
             attempt = 0
-            try:
-                attemptno = Attempts.query.filter_by(user_id = current_user.id , assessment_id = assessment.id)
-                attempt = attemptno.attempt_no + 1
-            except:
-                attempt = 1
-            # if attemptno != None:
-            #     attempt = attemptno.attempt_no + 1
-            # else:
-            #     attempt = 1
+            attempts = Attempts.query.filter_by(user_id = current_user.id , assessment_id = assessment.id).all()
+
+            if attempts !=[]:
+                attempt = attempts[-1].attempt_no +1
+            else:
+                attempt = 1 
+
             
             percentage_correct = (answerscorrect /3) * 100
             attempt = Attempts(user_id = current_user.id, assessment_id = assessment_id, 
