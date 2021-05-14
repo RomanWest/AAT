@@ -11,11 +11,12 @@
     <div id="title">
         <h1>Question 1</h1>
     </div>
+    <form method="POST" action="">
+        {{ form.csrf_token }}
     <div class="question">
         <div id="top">
-            <h5 id='question-text'> {{ q1.question }} 
-                <form method="POST" action="">
-                    {{ form.csrf_token }}
+            <h5 id='question-text'> {{ q1 }} 
+                
     
                     {% if assessment.q1_type == 'Multiple' %}
                     
@@ -40,12 +41,11 @@
                     {{ randomiser[ran] }}</input><br>
     
                     {% else %}
-    
-                    {{ form.answer_1_fill (class = "answer-input") }}
+                    {{ form.answer_1_fill (class = "answer-input") }}                    
     
                     {% endif %}
     
-                </form>
+            
             </h5>
 
         </div>
@@ -89,7 +89,7 @@
     
                     {% endif %}
     
-                </form>
+                
             </h5>
 
         </div>
@@ -138,6 +138,7 @@
         </div>
     </div>
     <h5>{{form.submit (class="save-assess-btn")}}</h5>
+</form>
 </div>
 </div>
 

@@ -2,7 +2,7 @@ from flask import render_template, url_for, request, redirect, flash, g, current
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Regexp, InputRequired
-from aat.models import Multiple
+from aat.models import Multiple, Assessment
 from aat import app, db
 from sqlalchemy import desc
 
@@ -18,10 +18,18 @@ class MCForm(FlaskForm):
     feedback = StringField('feedback', validators=[DataRequired()])
     submit = SubmitField('Upload')
 
-    def validate_question(self, question):
-        quest = Multiple.query.filter_by(question=question.data).first()
-        if quest is not None:
-            raise ValidationError('This Question is already in the database')
+
+class MCDeleteForm(FlaskForm):
+    confirmDelete = BooleanField('Confirm:')
+    submit = SubmitField('Delete')
+
+    def validate_confirm(self, confirm):
+        confirm = confirmDelete.data
+        if confirm != 1:
+            raise ValidationError('Please confirm that you want to delete this question.')
+
+    def validate_InUse():
+        raise ValidationError('This question is being used in an assessment so cannot be deleted.')
 
 
 def MultipleEditRoute():
@@ -29,6 +37,44 @@ def MultipleEditRoute():
     def MultipleEdit():
         questions = Multiple.query.order_by(desc(Multiple.date_created)).all()
         return render_template("MultipleEdit.html", questions = questions)
+
+
+    @app.route('/Edit-Multiple-Choice-Question/<int:id>',methods=['GET', 'POST'])
+    def MultipleEditQuest(id):
+        MC = db.session.query(Multiple).get(id)
+        form = MCForm(formdata=request.form, obj = MC)
+        if form.validate_on_submit():
+            db.session.delete(MC)
+            question = Multiple(id = id,
+                            question=form.question.data,
+                            module_code=form.module_code.data,
+                            incorrect_1=form.incorrect_1.data,
+                            incorrect_2=form.incorrect_2.data,
+                            incorrect_3=form.incorrect_3.data,
+                            correct=form.correct.data,
+                            feedback=form.feedback.data,
+                            difficulty=form.difficulty.data,
+                            is_summative=form.is_summative.data)
+            db.session.add(question)
+            db.session.commit()
+            return redirect(url_for('staffhome'))
+        return render_template("EditMC.html", MC=MC, form=form)
+
+
+    @app.route('/Delete-Multiple-Choice-Question/<int:id>',methods=['GET', 'POST'])
+    def MultipleDeleteQuest(id):
+
+        Q1 = Assessment.query.filter_by(q1_type = "Multiple", q1_id = id).first()
+        Q2 = Assessment.query.filter_by(q2_type = "Multiple", q2_id = id).first()
+        Q3 = Assessment.query.filter_by(q3_type = "Multiple", q3_id = id).first()
+
+        MC = db.session.query(Multiple).get(id)
+        form = MCDeleteForm()
+        if form.validate_on_submit():
+            db.session.delete(MC)
+            db.session.commit()
+            return redirect(url_for('staffhome'))
+        return render_template("DeleteMC.html", MC=MC, Q1=Q1, Q2=Q2, Q3=Q3, form=form)
 
 
 def MultipleRoute():
