@@ -1,0 +1,29 @@
+{% extends "layout.html" %} {% block content %}
+{% from "_formhelpers.html" import render_field %}
+<form class="question-maker-container" method="POST" action="">
+
+    <div class="top-input-box">
+      <div class = "question-label">question</div> <div class = "question-input">{{MC.question }}</div>
+
+    </div>
+    <div class="bottom-inputs">
+      <div class="module-and-formative">
+        <div class="module">
+          <div class = "question-label">module_code</div> <div class = "question-input">{{MC.module_code}}</div>
+          </div>
+        <div class="issummative" >
+          <div class = "question-label">is_summative</div> <div class = "question-input">{{MC.is_summative}}</div>
+          </div>
+      </div>
+
+    <div class="answer-and-difficulty">
+      <div class = "question-label">correct</div> <div class = "question-input">{{MC.correct }}</div>
+      <div class = "question-label">incorrect_1</div> <div class = "question-input">{{MC.incorrect_1 }}</div>
+      <div class = "question-label">incorrect_2</div> <div class = "question-input">{{MC.incorrect_2 }}</div>
+      <div class = "question-label">incorrect_3</div> <div class = "question-input">{{MC.incorrect_3 }}</div>
+      <div class = "question-label">feedback</div> <div class = "question-input">{{MC.feedback }}</div>
+      <div class = "question-label">difficulty</div> <div class = "question-input">{{MC.difficulty }}</div>
+    </div>
+</div>
+</form>
+{% endblock content %}

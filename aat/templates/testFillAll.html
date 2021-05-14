@@ -1,0 +1,12 @@
+{% extends "layout.html" %} {% block content %}
+
+
+{% for q in questions %}
+<div >
+    <a href="{{ url_for('test_fill', fill_id=q.id) }}">Question id :{{q.id}}</a>
+</div>
+<br/>
+<hr/>
+{%endfor%}
+
+{%endblock content%}

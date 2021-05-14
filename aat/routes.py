@@ -1,13 +1,13 @@
 from datetime import datetime
 from flask import render_template, url_for, request, redirect, flash, g, current_app, session
 from aat import app, db, wildcardroute, testroute
-from aat.models import User, Multiple, Fill
-from aat.forms import RegistrationForm, LoginForm, FillQForm
+from aat.models import Assessment, User, Multiple, Fill
+from aat.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat.testroute import test
-from aat.Fillinblankroute import fillblankroute
 from aat.MultipleChoice import MultipleRoute, MultipleEditRoute
-from aat.FillEditRoute import filleditroute
+from aat.Fill import filleditroute, fillblankroute, test_fill_route
+from aat.Assessment import testassess_route
 
 @app.route("/Staff-Home")
 def staffhome():
@@ -15,8 +15,8 @@ def staffhome():
 
 @app.route("/Student-Home", methods=["GET", 'POST'])
 def studenthome():
-    test()
-    return render_template("Student Home.html")
+    assessment_all = Assessment.query.all()
+    return render_template("Student Home.html", assessment_all=assessment_all)
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/login",methods=['GET','POST'])
@@ -52,8 +52,16 @@ def logout():
     flash('Logout successful!')
     return redirect(url_for('login'))
 
+#for fill in blank questions:
 fillblankroute()
 filleditroute()
+test_fill_route()
+
+
+MultipleRoute()
+MultipleEditRoute()
+
+testassess_route()
 
 @app.route("/Create-Formative")
 def createFormative():
@@ -61,12 +69,19 @@ def createFormative():
     fill_all = Fill.query.all()
     return render_template('Create Formative.html', multiple_all=multiple_all, fill_all=fill_all)
 
+@app.route("/Create-Summative")
+def createSummative():
+    multiple_all = Multiple.query.all()
+    fill_all = Fill.query.all()
+    return render_template('Create Summative.html', multiple_all=multiple_all, fill_all=fill_all)
+
 @app.route("/Student-View-Progress")
 def studentViewProgress():
     return render_template('Student View Progress.html')
 
 @app.route("/Student-View-Attempts")
 def studentViewAttempts():
+
     return render_template('Student View Attempts.html')
 
 @app.route("/View-Quiz-Attempt")
@@ -91,48 +106,10 @@ def viewCohort():
 def viewStudent():
     return render_template('View Student.html')
 
-@app.route("/Create-Summative")
-def createSummative():
-    multiple_all = Multiple.query.all()
-    fill_all = Fill.query.all()
-    return render_template('Create Summative.html', multiple_all=multiple_all, fill_all=fill_all)
 
 @app.route("/Create-Question")
 def createQuestion():
     return render_template('Create Question.html')
-
-<<<<<<< HEAD
-@app.route("/Create-Fill-in-the-Blank", methods=['GET', 'POST'])
-def FillintheBlank():
-    form = FillQForm()
-    if form.validate_on_submit():
-        question = Fill(question=form.question.data,
-                        module_code=form.module.data,
-                        correct=form.answer.data,
-                        feedback=form.incorrectfeedback.data,
-                        difficulty=form.difficulty.data,
-                        is_summative=form.issummative.data
-                        )
-        db.session.add(question)
-        db.session.commit()
-        return redirect(url_for('staffhome'))
-
-    return render_template("Fill in blank.html", form=form)
-
-
-@app.route("/Create-Multiple-Choice-Question", methods=['GET', 'POST'])
-def createMultipleChoiceQuestion():
-    form = MCForm()
-    if form.validate_on_submit():
-        quest = Multiple(question=form.question.data, correct=form.correct.data, module_code=form.module_code.data, incorrect_1=form.incorrect_1.data, incorrect_2=form.incorrect_2.data, incorrect_3=form.incorrect_3.data, difficulty=form.difficulty.data, is_formative=form.is_formative.data, feedback=form.feedback.data)
-        db.session.add(quest)
-        db.session.commit()
-        return redirect(url_for('staffhome'))
-    return render_template('Create Multiple Choice Question.html', form = form)
-=======
-MultipleRoute()
-MultipleEditRoute()
->>>>>>> de8537bf581e8a89f3d78985acd23546a96eaec7
 
 @app.route("/Preview-Assessment")
 def previewAssessment():

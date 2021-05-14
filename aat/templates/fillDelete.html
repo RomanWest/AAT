@@ -1,0 +1,12 @@
+{% extends "layout.html" %} {% block content %}
+
+Are you sure you want to delete this question?
+<br>
+{{fill.question}}
+<br>
+
+<form method="POST">
+    <input type="submit" name="delete" value="Delete">
+    <input type="submit" name="keep" value="Keep">
+</form>
+{%endblock content%}

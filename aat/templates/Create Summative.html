@@ -20,7 +20,14 @@
     {% for multiple in multiple_all %}
     <div class="question-preview-head">
       <div id="title">
-        <h1>Multiple Choice Question {{ multiple.id }}</h1>
+        <h1>Multiple Choice Question {{ multiple.id }}</h1>        
+      </div>
+      <div id ="question-check-box">
+        <h3>Add to assessment</h3>
+        <label class="checkcontainer">
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
       </div>
     </div>
 
@@ -66,13 +73,7 @@
           <h5>{{ multiple.feedback }}</h5>
         </div>
 
-        <div id="col5">
-          <h3>Add to assessment</h3>
-          <label class="checkcontainer">
-            <input type="checkbox">
-            <span class="checkmark"></span>
-          </label>
-        </div>
+      
       </div>
 
     </div>
@@ -82,6 +83,13 @@
     <div class="question-preview-head">
       <div id="title">
         <h1>Fill in the Blank Question {{ fill.id }}</h1>
+      </div>
+      <div id ="question-check-box">
+        <h3>Add to assessment</h3>
+        <label class="checkcontainer">
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
       </div>
     </div>
 
@@ -118,13 +126,6 @@
           <h5>{{ fill.feedback }}</h5>
         </div>
 
-        <div id="col5">
-          <h3>Add to assessment</h3>
-          <label class="checkcontainer">
-            <input type="checkbox">
-            <span class="checkmark"></span>
-          </label>
-        </div>
       </div>
 
     </div>
