@@ -78,3 +78,20 @@ function uncheck(){
     noElements[i].checked = false;
   }
 }
+
+function filterType(){
+  var filter = document.getElementById("assessmentDropdown").value;
+  var question_type = document.getElementsByClassName("question-type");
+  var question = document.getElementsByClassName("assessment-question");
+
+  console.log(filter);
+  console.log(question[0]);
+  for (i = 0; i < question_type.length; i ++){
+    if (question_type[i].innerHTML != filter){
+      question[i].style.display = "none";
+    }
+    else {
+      question[i].style.display = "block";
+    }
+  }
+}
