@@ -2,18 +2,19 @@
 {% block content %}
 <div class="admin-create-formative">
 
-  <body onload='uncheck()'>
+  <body onload='uncheck(), filter()'>
     <form class="question-maker-container" method="POST" action="">
       {{ form.csrf_token }}
       <div class="Top-dropdown">
-        <select class=module-dropdown name="modules">
-          <option value="">Select Module</option>
-          <option value="Module1">Module 1</option>
-          <option value="Module2">Module2</option>
-          <option value="Module3">Module3</option>
+        <select class=module-dropdown name="modules" id="moduleDropdown" onchange="filter()">
+          <option value="Select Module">Select Module</option>
+          {% for assessment in assessment_all %}
+          <option value="{{assessment.module_code}}">{{assessment.module_code}}</option>
+          {% endfor %}
         </select>
 
-        <select class=assessment-dropdown name="assessments" id="assessmentDropdown" onchange="filterType()">
+        <select class=assessment-dropdown name="assessments" id="assessmentDropdown" onchange="filter()">
+          <option value="Select Type">Select Type</option>
           <option value="Formative">Formative</option>
           <option value="Summative">Summative</option>
         </select>
@@ -46,7 +47,7 @@
 
               <div id="col1">
                 <h3>Module</h3>
-                <h5>{{ multiple.module_code }}</h5>
+                <h5 class = "module-code">{{ multiple.module_code }}</h5>
                 <h3>In Use Y/N</h3>
                 <h5>*Y/N*</h5>
                 <h3>Difficulty</h3>
@@ -111,7 +112,7 @@
 
               <div id="col1">
                 <h3>Module</h3>
-                <h5>{{ fill.module_code }}</h5>
+                <h5 class = "module-code">{{ fill.module_code }}</h5>
                 <h3>In Use Y/N</h3>
                 <h5>*Y/N*</h5>
                 <h3>Difficulty</h3>

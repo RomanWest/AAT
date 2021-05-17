@@ -182,3 +182,7 @@ db.session.commit()
 db.session.add(Assessment(assessment_name="Test2",is_summative=False, module_code="Maths123", admin_created=True, 
     q1_type="Multiple", q1_id="1", q2_type="Multiple", q2_id="2", q3_type="Multiple", q3_id="3"))
 db.session.commit()
+db.session.add(Assessment(assessment_name="Assessment 3",is_summative=False, module_code="Biology123", admin_created=True, 
+    q1_type="Multiple", q1_id="5", q2_type="Multiple", q2_id="10", q3_type="Fill", q3_id="4"))
+db.session.commit()
+
