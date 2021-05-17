@@ -3,22 +3,25 @@
 <div class="admin-create-formative">
 
   <body onload='uncheck()'>
-    <div class="Top-dropdown">
-      <select class=module-dropdown name="modules">
-        <option value="">Select Module</option>
-        <option value="Module1">Module 1</option>
-        <option value="Module2">Module2</option>
-        <option value="Module3">Module3</option>
-      </select>
-
-      <select class=assessment-dropdown name="assessments">
-        <option value="">Select Assessment Type</option>
-        <option value="Module1">Formative</option>
-        <option value="Module2">Summative</option>
-      </select>
-    </div>
     <form class="question-maker-container" method="POST" action="">
       {{ form.csrf_token }}
+      <div class="Top-dropdown">
+        <select class=module-dropdown name="modules">
+          <option value="">Select Module</option>
+          <option value="Module1">Module 1</option>
+          <option value="Module2">Module2</option>
+          <option value="Module3">Module3</option>
+        </select>
+
+        <select class=assessment-dropdown name="assessments">
+          <option value="">Select Assessment Type</option>
+          <option value="Module1">Formative</option>
+          <option value="Module2">Summative</option>
+        </select>
+      </div>
+
+      {{form.module.label}} {{form.module}}
+
       <div class="question-preview">
         {% for multiple in multiple_all %}
         <div class="question-preview-head">
@@ -72,7 +75,7 @@
             <div id="col5">
               <h3>Add to assessment</h3>
               <label class="checkcontainer">
-                <input type="checkbox" class="checkbx" name="checkbox" value="multiple {{multiple.id}}"
+                <input type="checkbox" class="checkbx" name="checkbox" value="Multiple {{multiple.id}}"
                   id="questionChecker {{multiple.id}}" onclick="questionCheck()" checked=>
                 <span class="checkmark"></span>
               </label>
@@ -126,7 +129,7 @@
             <div id="col5">
               <h3>Add to assessment</h3>
               <label class="checkcontainer">
-                <input type="checkbox" class="checkbx" name="checkbox" value="fill {{fill.id}}"
+                <input type="checkbox" class="checkbx" name="checkbox" value="Fill {{fill.id}}"
                   id="questionChecker {{multiple_all|length + fill.id}}" onclick="questionCheck()">
                 <span class="checkmark"></span>
               </label>

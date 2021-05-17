@@ -61,6 +61,7 @@ function questionCheck() {
     count += 1;
     if (noElements[i].checked == false) {
       count -=1
+      noElements[i].name = "unchecked";
     }
     if (noElements[i].checked == true) {
       noElements[i].name = "checked!";

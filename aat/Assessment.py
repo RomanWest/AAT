@@ -155,20 +155,26 @@ def createassessment_route():
         fill_all = Fill.query.all()
         form = Assessment_Form()
 
-        if form.validate_on_submit():
-            if request.form.get("checkbox"):
-                value = request.form.get('checkbox')
+        if request.method == "POST":
+            print("Hi")
+            if request.form.getlist("checked!"):
+                value = request.form.getlist('checked!')
                 print(value)
-            createdAssessment = Assessment(q1_id=form.question_1,
-                                           q2_id=form.question_2,
-                                           q3_id=form.question_3,
-                                           q1_type=form.type_1,
-                                           q2_type=form.type_2,
-                                           q3_type=form.type_3,
+                id_type = []
+                for i in range(len(value)):
+                    id_type.append(value[i].split(" "))
+
+                print(id_type)
+            createdAssessment = Assessment(q1_id=int(id_type[0][1]),
+                                           q2_id=int(id_type[1][1]),
+                                           q3_id=int(id_type[2][1]),
+                                           q1_type=id_type[0][0],
+                                           q2_type=id_type[1][0],
+                                           q3_type=id_type[2][0],
                                            is_summative=False,
                                            assessment_name='Testing',
                                            admin_created=True,
-                                           module_code=form.module
+                                           module_code=form.module.data
                                            )
             db.session.add(createdAssessment)
             db.session.commit()
