@@ -62,15 +62,18 @@ function questionCheck() {
     if (noElements[i].checked == false) {
       count -=1
     }
+    if (noElements[i].checked == true) {
+      noElements[i].name = "checked!";
+    }
   }
   console.log(count);
-  document.getElementById("question-counter").innerText = count + "/3";
+  document.getElementById("question-counter").innerText = count + "/ 3";
+  
 }
 
 function uncheck(){
   var noElements = document.getElementsByClassName("checkbx");
   for (var i = 0; i < noElements.length; i++) {
     noElements[i].checked = false;
-
   }
 }

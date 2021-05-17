@@ -1,4 +1,4 @@
-from datetime import datetime 
+from datetime import datetime
 from flask import render_template, url_for, request, redirect, flash, g, current_app, session
 from flask_wtf.form import FlaskForm
 from wtforms.fields.core import StringField, RadioField
@@ -10,7 +10,9 @@ from aat.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat import app, db
 
-# Need to look at form 
+# Need to look at form
+
+
 class Answer_Form(FlaskForm):
     answer_1_fill = StringField('answer1')
     answer_2_fill = StringField('answer2')
@@ -23,18 +25,18 @@ class Answer_Form(FlaskForm):
 
 def testassess_route():
 
-    @app.route("/Attempt-Assessment/<int:assessment_id>",methods=['GET','POST'])
+    @app.route("/Attempt-Assessment/<int:assessment_id>", methods=['GET', 'POST'])
     def testassess(assessment_id):
         assessment = Assessment.query.get_or_404(assessment_id)
         multiple_all = Multiple.query.all()
         fill_all = Fill.query.all()
         form = Answer_Form()
-        #grab the questuions from the question tables
-        
-        q1_multi = Multiple.query.filter_by(id = assessment.q1_id).first()
+        # grab the questuions from the question tables
+
+        q1_multi = Multiple.query.filter_by(id=assessment.q1_id).first()
         q1_fill = db.session.query(Fill).get(assessment.q1_id)
 
-        if assessment.q1_type == "Multiple" :
+        if assessment.q1_type == "Multiple":
             q1 = q1_multi.question
             correct_1 = q1_multi.correct
 
@@ -42,7 +44,7 @@ def testassess_route():
             q1 = (q1_fill.question).replace(q1_fill.correct, "_______")
             correct_1 = q1_fill.correct
 
-        q2_multi = Multiple.query.filter_by(id = assessment.q2_id).first()
+        q2_multi = Multiple.query.filter_by(id=assessment.q2_id).first()
         q2_fill = db.session.query(Fill).get(assessment.q2_id)
 
         if assessment.q2_type == "Multiple":
@@ -53,7 +55,7 @@ def testassess_route():
             q2 = (q2_fill.question).replace(q2_fill.correct, "_______")
             correct_2 = q2_fill.correct
 
-        q3_multi = Multiple.query.filter_by(id = assessment.q3_id).first()
+        q3_multi = Multiple.query.filter_by(id=assessment.q3_id).first()
         q3_fill = db.session.query(Fill).get(assessment.q3_id)
 
         if assessment.q3_type == "Multiple":
@@ -65,27 +67,27 @@ def testassess_route():
             correct_3 = q3_fill.correct
 
         # Need to look at form submission
-        #get the answers from the form and then put into attempts table
+        # get the answers from the form and then put into attempts table
         form = Answer_Form()
-        if request.method=="POST":
-            if assessment.q1_type == "Multiple" :
-                answer_1=request.form.getlist("answer_1_multi")[0]
+        if request.method == "POST":
+            if assessment.q1_type == "Multiple":
+                answer_1 = request.form.getlist("answer_1_multi")[0]
                 print(answer_1)
             else:
-                answer_1=request.form.get("answer")
-        
-            if assessment.q2_type == "Multiple" :
-                answer_1=request.form.getlist("answer_2_multi")[0]
-            
+                answer_1 = request.form.get("answer")
+
+            if assessment.q2_type == "Multiple":
+                answer_1 = request.form.getlist("answer_2_multi")[0]
+
             else:
-                answer_2=form.answer_2_fill.data
-        
-            if assessment.q3_type == "Multiple" :
-                answer_1=request.form.getlist("answer_3_multi")[0]
-            
+                answer_2 = form.answer_2_fill.data
+
+            if assessment.q3_type == "Multiple":
+                answer_1 = request.form.getlist("answer_3_multi")[0]
+
             else:
-                answer_3=form.answer_3_fill.data
-                
+                answer_3 = form.answer_3_fill.data
+
             answerscorrect = 0.0
             if answer_1 == correct_1:
                 correct_1 = True
@@ -96,7 +98,7 @@ def testassess_route():
                 correct_2 = True
                 answerscorrect += 1
             else:
-                correct_2=False
+                correct_2 = False
             if answer_3 == correct_3:
                 correct_3 = True
                 answerscorrect += 1
@@ -104,35 +106,75 @@ def testassess_route():
                 correct_3 = False
 
             attempt = 0
-            attempts = Attempts.query.filter_by(user_id = current_user.id , assessment_id = assessment.id).all()
+            attempts = Attempts.query.filter_by(
+                user_id=current_user.id, assessment_id=assessment.id).all()
 
-            if attempts !=[]:
-                attempt = attempts[-1].attempt_no +1
+            if attempts != []:
+                attempt = attempts[-1].attempt_no + 1
             else:
-                attempt = 1 
+                attempt = 1
 
-            
-            percentage_correct = (answerscorrect /3) * 100
-            attempt = Attempts(user_id = current_user.id, assessment_id = assessment_id, 
-                                answer_1=answer_1, correct_1 = correct_1,
-                                answer_2=answer_2, correct_2 = correct_2,
-                                answer_3=answer_3, correct_3=correct_3,
-                                percentage_correct=percentage_correct, module_code = assessment.module_code,
-                                is_summative = assessment.is_summative, attempt_no = attempt
-                                )
+            percentage_correct = (answerscorrect / 3) * 100
+            attempt = Attempts(user_id=current_user.id, assessment_id=assessment_id,
+                               answer_1=answer_1, correct_1=correct_1,
+                               answer_2=answer_2, correct_2=correct_2,
+                               answer_3=answer_3, correct_3=correct_3,
+                               percentage_correct=percentage_correct, module_code=assessment.module_code,
+                               is_summative=assessment.is_summative, attempt_no=attempt
+                               )
 
             db.session.add(attempt)
             db.session.commit()
             flash("Assessment submitted")
             return redirect(url_for('studenthome'))
 
-        return render_template('testassess.html', assessment=assessment, 
-            multiple_all=multiple_all, fill_all=fill_all, 
-            q1_multi=q1_multi, q1_fill=q1_fill, q1=q1,
-            q2_multi=q2_multi, q2_fill=q2_fill, q2=q2,
-            q3_multi=q3_multi, q3_fill=q3_fill, q3=q3,
-            form=form
-            )
+        return render_template('testassess.html', assessment=assessment,
+                               multiple_all=multiple_all, fill_all=fill_all,
+                               q1_multi=q1_multi, q1_fill=q1_fill, q1=q1,
+                               q2_multi=q2_multi, q2_fill=q2_fill, q2=q2,
+                               q3_multi=q3_multi, q3_fill=q3_fill, q3=q3,
+                               form=form
+                               )
 
 
-  
+class Assessment_Form(FlaskForm):
+    question_1 = StringField('question-id-1', validators=[DataRequired()])
+    question_2 = StringField('question-id-2', validators=[DataRequired()])
+    question_3 = StringField('question-id-3', validators=[DataRequired()])
+    type_1 = StringField('question-type-1', validators=[DataRequired()])
+    type_2 = StringField('question-type-2', validators=[DataRequired()])
+    type_3 = StringField('question-type-3', validators=[DataRequired()])
+    module = StringField('module-code', validators=[DataRequired()])
+    submit = SubmitField('Save')
+
+
+def createassessment_route():
+    @app.route("/Create-Formative", methods=['GET', 'POST'])
+    def assessSubmit():
+        multiple_all = Multiple.query.all()
+        fill_all = Fill.query.all()
+        form = Assessment_Form()
+
+        if form.validate_on_submit():
+            if request.form.get("checkbox"):
+                value = request.form.get('checkbox')
+                print(value)
+            createdAssessment = Assessment(q1_id=form.question_1,
+                                           q2_id=form.question_2,
+                                           q3_id=form.question_3,
+                                           q1_type=form.type_1,
+                                           q2_type=form.type_2,
+                                           q3_type=form.type_3,
+                                           is_summative=False,
+                                           assessment_name='Testing',
+                                           admin_created=True,
+                                           module_code=form.module
+                                           )
+            db.session.add(createdAssessment)
+            db.session.commit()
+            flash("Assessment added.")
+            return redirect(url_for('assessSubmit'))
+           
+        
+
+        return render_template("Create Formative.html", form=form, multiple_all=multiple_all, fill_all=fill_all)

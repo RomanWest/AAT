@@ -7,7 +7,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from aat.testroute import test
 from aat.MultipleChoice import MultipleRoute, MultipleEditRoute
 from aat.Fill import filleditroute, fillblankroute, test_fill_route
-from aat.Assessment import testassess_route
+from aat.Assessment import createassessment_route, testassess_route
 
 @app.route("/Staff-Home")
 def staffhome():
@@ -63,11 +63,13 @@ MultipleEditRoute()
 
 testassess_route()
 
-@app.route("/Create-Formative")
-def createFormative():
-    multiple_all = Multiple.query.all()
-    fill_all = Fill.query.all()
-    return render_template('Create Formative.html', multiple_all=multiple_all, fill_all=fill_all)
+createassessment_route()
+
+# @app.route("/Create-Formative")
+# def createFormative():
+#     multiple_all = Multiple.query.all()
+#     fill_all = Fill.query.all()
+#     return render_template('Create Formative.html', multiple_all=multiple_all, fill_all=fill_all)
 
 @app.route("/Create-Summative")
 def createSummative():
