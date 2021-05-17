@@ -29,8 +29,19 @@
       <th>Completion</th>
       <th>etc....</th>
     </tr>
-
+    <tbody>
+      <tr>
+        <td>
+          {% for assessment in assessment_all %}
+            {{ assessment.assessment_name }}
+          {% endfor %}
+        </td>
+        <td>text1.2</td>
+        <td>text1.3</td>
+      </tr>
   </table>
+</div>
+
 </div>
 </div>
 
