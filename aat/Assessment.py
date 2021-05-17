@@ -152,6 +152,7 @@ def createassessment_route():
     def assessSubmit():
         multiple_all = Multiple.query.all()
         fill_all = Fill.query.all()
+        assessment_all = Assessment.query.all()
         form = Assessment_Form()
 
         if request.method == "POST":
@@ -179,7 +180,5 @@ def createassessment_route():
             db.session.commit()
             flash("Assessment added.")
             return redirect(url_for('assessSubmit'))
-           
-        
 
-        return render_template("Create Formative.html", form=form, multiple_all=multiple_all, fill_all=fill_all)
+        return render_template("Create Formative.html", form=form, multiple_all=multiple_all, fill_all=fill_all, assessment_all=assessment_all)
