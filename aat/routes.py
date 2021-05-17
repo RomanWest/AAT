@@ -12,6 +12,7 @@ from aat.Assessment import createassessment_route, testassess_route
 @app.route("/Staff-Home", methods=["GET", 'POST'])
 def staffhome():
     assessment_all = Assessment.query.all()
+
     return render_template('Staff Home.html', assessment_all=assessment_all)
 
 @app.route("/DeleteAssessment/<int:assessment_id>", methods=['GET', 'POST'])
