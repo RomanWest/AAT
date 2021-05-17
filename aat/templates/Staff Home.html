@@ -25,10 +25,14 @@
   <h1>View Assessments:</h1>
   <table class = "assessments-table">
     <tr>
-      <th>Summative</th>
-      <th>Formative</th>
-      <th>Edit</th>
-      <th>Delete</th>
+      <th><h2>Summative</h2></th>
+      <th><h2>Module Code</h2></th>
+      <th><h2>Edit</h2></th>
+      <th><h2>Delete</h2></th>
+      <th><h2>Formative</h2></th>
+      <th><h2>Module Code</h2></th>
+      <th><h2>Edit</h2</th>
+      <th><h2>Delete</h2></th>
     </tr>
     <tbody>
       <tr>
@@ -36,18 +40,25 @@
           {% for assessment in assessment_all %}
             {% if assessment.is_summative == True %}
               <a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a>
+        <td>{{ assessment.module_code  }}</td>
+        <td>Edit</td>
+        <td><a href="{{ url_for('DeleteAssessment', assessment_id=assessment.id)}}">Delete</a> </td>
             {% endif %}
           {% endfor %}
         </td>
         <td>
           {% for assessment in assessment_all %}
             {% if assessment.is_summative == False %}
-              <a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a>
-            {% endif %}
-          {% endfor %}
-        </td>
+              <a href=" {{ url_for('testassess', assessment_id=assessment.id)}} "> {{ assessment.assessment_name }} </a>
+        <td>{{ assessment.module_code  }}</td>
         <td>Edit button</td>
-        <td>Delete button</td>
+        <td>     
+          <a href="{{ url_for('DeleteAssessment', assessment_id=assessment.id)}}">Delete</a> 
+              {% endif %}
+            {% endfor %}
+        </td> 
+        </td>
+        
       </tr>
   </table>
 </div>
