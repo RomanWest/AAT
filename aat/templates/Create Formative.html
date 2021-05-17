@@ -15,12 +15,10 @@
 
         <select class=assessment-dropdown name="assessments" id="assessmentDropdown" onchange="filter()">
           <option value="Select Type">Select Type</option>
-          <option value="Formative">Formative</option>
+          <option value="Formative" selected="selected">Formative</option>
           <option value="Summative">Summative</option>
         </select>
       </div>
-
-      {{form.module.label}} {{form.module}}
 
       <div class="question-preview">
         {% for multiple in multiple_all %}
