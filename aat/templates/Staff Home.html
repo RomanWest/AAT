@@ -22,22 +22,32 @@
   </div>
 </div>
 <div class = "view-assessments">
-  <h1>view assessments:</h1>
+  <h1>View Assessments:</h1>
   <table class = "assessments-table">
     <tr>
-      <th>Assessment name</th>
-      <th>Completion</th>
-      <th>etc....</th>
+      <th>Summative</th>
+      <th>Formative</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
     <tbody>
       <tr>
         <td>
           {% for assessment in assessment_all %}
-            {{ assessment.assessment_name }}
+            {% if assessment.is_summative == True %}
+              <a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a>
+            {% endif %}
           {% endfor %}
         </td>
-        <td>text1.2</td>
-        <td>text1.3</td>
+        <td>
+          {% for assessment in assessment_all %}
+            {% if assessment.is_summative == False %}
+              <a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a>
+            {% endif %}
+          {% endfor %}
+        </td>
+        <td>Edit button</td>
+        <td>Delete button</td>
       </tr>
   </table>
 </div>

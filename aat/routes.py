@@ -9,9 +9,10 @@ from aat.MultipleChoice import MultipleRoute, MultipleEditRoute
 from aat.Fill import filleditroute, fillblankroute, test_fill_route
 from aat.Assessment import createassessment_route, testassess_route
 
-@app.route("/Staff-Home")
+@app.route("/Staff-Home", methods=["GET", 'POST'])
 def staffhome():
-    return render_template('Staff Home.html')
+    assessment_all = Assessment.query.all()
+    return render_template('Staff Home.html', assessment_all=assessment_all)
 
 @app.route("/Student-Home", methods=["GET", 'POST'])
 def studenthome():
