@@ -39,15 +39,15 @@ else {
 
 //function to change url based on dropdown menu
 
-function dropdownURL(){
-  if(document.getElementById("qType").value = "Fill in the Blank"){
+function dropdownURL() {
+  if (document.getElementById("qType").value = "Fill in the Blank") {
     var newurl = window.location.href.replace(window.location.pathname, "/Create-Fill-in-the-Blank");
     location.replace(newurl)
   }
 }
 
-function dropdownURL2(){
-  if(document.getElementById("qType").value = "Multiple Choice"){
+function dropdownURL2() {
+  if (document.getElementById("qType").value = "Multiple Choice") {
     var newurl = window.location.href.replace(window.location.pathname, "/Create-Multiple-Choice-Question");
     location.replace(newurl)
   }
@@ -60,7 +60,7 @@ function questionCheck() {
   for (var i = 0; i < noElements.length; i++) {
     count += 1;
     if (noElements[i].checked == false) {
-      count -=1
+      count -= 1
       noElements[i].name = "unchecked";
     }
     if (noElements[i].checked == true) {
@@ -69,29 +69,41 @@ function questionCheck() {
   }
   console.log(count);
   document.getElementById("question-counter").innerText = count + "/ 3";
-  
+
 }
 
-function uncheck(){
+function uncheck() {
   var noElements = document.getElementsByClassName("checkbx");
   for (var i = 0; i < noElements.length; i++) {
     noElements[i].checked = false;
   }
 }
 
-function filterType(){
-  var filter = document.getElementById("assessmentDropdown").value;
+function filter() {
+  var filterType = document.getElementById("assessmentDropdown").value;
   var question_type = document.getElementsByClassName("question-type");
   var question = document.getElementsByClassName("assessment-question");
-
-  console.log(filter);
-  console.log(question[0]);
-  for (i = 0; i < question_type.length; i ++){
-    if (question_type[i].innerHTML != filter){
-      question[i].style.display = "none";
-    }
-    else {
+  var filterModule = document.getElementById("moduleDropdown").value;
+  var moduleCode = document.getElementsByClassName("module-code");
+  
+  console.log(filterType);
+  console.log(filterModule);
+  for (i = 0; i < question.length; i++) {
+    // Filter on both Question Type and Module Code
+    if (question_type[i].innerHTML == filterType && moduleCode[i].innerHTML == filterModule) {
       question[i].style.display = "block";
+    } // Filter on just Module Code
+    else if (filterType == 'Select Type' && moduleCode[i].innerHTML == filterModule) {
+      question[i].style.display = "block";
+    } //Filter on just Question Type
+    else if (filterModule == 'Select Module' && question_type[i].innerHTML == filterType) {
+      question[i].style.display = "block";
+    } // No Filter
+    else if (filterModule == 'Select Module' && filterType == 'Select Type') {
+      question[i].style.display = "block";
+    } // Does not match
+    else {
+      question[i].style.display = "none";
     }
   }
 }
