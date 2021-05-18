@@ -12,13 +12,13 @@ from aat import app, db
 
 # Need to look at form 
 class Answer_Form(FlaskForm):
-        answer_1_fill = StringField('answer1', validators=[DataRequired()])
-        answer_2_fill = StringField('answer2', validators=[DataRequired()])
-        answer_3_fill = StringField('answer3', validators=[DataRequired()])
-        answer_1_multi = RadioField('answer1', validators=[DataRequired()])
-        answer_2_multi = RadioField('answer2', validators=[DataRequired()])
-        answer_3_multi = RadioField('answer3', validators=[DataRequired()])
-        submit = SubmitField('Submit')
+    answer_1_fill = StringField('answer1')
+    answer_2_fill = StringField('answer2')
+    answer_3_fill = StringField('answer3')
+    answer_1_multi = RadioField('answer1')
+    answer_2_multi = RadioField('answer2')
+    answer_3_multi = RadioField('answer3')
+    submit = SubmitField('Submit')
 
 
 def testassess_route():
@@ -29,34 +29,102 @@ def testassess_route():
         multiple_all = Multiple.query.all()
         fill_all = Fill.query.all()
         form = Answer_Form()
+        #grab the questuions from the question tables
         
         q1_multi = Multiple.query.filter_by(id = assessment.q1_id).first()
-        q1_fill = Fill.query.filter_by(id = assessment.q1_id).first()
+        q1_fill = db.session.query(Fill).get(assessment.q1_id)
 
         if assessment.q1_type == "Multiple" :
-            q1 = q1_multi
+            q1 = q1_multi.question
+            correct_1 = q1_multi.correct
+
         else:
-            q1 = q1_fill
+            q1 = (q1_fill.question).replace(q1_fill.correct, "_______")
+            correct_1 = q1_fill.correct
 
         q2_multi = Multiple.query.filter_by(id = assessment.q2_id).first()
-        q2_fill = Fill.query.filter_by(id = assessment.q2_id).first()
+        q2_fill = db.session.query(Fill).get(assessment.q2_id)
 
         if assessment.q2_type == "Multiple":
             q2 = q2_multi
+            correct_2 = q2_multi.correct
+
         else:
-            q2 = q2_fill
+            q2 = (q2_fill.question).replace(q2_fill.correct, "_______")
+            correct_2 = q2_fill.correct
 
         q3_multi = Multiple.query.filter_by(id = assessment.q3_id).first()
-        q3_fill = Fill.query.filter_by(id = assessment.q3_id).first()
+        q3_fill = db.session.query(Fill).get(assessment.q3_id)
 
         if assessment.q3_type == "Multiple":
             q3 = q3_multi
-        else:
-            q3 = q3_fill
-        
-        # Need to look at form submission
+            correct_2 = q3_multi.correct
 
-   
+        else:
+            q3 = (q3_fill.question).replace(q3_fill.correct, "_______")
+            correct_3 = q3_fill.correct
+
+        # Need to look at form submission
+        #get the answers from the form and then put into attempts table
+        form = Answer_Form()
+        if request.method=="POST":
+            if assessment.q1_type == "Multiple" :
+                answer_1=request.form.getlist("answer_1_multi")[0]
+                print(answer_1)
+            else:
+                answer_1=request.form.get("answer")
+        
+            if assessment.q2_type == "Multiple" :
+                answer_1=request.form.getlist("answer_2_multi")[0]
+            
+            else:
+                answer_2=form.answer_2_fill.data
+        
+            if assessment.q3_type == "Multiple" :
+                answer_1=request.form.getlist("answer_3_multi")[0]
+            
+            else:
+                answer_3=form.answer_3_fill.data
+                
+            answerscorrect = 0.0
+            if answer_1 == correct_1:
+                correct_1 = True
+                answerscorrect += 1
+            else:
+                correct_1 = False
+            if answer_2 == correct_2:
+                correct_2 = True
+                answerscorrect += 1
+            else:
+                correct_2=False
+            if answer_3 == correct_3:
+                correct_3 = True
+                answerscorrect += 1
+            else:
+                correct_3 = False
+
+            attempt = 0
+            attempts = Attempts.query.filter_by(user_id = current_user.id , assessment_id = assessment.id).all()
+
+            if attempts !=[]:
+                attempt = attempts[-1].attempt_no +1
+            else:
+                attempt = 1 
+
+            
+            percentage_correct = (answerscorrect /3) * 100
+            attempt = Attempts(user_id = current_user.id, assessment_id = assessment_id, 
+                                answer_1=answer_1, correct_1 = correct_1,
+                                answer_2=answer_2, correct_2 = correct_2,
+                                answer_3=answer_3, correct_3=correct_3,
+                                percentage_correct=percentage_correct, module_code = assessment.module_code,
+                                is_summative = assessment.is_summative, attempt_no = attempt
+                                )
+
+            db.session.add(attempt)
+            db.session.commit()
+            flash("Assessment submitted")
+            return redirect(url_for('studenthome'))
 
         return render_template('testassess.html', assessment=assessment, 
             multiple_all=multiple_all, fill_all=fill_all, 
@@ -66,30 +134,5 @@ def testassess_route():
             form=form
             )
 
-    def attempt_answers():
-            form = Answer_Form()
-            if form.validate_on_submit():
-                assessment = Assessment.query.get_or_404()
-                if assessment.q1_type == "Multiple" :
-                    answer_options = q1_multi
-                    answer_1=form.answer_1_multi.data
-                else:
-                    answer_1=form.answer_1_fill.data
-                
-                if assessment.q2_type == "Multiple" :
-                    answer_2=form.answer_2_multi.data
-                else:
-                    answer_2=form.answer_2_fill.data
-                
-                if assessment.q3_type == "Multiple" :
-                    answer_3=form.answer_3_multi.data
-                else:
-                    answer_3=form.answer_3_fill.data
 
-
-                attempt = Attempts(answer_1=answer_1, answer_2=answer_2, answer_3=answer_3)
-
-                db.session.add(attempt)
-                db.session.commit()
-                flash("Assessment submitted")
-                return redirect(url_for('studenthome'))
+  
