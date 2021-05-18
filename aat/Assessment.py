@@ -1,7 +1,8 @@
 from datetime import datetime
 from flask import render_template, url_for, request, redirect, flash, g, current_app, session
 from flask_wtf.form import FlaskForm
-from wtforms.fields.core import StringField, RadioField
+from wtforms import validators
+from wtforms.fields.core import DateTimeField, StringField, RadioField
 from wtforms.fields.simple import SubmitField
 from wtforms.validators import DataRequired
 from aat import app, db
@@ -146,6 +147,7 @@ class Assessment_Form(FlaskForm):
     module = StringField('module-code', validators=[DataRequired()])
     submit = SubmitField('Save')
     is_summative = StringField('assessment-type', validators=[DataRequired()])
+    feedback_date = DateTimeField('Feedback-Date'), validators=[DataRequired()])
 
 
 def createassessment_route():
