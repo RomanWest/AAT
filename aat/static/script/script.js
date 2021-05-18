@@ -80,26 +80,63 @@ function uncheck() {
 }
 
 function filter() {
-  var filterType = document.getElementById("assessmentDropdown").value;
+  var filterType = document.getElementById("assessmentDropdown");
   var question_type = document.getElementsByClassName("question-type");
   var question = document.getElementsByClassName("assessment-question");
-  var filterModule = document.getElementById("moduleDropdown").value;
+  var filterModule = document.getElementById("moduleDropdown");
   var moduleCode = document.getElementsByClassName("module-code");
-  
-  console.log(filterType);
-  console.log(filterModule);
+
+  var Type = document.getElementsByClassName("hiddenType");
+  var Module = document.getElementsByClassName("hiddenModule");
+
+  console.log(Type[0]);
+  console.log(Type[0].id);
+  for (i = 0; i < Type.length; i ++){
+    if (Type[i].id == filterType.value){
+      Type[i].name = "selectedType";
+    } else {
+      Type[i].name = Type[i].id;
+    }
+  }
+
+  for (i = 0; i < Module.length; i ++){
+    if (Module[i].id == filterModule.value){
+      Module[i].name = "selectedModule";
+    } else {
+      Module[i].name = Module[i].id;
+    }
+  }
+
+
+  // for (i = 0; i < filterType.length; i++) {
+  //   if (filterType[i].innerHTML == filterType.value) {  
+  //     filterType[i].value = "SelectedType";
+  //   } else {
+  //     filterType[i].value = "Unselected";
+  //   }
+  // }
+
+  // for (i = 0; i < filterModule.length; i++) {
+  //   if (filterModule[i].innerHTML == filterModule.value) {
+  //     console.log(filterModule[i].innerHTML);
+  //     filterModule[i].value = "SelectedModule";
+  //   } else {
+  //     filterModule[i].value = "Unselected";
+  //   }
+  // }
+
   for (i = 0; i < question.length; i++) {
     // Filter on both Question Type and Module Code
-    if (question_type[i].innerHTML == filterType && moduleCode[i].innerHTML == filterModule) {
+    if (question_type[i].innerHTML == filterType.value && moduleCode[i].innerHTML == filterModule.value) {
       question[i].style.display = "block";
     } // Filter on just Module Code
-    else if (filterType == 'Select Type' && moduleCode[i].innerHTML == filterModule) {
+    else if (filterType.value == 'Select Type' && moduleCode[i].innerHTML == filterModule.value) {
       question[i].style.display = "block";
     } //Filter on just Question Type
-    else if (filterModule == 'Select Module' && question_type[i].innerHTML == filterType) {
+    else if (filterModule.value == 'Select Module' && question_type[i].innerHTML == filterType.value) {
       question[i].style.display = "block";
     } // No Filter
-    else if (filterModule == 'Select Module' && filterType == 'Select Type') {
+    else if (filterModule.value == 'Select Module' && filterType.value == 'Select Type') {
       question[i].style.display = "block";
     } // Does not match
     else {

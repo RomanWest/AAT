@@ -145,6 +145,7 @@ class Assessment_Form(FlaskForm):
     type_3 = StringField('question-type-3', validators=[DataRequired()])
     module = StringField('module-code', validators=[DataRequired()])
     submit = SubmitField('Save')
+    is_summative = StringField('assessment-type', validators=[DataRequired()])
 
 
 def createassessment_route():
@@ -157,6 +158,13 @@ def createassessment_route():
 
         if request.method == "POST":
             print("Hi")
+            if request.form.get('selectedType') == "Formative":
+                form.is_summative.data = False
+            if request.form.get('selectedType') == "Summative":
+                form.is_summative.data = True
+
+            form.module.data = request.form.getlist('selectedModule')[0]
+            
             if request.form.getlist("checked!"):
                 value = request.form.getlist('checked!')
                 print(value)
@@ -171,7 +179,7 @@ def createassessment_route():
                                            q1_type=id_type[0][0],
                                            q2_type=id_type[1][0],
                                            q3_type=id_type[2][0],
-                                           is_summative=False,
+                                           is_summative=form.is_summative.data,
                                            assessment_name='Testing',
                                            admin_created=True,
                                            module_code=form.module.data
