@@ -81,7 +81,7 @@ def testassess_route():
             if assessment.q2_type == "Multiple" :
                 answer_2=request.form.getlist("answer_2_multi")[0]
             else:
-                answer_2=form.answer_2_fill.data.lower()
+                answer_2=form.answer_2_fill.data
         
             if assessment.q3_type == "Multiple" :
                 answer_3=request.form.getlist("answer_3_multi")[0]
@@ -128,11 +128,11 @@ def testassess_route():
                                is_summative=assessment.is_summative, attempt_no=attempt, 
                                assessment_name = assessment.assessment_name
                                )
+
             db.session.add(attempt)
             db.session.commit()
             flash("Assessment submitted")
             return redirect(url_for('studenthome'))
-            
 
         return render_template('testassess.html', assessment=assessment,
                                multiple_all=multiple_all, fill_all=fill_all,
