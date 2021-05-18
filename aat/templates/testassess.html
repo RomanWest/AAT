@@ -23,7 +23,7 @@
                     
                     {% set randomiser = [q1_multi.correct, q1_multi.incorrect_1, q1_multi.incorrect_2, q1_multi.incorrect_3] %}
                     {% set ran = range(0 , 4) | random %}
-                    <input type="radio" name="answer_1_multi" id="option1" value="{{ randomiser[ran] }}"> 
+                    <input type="radio" name="answer_1_multi" id="option1" value="{{ randomiser[ran] }}" required> 
                     {{ randomiser[ran] }}</input><br>
                     {% set temp = randomiser.pop(ran) %}
                     
@@ -43,7 +43,7 @@
     
                     {% else %}
     
-                    {{ form.answer_1_fill (class = "answer-input") }}
+                    {{ form.answer_1_fill (class = "answer-input", required = True) }}
     
                     {% endif %}
     
@@ -66,7 +66,7 @@
                     
                     {% set randomiser = [q2_multi.correct, q2_multi.incorrect_1, q2_multi.incorrect_2, q2_multi.incorrect_3] %}
                     {% set ran = range(0 , 4) | random %}
-                    <input type="radio" name="answer_2_multi" id="option1" value="{{ randomiser[ran] }}"> 
+                    <input type="radio" name="answer_2_multi" id="option1" value="{{ randomiser[ran] }}" required> 
                     {{ randomiser[ran] }}</input><br>
                     {% set temp = randomiser.pop(ran) %}
                     
@@ -86,7 +86,7 @@
     
                     {% else %}
     
-                    {{ form.answer_2_fill (class = "answer-input") }}
+                    {{ form.answer_2_fill (class = "answer-input", required = True) }}
     
                     {% endif %}
     
@@ -109,7 +109,7 @@
                     
                     {% set randomiser = [q3_multi.correct, q3_multi.incorrect_1, q3_multi.incorrect_2, q3_multi.incorrect_3] %}
                     {% set ran = range(0 , 4) | random %}
-                    <input type="radio" name="answer_3_multi" id="option1" value="{{ randomiser[ran] }}"> 
+                    <input type="radio" name="answer_3_multi" id="option1" value="{{ randomiser[ran] }}" required> 
                     {{ randomiser[ran] }}</input><br>
                     {% set temp = randomiser.pop(ran) %}
                     
@@ -124,12 +124,12 @@
                     {% set temp = randomiser.pop(ran) %}
                     
                     {% set ran = 0 %}
-                    <input type="radio" name="answer_3_multi" id="option4" value="{{ randomiser[ran] }}"> 
+                    <input type="radio" name="answer_3_multi" id="option4" value="{{ randomiser[ran] }}" > 
                     {{ randomiser[ran] }}</input><br>
     
                     {% else %}
     
-                    {{ form.answer_3_fill (class = "answer-input") }}
+                    {{ form.answer_3_fill (class = "answer-input", required = True) }}
     
                     {% endif %}
     
