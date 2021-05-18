@@ -17,11 +17,26 @@
     <a class="button student-home-btn" href="{{url_for('generateQuiz')}}">Generate Practice Quiz</a>
   </div>
   <div class = formative-summative-container>
-    <div class="formative-summative">formative</div>
+    <div class="formative-summative">Summative</div>
+    <br>
+    <div class="formative-summative">
     {% for assessment in assessment_all %}
-    <a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a>
+      {% if assessment.is_summative == True %}
+        <a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a>
+      {% endif %}
     {% endfor %}
-    <div class="formative-summative">summative</div>
+    </div>
+    <br>
+    <div class="formative-summative">Formative</div>
+    <br>
+    <div class="formative-summative">
+    {% for assessment in assessment_all %}
+      {% if assessment.is_summative == False %}
+        <a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a>
+      {% endif %}
+    {% endfor %}
+    </div>
+    <br>
   </div>
 </div>
 </div>
