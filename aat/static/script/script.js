@@ -88,9 +88,15 @@ function filter() {
 
   var Type = document.getElementsByClassName("hiddenType");
   var Module = document.getElementsByClassName("hiddenModule");
+  var Modules = document.getElementsByClassName("modules");
 
-  console.log(Type[0]);
-  console.log(Type[0].id);
+  console.log(Modules.length);
+  for (i = 0; i < Modules.length - 1; i ++){
+    if (Modules[i+1].value == Modules[i].value){
+      Modules[i+1].style.display = 'none';
+    }
+  }
+
   for (i = 0; i < Type.length; i ++){
     if (Type[i].id == filterType.value){
       Type[i].name = "selectedType";
@@ -106,24 +112,6 @@ function filter() {
       Module[i].name = Module[i].id;
     }
   }
-
-
-  // for (i = 0; i < filterType.length; i++) {
-  //   if (filterType[i].innerHTML == filterType.value) {  
-  //     filterType[i].value = "SelectedType";
-  //   } else {
-  //     filterType[i].value = "Unselected";
-  //   }
-  // }
-
-  // for (i = 0; i < filterModule.length; i++) {
-  //   if (filterModule[i].innerHTML == filterModule.value) {
-  //     console.log(filterModule[i].innerHTML);
-  //     filterModule[i].value = "SelectedModule";
-  //   } else {
-  //     filterModule[i].value = "Unselected";
-  //   }
-  // }
 
   for (i = 0; i < question.length; i++) {
     // Filter on both Question Type and Module Code
