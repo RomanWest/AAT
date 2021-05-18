@@ -218,6 +218,7 @@ td {
   margin-right: 1rem;
   border: 1px solid black;
   border-collapse: collapse;
+  background-color: rgb(235, 235, 235); 
 }
 
 .create-questions {
