@@ -7,11 +7,29 @@ from flask_login import login_user, logout_user, login_required, current_user
 from aat.testroute import test
 from aat.MultipleChoice import MultipleRoute, MultipleEditRoute
 from aat.Fill import filleditroute, fillblankroute, test_fill_route
-from aat.Assessment import testassess_route
+from aat.Assessment import createassessment_route, testassess_route
 
-@app.route("/Staff-Home")
+@app.route("/Staff-Home", methods=["GET", 'POST'])
 def staffhome():
-    return render_template('Staff Home.html')
+    assessment_all = Assessment.query.all()
+
+    return render_template('Staff Home.html', assessment_all=assessment_all)
+
+@app.route("/DeleteAssessment/<int:assessment_id>", methods=['GET', 'POST'])
+def DeleteAssessment(assessment_id):
+    assessment = db.session.query(Assessment).get(assessment_id)
+    if request.method == 'POST':
+
+        if request.form.get("delete"):
+            db.session.delete(assessment)
+            db.session.commit()
+            flash("Assessment deleted.")
+            return redirect(url_for("staffhome"))
+
+        if request.form.get("keep"):
+            return redirect(url_for("staffhome"))
+
+    return render_template("AssessmentDelete.html", assessment=assessment)
 
 @app.route("/Student-Home", methods=["GET", 'POST'])
 def studenthome():
@@ -63,11 +81,13 @@ MultipleEditRoute()
 
 testassess_route()
 
-@app.route("/Create-Formative")
-def createFormative():
-    multiple_all = Multiple.query.all()
-    fill_all = Fill.query.all()
-    return render_template('Create Formative.html', multiple_all=multiple_all, fill_all=fill_all)
+createassessment_route()
+
+# @app.route("/Create-Formative")
+# def createFormative():
+#     multiple_all = Multiple.query.all()
+#     fill_all = Fill.query.all()
+#     return render_template('Create Formative.html', multiple_all=multiple_all, fill_all=fill_all)
 
 @app.route("/Create-Summative")
 def createSummative():

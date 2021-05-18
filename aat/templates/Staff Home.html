@@ -1,40 +1,101 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="admin-main">
-<div class = "Admin-home-buttons">
-  <select class = module-dropdown name="modules">
-    <option value="">Select Module</option>
-    <option value="Module1">Module 1</option>
-    <option value="Module2">Module2</option>
-    <option value="Module3">Module3</option>
-  </select>
-  <div class = "create-questions">
-    <a class="button admin-home-btn" href="{{url_for('createMultipleChoiceQuestion')}}">Create a Multiple Choice Question</a>
-    <a class="button admin-home-btn" href="{{url_for('FillintheBlank')}}">Create a Fill in the Blank Question</a>
+  <div class="Admin-home-buttons">
+    <select class=module-dropdown name="modules">
+      <option value="">Select Module</option>
+      <option value="Module1">Module 1</option>
+      <option value="Module2">Module2</option>
+      <option value="Module3">Module3</option>
+    </select>
+    <div class="create-questions">
+      <a class="button admin-home-btn" href="{{url_for('createMultipleChoiceQuestion')}}">Create a Multiple Choice
+        Question</a>
+      <a class="button admin-home-btn" href="{{url_for('FillintheBlank')}}">Create a Fill in the Blank Question</a>
+    </div>
+    <div class="create-assessments">
+      <a class="button admin-home-btn" href="{{url_for('createSummative')}}">Create a new Sumative Assessment</a>
+      <a class="button admin-home-btn" href="{{url_for('assessSubmit')}}">Create a new Formative Assessment</a>
+    </div>
+    <div class="view-stats">
+      <a class="button admin-home-btn" href="{{url_for('viewCohort')}}">View Cohort Statistics</a>
+      <a class="button admin-home-btn" href="{{url_for('viewStudent')}}">View Student Statistics</a>
+    </div>
   </div>
-  <div class = "create-assessments">
-    <a class="button admin-home-btn" href="{{url_for('createSummative')}}">Create a new Sumative Assessment</a>
-    <a class="button admin-home-btn" href="{{url_for('createFormative')}}">Create a new Formative Assessment</a>
+  <div class="view-assessments">
+    <h1>View Assessments:</h1>
+    <table class="assessments-table">
+      <tr>
+        <th>
+          <h2>Summative</h2>
+        </th>
+        <th>
+          <h2>Module Code</h2>
+        </th>
+        <th>
+          <h2>Edit</h2>
+        </th>
+        <th>
+          <h2>Delete</h2>
+        </th>
+      </tr>
+      <tbody>
+        {% for assessment in assessment_all %}
+        <tr>
+          <td>
+            {% if assessment.is_summative == True %}
+            <a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a>
+          </td>
+          <td>{{ assessment.module_code  }}</td>
+
+          <td>Edit button</td>
+
+          <td>
+            <a href="{{ url_for('DeleteAssessment', assessment_id=assessment.id)}}">Delete</a> 
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+    <table class="assessments-table">
+      <tr>
+        <th>
+          <h2>Formative</h2>
+        </th>
+        <th>
+          <h2>Module Code</h2>
+        </th>
+        <th>
+          <h2>Edit</h2</th> 
+        <th>
+          <h2>Delete</h2>
+        </th>
+      </tr>
+      <tbody>
+        {% for assessment in assessment_all %}
+        <tr>
+
+          <td>
+            {% if assessment.is_summative == False %}
+            <a href=" {{ url_for('testassess', assessment_id=assessment.id)}} "> {{ assessment.assessment_name }} </a>
+          </td>
+
+          <td>{{ assessment.module_code  }}</td>
+
+          <td>Edit button</td>
+
+          <td>
+            <a href="{{ url_for('DeleteAssessment', assessment_id=assessment.id)}}">Delete</a> 
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+
   </div>
-  <div class = "view-stats">
-    <a class="button admin-home-btn" href="{{url_for('viewCohort')}}">View Cohort Statistics</a>
-    <a class="button admin-home-btn" href="{{url_for('viewStudent')}}">View Student Statistics</a>
-  </div>
-</div>
-<div class = "view-assessments">
-  <h1>view assessments:</h1>
-  <table class = "assessments-table">
-    <tr>
-      <th>Assessment name</th>
-      <th>Completion</th>
-      <th>etc....</th>
-    </tr>
 
-  </table>
 </div>
 </div>
-
-
-
 
 {% endblock content %}
