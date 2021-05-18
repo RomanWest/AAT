@@ -195,6 +195,48 @@ def createassessment_route():
             return redirect(url_for('assessSubmit'))
 
         return render_template("Create Formative.html", form=form, multiple_all=multiple_all, fill_all=fill_all, assessment_all=assessment_all)
+
+    @app.route("/Create-Summative", methods=['GET', 'POST'])
+    def assessSubmit2():
+        multiple_all = Multiple.query.all()
+        fill_all = Fill.query.all()
+        assessment_all = Assessment.query.all()
+        form = Assessment_Form()
+
+        if request.method == "POST":
+            print("Hi")
+            if request.form.get('selectedType') == "Formative":
+                form.is_summative.data = False
+            if request.form.get('selectedType') == "Summative":
+                form.is_summative.data = True
+
+            form.module.data = request.form.getlist('selectedModule')[0]
+            
+            if request.form.getlist("checked!"):
+                value = request.form.getlist('checked!')
+                print(value)
+                id_type = []
+                for i in range(len(value)):
+                    id_type.append(value[i].split(" "))
+
+                print(id_type)
+            createdAssessment = Assessment(q1_id=int(id_type[0][1]),
+                                           q2_id=int(id_type[1][1]),
+                                           q3_id=int(id_type[2][1]),
+                                           q1_type=id_type[0][0],
+                                           q2_type=id_type[1][0],
+                                           q3_type=id_type[2][0],
+                                           is_summative=form.is_summative.data,
+                                           assessment_name=form.assessment_name.data,
+                                           admin_created=True,
+                                           module_code=form.module.data
+                                           )
+            db.session.add(createdAssessment)
+            db.session.commit()
+            flash("Assessment added.")
+            return redirect(url_for('assessSubmit2'))
+
+        return render_template("Create Summative.html", form=form, multiple_all=multiple_all, fill_all=fill_all, assessment_all=assessment_all)
     
     @app.route("/feedback", methods = ["GET", "POST"])
     def viewfeedback():
