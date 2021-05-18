@@ -9,10 +9,10 @@
         <select class=module-dropdown name="modules" id="moduleDropdown" onchange="filter()">
           <option value="Select Module">Select Module</option>
           {% for multiple in multiple_all %}
-          <option value="{{multiple.module_code}}">{{multiple.module_code}}</option>
+          <option value="{{multiple.module_code}}" class='modules'>{{multiple.module_code}}</option>
           {% endfor %}
         </select>
-        {% for multiple in multiple_all.module_code %}
+        {% for multiple in multiple_all %}
         <input type="text" id="{{multiple.module_code}}" class="hiddenModule" name="{{multiple.module_code}}"
           value="{{multiple.module_code}}">
         {% endfor %}

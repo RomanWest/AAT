@@ -88,6 +88,14 @@ function filter() {
 
   var Type = document.getElementsByClassName("hiddenType");
   var Module = document.getElementsByClassName("hiddenModule");
+  var Modules = document.getElementsByClassName("modules");
+
+  console.log(Modules.length);
+  for (i = 0; i < Modules.length - 1; i ++){
+    if (Modules[i+1].value == Modules[i].value){
+      Modules[i+1].style.display = 'none';
+    }
+  }
 
   for (i = 0; i < filterModule.length-1; i ++) {
     if (filterModule[i].value == filterModule[i+1].value){
