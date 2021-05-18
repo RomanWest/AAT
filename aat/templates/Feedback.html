@@ -1,9 +1,19 @@
 {% extends "layout.html" %}
 {% block content %}
-
-{% for attempt in attempts %}
-<div>
-    name: {{attempt.id}}
-</div>
-{%endfor%}
-{%endblock content%}
+assessment name: {{attempt.assessment_name}}<br>
+your score: {{attempt.percentage_correct}}%<br>
+q1: {{q1}}<br>
+your answer: {{attempt.answer_1}}<br>
+correct answer: {{correct_1}}<br>
+feedback: {{attempt.feedback_1}}<br>
+<br>
+q2: {{q2}}<br>
+your answer: {{attempt.answer_2}}<br>
+correct answer: {{correct_2}}<br>
+feedback: {{attempt.feedback_2}}<br>
+<br>
+q3: {{q3}}<br>
+your answer: {{attempt.answer_3}}<br>
+correct answer: {{correct_3}}<br>
+feedback: {{attempt.feedback_3}}<br>
+{% endblock content %}

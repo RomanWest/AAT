@@ -81,7 +81,7 @@
               <div id="col5">
                 <h3>Add to assessment</h3>
                 <label class="checkcontainer">
-                  <input type="checkbox" class="checkbx" name="checkbox" value="Multiple {{multiple.id}}"
+                  <input type="checkbox" class="checkbx" name="checkbox" value="Multiple {{multiple.id}} {{multiple.feedback}}"
                     id="questionChecker {{multiple.id}}" onclick="questionCheck()" checked=>
                   <span class="checkmark"></span>
                 </label>
@@ -137,7 +137,7 @@
               <div id="col5">
                 <h3>Add to assessment</h3>
                 <label class="checkcontainer">
-                  <input type="checkbox" class="checkbx" name="checkbox" value="Fill {{fill.id}}"
+                  <input type="checkbox" class="checkbx" name="checkbox" value="Fill {{fill.id}} {{fill.feedback}}"
                     id="questionChecker {{multiple_all|length + fill.id}}" onclick="questionCheck()">
                   <span class="checkmark"></span>
                 </label>
