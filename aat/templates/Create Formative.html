@@ -8,19 +8,23 @@
       <div class="Top-dropdown">
         <select class=module-dropdown name="modules" id="moduleDropdown" onchange="filter()">
           <option value="Select Module">Select Module</option>
-          {% for assessment in assessment_all %}
-          <option value="{{assessment.module_code}}">{{assessment.module_code}}</option>
+          {% for multiple in multiple_all %}
+          <option value="{{multiple.module_code}}" class='modules'>{{multiple.module_code}}</option>
           {% endfor %}
         </select>
+        {% for multiple in multiple_all %}
+        <input type="text" id="{{multiple.module_code}}" class="hiddenModule" name="{{multiple.module_code}}"
+          value="{{multiple.module_code}}">
+        {% endfor %}
 
         <select class=assessment-dropdown name="assessments" id="assessmentDropdown" onchange="filter()">
           <option value="Select Type">Select Type</option>
-          <option value="Formative">Formative</option>
+          <option value="Formative" selected="selected">Formative</option>
           <option value="Summative">Summative</option>
         </select>
+        <input type="text" id="Formative" class="hiddenType" name="Formative" value="Formative">
+        <input type="text" id="Summative" class="hiddenType" name="Summative" value="Summative">
       </div>
-
-      {{form.module.label}} {{form.module}}
 
       <div class="question-preview">
         {% for multiple in multiple_all %}
@@ -112,7 +116,7 @@
 
               <div id="col1">
                 <h3>Module</h3>
-                <h5 class = "module-code">{{ fill.module_code }}</h5>
+                <h5 class="module-code">{{ fill.module_code }}</h5>
                 <h3>In Use Y/N</h3>
                 <h5>*Y/N*</h5>
                 <h3>Difficulty</h3>

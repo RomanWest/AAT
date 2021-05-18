@@ -86,22 +86,38 @@ function filter() {
   var filterModule = document.getElementById("moduleDropdown");
   var moduleCode = document.getElementsByClassName("module-code");
 
-  // for (i = 0; i < filterType.length; i++) {
-  //   if (filterType[i].innerHTML == filterType.value) {  
-  //     filterType[i].value = "SelectedType";
-  //   } else {
-  //     filterType[i].value = "Unselected";
-  //   }
-  // }
+  var Type = document.getElementsByClassName("hiddenType");
+  var Module = document.getElementsByClassName("hiddenModule");
+  var Modules = document.getElementsByClassName("modules");
 
-  // for (i = 0; i < filterModule.length; i++) {
-  //   if (filterModule[i].innerHTML == filterModule.value) {
-  //     console.log(filterModule[i].innerHTML);
-  //     filterModule[i].value = "SelectedModule";
-  //   } else {
-  //     filterModule[i].value = "Unselected";
-  //   }
-  // }
+  console.log(Modules.length);
+  for (i = 0; i < Modules.length - 1; i ++){
+    if (Modules[i+1].value == Modules[i].value){
+      Modules[i+1].style.display = 'none';
+    }
+  }
+
+  for (i = 0; i < filterModule.length-1; i ++) {
+    if (filterModule[i].value == filterModule[i+1].value){
+      filterModule[i].style.display = 'none';
+    }
+  }
+
+  for (i = 0; i < Type.length; i ++){
+    if (Type[i].id == filterType.value){
+      Type[i].name = "selectedType";
+    } else {
+      Type[i].name = Type[i].id;
+    }
+  }
+
+  for (i = 0; i < Module.length; i ++){
+    if (Module[i].id == filterModule.value){
+      Module[i].name = "selectedModule";
+    } else {
+      Module[i].name = Module[i].id;
+    }
+  }
 
   for (i = 0; i < question.length; i++) {
     // Filter on both Question Type and Module Code

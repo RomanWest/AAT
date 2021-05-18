@@ -1,7 +1,8 @@
 from datetime import datetime
 from flask import render_template, url_for, request, redirect, flash, g, current_app, session
 from flask_wtf.form import FlaskForm
-from wtforms.fields.core import StringField, RadioField
+from wtforms import validators
+from wtforms.fields.core import DateField, DateTimeField, StringField, RadioField
 from wtforms.fields.simple import SubmitField
 from wtforms.validators import DataRequired
 from aat import app, db
@@ -9,6 +10,8 @@ from aat.models import Assessment, User, Multiple, Fill, Attempts
 from aat.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat import app, db
+from sqlalchemy import desc
+
 
 # Need to look at form
 
@@ -145,6 +148,8 @@ class Assessment_Form(FlaskForm):
     type_3 = StringField('question-type-3', validators=[DataRequired()])
     module = StringField('module-code', validators=[DataRequired()])
     submit = SubmitField('Save')
+    is_summative = StringField('assessment-type', validators=[DataRequired()])
+    feedback_date = DateField('Feedback-Date')
 
 
 def createassessment_route():
@@ -157,6 +162,13 @@ def createassessment_route():
 
         if request.method == "POST":
             print("Hi")
+            if request.form.get('selectedType') == "Formative":
+                form.is_summative.data = False
+            if request.form.get('selectedType') == "Summative":
+                form.is_summative.data = True
+
+            form.module.data = request.form.getlist('selectedModule')[0]
+            
             if request.form.getlist("checked!"):
                 value = request.form.getlist('checked!')
                 print(value)
@@ -171,7 +183,7 @@ def createassessment_route():
                                            q1_type=id_type[0][0],
                                            q2_type=id_type[1][0],
                                            q3_type=id_type[2][0],
-                                           is_summative=False,
+                                           is_summative=form.is_summative.data,
                                            assessment_name='Testing',
                                            admin_created=True,
                                            module_code=form.module.data
@@ -182,3 +194,10 @@ def createassessment_route():
             return redirect(url_for('assessSubmit'))
 
         return render_template("Create Formative.html", form=form, multiple_all=multiple_all, fill_all=fill_all, assessment_all=assessment_all)
+    
+    @app.route("/feedback", methods = ["GET", "POST"])
+    def viewfeedback():
+        attempts = Attempts.query.filter_by(user_id=current_user.id).all
+        
+
+        return render_template("Feedback.html", attempts=attempts)
