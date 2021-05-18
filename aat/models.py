@@ -86,6 +86,7 @@ class Assessment(db.Model):
 				backref=db.backref("multiple_q"), lazy="dynamic")
 	fill_q = db.relationship("Fill", secondary=fill_q, primaryjoin=(fill_q.c.assessment_id==id),
 				backref=db.backref("fill_q"), lazy="dynamic")
+	feedback_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
 	def __repr__(self):
 		return f"Assessment('{self.assessment_name}')"
