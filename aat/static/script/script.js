@@ -97,6 +97,12 @@ function filter() {
     }
   }
 
+  for (i = 0; i < filterModule.length-1; i ++) {
+    if (filterModule[i].value == filterModule[i+1].value){
+      filterModule[i].style.display = 'none';
+    }
+  }
+
   for (i = 0; i < Type.length; i ++){
     if (Type[i].id == filterType.value){
       Type[i].name = "selectedType";
