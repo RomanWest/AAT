@@ -126,9 +126,11 @@ def testassess_route():
                                feedback_3 = assessment.q3_feedback,
                                percentage_correct=percentage_correct, module_code=assessment.module_code,
                                is_summative=assessment.is_summative, attempt_no=attempt, 
-                               assessment_name = assessment.assessment_name
-                               )
+                               assessment_name = assessment.assessment_name,
+                               percentage_correct=percentage_correct, module_code=assessment.module_code,
+                               is_summative=assessment.is_summative, attempt_no=attempt
 
+                               )
             db.session.add(attempt)
             db.session.commit()
             flash("Assessment submitted")
@@ -215,8 +217,75 @@ def createassessment_route():
     def viewfeedback(attempt_id):
         attempt = db.session.query(Attempts).get(attempt_id)
         assessment = Assessment.query.get_or_404(attempt.assessment_id)
+        return render_template('testassess.html', assessment=assessment,
+                               multiple_all=multiple_all, fill_all=fill_all,
+                               q1_multi=q1_multi, q1_fill=q1_fill, q1=q1,
+                               q2_multi=q2_multi, q2_fill=q2_fill, q2=q2,
+                               q3_multi=q3_multi, q3_fill=q3_fill, q3=q3,
+                               form=form
+                               )
 
 
+class Assessment_Form(FlaskForm):
+    question_1 = StringField('question-id-1', validators=[DataRequired()])
+    question_2 = StringField('question-id-2', validators=[DataRequired()])
+    question_3 = StringField('question-id-3', validators=[DataRequired()])
+    type_1 = StringField('question-type-1', validators=[DataRequired()])
+    type_2 = StringField('question-type-2', validators=[DataRequired()])
+    type_3 = StringField('question-type-3', validators=[DataRequired()])
+    module = StringField('module-code', validators=[DataRequired()])
+    submit = SubmitField('Save')
+    is_summative = StringField('assessment-type', validators=[DataRequired()])
+    feedback_date = DateField('Feedback-Date')
+    assessment_name = StringField('assessment-name', validators=[DataRequired()])
+
+
+def createassessment_route():
+    @app.route("/Create-Formative", methods=['GET', 'POST'])
+    def assessSubmit():
+        multiple_all = Multiple.query.all()
+        fill_all = Fill.query.all()
+        assessment_all = Assessment.query.all()
+        form = Assessment_Form()
+
+        if request.method == "POST":
+            print("Hi")
+            if request.form.get('selectedType') == "Formative":
+                form.is_summative.data = False
+            if request.form.get('selectedType') == "Summative":
+                form.is_summative.data = True
+
+            form.module.data = request.form.getlist('selectedModule')[0]
+            
+            if request.form.getlist("checked!"):
+                value = request.form.getlist('checked!')
+                print(value)
+                id_type = []
+                for i in range(len(value)):
+                    id_type.append(value[i].split(" "))
+
+                print(id_type)
+            createdAssessment = Assessment(q1_id=int(id_type[0][1]),
+                                           q2_id=int(id_type[1][1]),
+                                           q3_id=int(id_type[2][1]),
+                                           q1_type=id_type[0][0],
+                                           q2_type=id_type[1][0],
+                                           q3_type=id_type[2][0],
+                                           is_summative=form.is_summative.data,
+                                           assessment_name=form.assessment_name.data,
+                                           admin_created=True,
+                                           module_code=form.module.data
+                                           )
+            db.session.add(createdAssessment)
+            db.session.commit()
+            flash("Assessment added.")
+            return redirect(url_for('assessSubmit'))
+
+        return render_template("Create Formative.html", form=form, multiple_all=multiple_all, fill_all=fill_all, assessment_all=assessment_all)
+    
+    @app.route("/feedback", methods = ["GET", "POST"])
+    def viewfeedback():
+        attempts = Attempts.query.filter_by(user_id=current_user.id).all()
 
         q1_multi = Multiple.query.filter_by(id=assessment.q1_id).first()
         q1_fill = db.session.query(Fill).get(assessment.q1_id)
@@ -257,3 +326,4 @@ def createassessment_route():
                                q3_multi=q3_multi, q3_fill=q3_fill, q3=q3,
                                correct_1 = correct_1, correct_2 = correct_2,
                                correct_3 = correct_3)
+        return render_template("Feedback.html", attempts=attempts)
