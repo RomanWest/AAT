@@ -8,13 +8,13 @@
       <div class="Top-dropdown">
         <select class=module-dropdown name="modules" id="moduleDropdown" onchange="filter()">
           <option value="Select Module">Select Module</option>
-          {% for assessment in assessment_all %}
-          <option value="{{assessment.module_code}}">{{assessment.module_code}}</option>
+          {% for multiple in multiple_all %}
+          <option value="{{multiple.module_code}}" class='modules'>{{multiple.module_code}}</option>
           {% endfor %}
         </select>
-        {% for assessment in assessment_all %}
-        <input type="text" id="{{assessment.module_code}}" class="hiddenModule" name="{{assessment.module_code}}"
-          value="{{assessment.module_code}}">
+        {% for multiple in multiple_all %}
+        <input type="text" id="{{multiple.module_code}}" class="hiddenModule" name="{{multiple.module_code}}"
+          value="{{multiple.module_code}}">
         {% endfor %}
 
         <select class=assessment-dropdown name="assessments" id="assessmentDropdown" onchange="filter()">
