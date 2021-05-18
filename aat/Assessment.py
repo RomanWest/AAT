@@ -121,18 +121,19 @@ def testassess_route():
                                answer_1=answer_1, correct_1=correct_1,
                                answer_2=answer_2, correct_2=correct_2,
                                answer_3=answer_3, correct_3=correct_3,
+                               feedback_1 = assessment.q1_feedback,
+                               feedback_2 = assessment.q2_feedback,
+                               feedback_3 = assessment.q3_feedback,
                                percentage_correct=percentage_correct, module_code=assessment.module_code,
-                               is_summative=assessment.is_summative, attempt_no=attempt
+                               is_summative=assessment.is_summative, attempt_no=attempt, 
+                               assessment_name = assessment.assessment_name
                                )
 
-                db.session.add(attempt)
-                db.session.commit()
-                flash("Assessment submitted")
-                return redirect(url_for('studenthome'))
-            else:
-                db.session.add(attempt)
-                db.session.commit()
-                return redirect(url_for("feedback"))
+            db.session.add(attempt)
+            db.session.commit()
+            flash("Assessment submitted")
+            return redirect(url_for('studenthome'))
+            
 
         return render_template('testassess.html', assessment=assessment,
                                multiple_all=multiple_all, fill_all=fill_all,
@@ -187,6 +188,9 @@ def createassessment_route():
                                            q1_type=id_type[0][0],
                                            q2_type=id_type[1][0],
                                            q3_type=id_type[2][0],
+                                           q1_feedback = id_type[0][2],
+                                           q2_feedback = id_type[1][2],
+                                           q3_feedback = id_type[2][2],
                                            is_summative=form.is_summative.data,
                                            assessment_name='Testing',
                                            admin_created=True,
@@ -200,8 +204,56 @@ def createassessment_route():
         return render_template("Create Formative.html", form=form, multiple_all=multiple_all, fill_all=fill_all, assessment_all=assessment_all)
     
     @app.route("/feedback", methods = ["GET", "POST"])
-    def viewfeedback():
-        attempts = Attempts.query.filter_by(user_id=current_user.id).all
+    def viewfeedbacklist():
+        attempts = Attempts.query.filter_by(user_id=current_user.id).all()
         
 
-        return render_template("Feedback.html", attempts=attempts)
+        return render_template("Feedbacklist.html", attempts=attempts)
+    
+
+    @app.route("/feedback/<int:attempt_id>", methods = ["GET", "POST"])
+    def viewfeedback(attempt_id):
+        attempt = db.session.query(Attempts).get(attempt_id)
+        assessment = Assessment.query.get_or_404(attempt.assessment_id)
+
+
+
+        q1_multi = Multiple.query.filter_by(id=assessment.q1_id).first()
+        q1_fill = db.session.query(Fill).get(assessment.q1_id)
+
+        if assessment.q1_type == "Multiple":
+            q1 = q1_multi.question
+            correct_1 = q1_multi.correct
+
+        else:
+            q1 = (q1_fill.question).replace(q1_fill.correct, "_______")
+            correct_1 = q1_fill.correct
+
+        q2_multi = Multiple.query.filter_by(id=assessment.q2_id).first()
+        q2_fill = db.session.query(Fill).get(assessment.q2_id)
+
+        if assessment.q2_type == "Multiple":
+            q2 = q2_multi.question
+            correct_2 = q2_multi.correct
+
+        else:
+            q2 = (q2_fill.question).replace(q2_fill.correct, "_______")
+            correct_2 = q2_fill.correct
+
+        q3_multi = Multiple.query.filter_by(id=assessment.q3_id).first()
+        q3_fill = db.session.query(Fill).get(assessment.q3_id)
+
+        if assessment.q3_type == "Multiple":
+            q3 = q3_multi.question
+            correct_3 = q3_multi.correct
+
+        else:
+            q3 = (q3_fill.question).replace(q3_fill.correct, "_______")
+            correct_3 = q3_fill.correct
+
+        return render_template("feedback.html", attempt = attempt,q1_multi=q1_multi, 
+                               q1_fill=q1_fill, q1=q1,
+                               q2_multi=q2_multi, q2_fill=q2_fill, q2=q2,
+                               q3_multi=q3_multi, q3_fill=q3_fill, q3=q3,
+                               correct_1 = correct_1, correct_2 = correct_2,
+                               correct_3 = correct_3)
