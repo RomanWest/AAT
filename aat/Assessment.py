@@ -10,6 +10,8 @@ from aat.models import Assessment, User, Multiple, Fill, Attempts
 from aat.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat import app, db
+from sqlalchemy import desc
+
 
 # Need to look at form
 
@@ -192,3 +194,10 @@ def createassessment_route():
             return redirect(url_for('assessSubmit'))
 
         return render_template("Create Formative.html", form=form, multiple_all=multiple_all, fill_all=fill_all, assessment_all=assessment_all)
+    
+    @app.route("/feedback", methods = ["GET", "POST"])
+    def viewfeedback():
+        attempts = Attempts.query.filter_by(user_id=current_user.id).all
+        
+
+        return render_template("Feedback.html", attempts=attempts)
