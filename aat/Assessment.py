@@ -147,7 +147,7 @@ class Assessment_Form(FlaskForm):
     module = StringField('module-code', validators=[DataRequired()])
     submit = SubmitField('Save')
     is_summative = StringField('assessment-type', validators=[DataRequired()])
-    feedback_date = DateField('Feedback-Date', validators=[DataRequired()])
+    feedback_date = DateField('Feedback-Date')
 
 
 def createassessment_route():
