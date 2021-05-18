@@ -12,7 +12,24 @@ from aat.Assessment import createassessment_route, testassess_route
 @app.route("/Staff-Home", methods=["GET", 'POST'])
 def staffhome():
     assessment_all = Assessment.query.all()
+
     return render_template('Staff Home.html', assessment_all=assessment_all)
+
+@app.route("/DeleteAssessment/<int:assessment_id>", methods=['GET', 'POST'])
+def DeleteAssessment(assessment_id):
+    assessment = db.session.query(Assessment).get(assessment_id)
+    if request.method == 'POST':
+
+        if request.form.get("delete"):
+            db.session.delete(assessment)
+            db.session.commit()
+            flash("Assessment deleted.")
+            return redirect(url_for("staffhome"))
+
+        if request.form.get("keep"):
+            return redirect(url_for("staffhome"))
+
+    return render_template("AssessmentDelete.html", assessment=assessment)
 
 @app.route("/Student-Home", methods=["GET", 'POST'])
 def studenthome():
