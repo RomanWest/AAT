@@ -544,6 +544,13 @@ td {
   width: 100%;
 }
 
+.hiddenType{
+  display:none;
+}
+.hiddenModule{
+  display:none;
+}
+
 .admin-create-summative {
   width: 100%;
 }
