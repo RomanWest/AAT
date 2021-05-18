@@ -48,7 +48,7 @@ def testassess_route():
         q2_fill = db.session.query(Fill).get(assessment.q2_id)
 
         if assessment.q2_type == "Multiple":
-            q2 = q2_multi
+            q2 = q2_multi.question
             correct_2 = q2_multi.correct
 
         else:
@@ -59,8 +59,8 @@ def testassess_route():
         q3_fill = db.session.query(Fill).get(assessment.q3_id)
 
         if assessment.q3_type == "Multiple":
-            q3 = q3_multi
-            correct_2 = q3_multi.correct
+            q3 = q3_multi.question
+            correct_3 = q3_multi.correct
 
         else:
             q3 = (q3_fill.question).replace(q3_fill.correct, "_______")
@@ -69,22 +69,19 @@ def testassess_route():
         # Need to look at form submission
         # get the answers from the form and then put into attempts table
         form = Answer_Form()
-        if request.method == "POST":
-            if assessment.q1_type == "Multiple":
-                answer_1 = request.form.getlist("answer_1_multi")[0]
-                print(answer_1)
+        if request.method=="POST":
+            if assessment.q1_type == "Multiple" :
+                answer_1=request.form.getlist("answer_1_multi")[0]
             else:
-                answer_1 = request.form.get("answer")
-
-            if assessment.q2_type == "Multiple":
-                answer_1 = request.form.getlist("answer_2_multi")[0]
-
+                answer_1=form.answer_1_fill.data
+        
+            if assessment.q2_type == "Multiple" :
+                answer_2=request.form.getlist("answer_2_multi")[0]
             else:
-                answer_2 = form.answer_2_fill.data
-
-            if assessment.q3_type == "Multiple":
-                answer_1 = request.form.getlist("answer_3_multi")[0]
-
+                answer_2=form.answer_2_fill.data
+        
+            if assessment.q3_type == "Multiple" :
+                answer_3=request.form.getlist("answer_3_multi")[0]
             else:
                 answer_3 = form.answer_3_fill.data
 
@@ -94,11 +91,13 @@ def testassess_route():
                 answerscorrect += 1
             else:
                 correct_1 = False
+
             if answer_2 == correct_2:
                 correct_2 = True
                 answerscorrect += 1
             else:
-                correct_2 = False
+                correct_2=False
+
             if answer_3 == correct_3:
                 correct_3 = True
                 answerscorrect += 1
@@ -146,6 +145,7 @@ class Assessment_Form(FlaskForm):
     type_3 = StringField('question-type-3', validators=[DataRequired()])
     module = StringField('module-code', validators=[DataRequired()])
     submit = SubmitField('Save')
+    is_summative = StringField('assessment-type', validators=[DataRequired()])
 
 
 def createassessment_route():
@@ -153,10 +153,18 @@ def createassessment_route():
     def assessSubmit():
         multiple_all = Multiple.query.all()
         fill_all = Fill.query.all()
+        assessment_all = Assessment.query.all()
         form = Assessment_Form()
 
         if request.method == "POST":
             print("Hi")
+            if request.form.get('selectedType') == "Formative":
+                form.is_summative.data = False
+            if request.form.get('selectedType') == "Summative":
+                form.is_summative.data = True
+
+            form.module.data = request.form.getlist('selectedModule')[0]
+            
             if request.form.getlist("checked!"):
                 value = request.form.getlist('checked!')
                 print(value)
@@ -171,7 +179,7 @@ def createassessment_route():
                                            q1_type=id_type[0][0],
                                            q2_type=id_type[1][0],
                                            q3_type=id_type[2][0],
-                                           is_summative=False,
+                                           is_summative=form.is_summative.data,
                                            assessment_name='Testing',
                                            admin_created=True,
                                            module_code=form.module.data
@@ -180,7 +188,5 @@ def createassessment_route():
             db.session.commit()
             flash("Assessment added.")
             return redirect(url_for('assessSubmit'))
-           
-        
 
-        return render_template("Create Formative.html", form=form, multiple_all=multiple_all, fill_all=fill_all)
+        return render_template("Create Formative.html", form=form, multiple_all=multiple_all, fill_all=fill_all, assessment_all=assessment_all)
