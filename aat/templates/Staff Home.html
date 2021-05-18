@@ -42,13 +42,15 @@
       <tbody>
         {% for assessment in assessment_all %}
         <tr>
+
           <td>
             {% if assessment.is_summative == True %}
             <a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a>
           </td>
+
           <td>{{ assessment.module_code  }}</td>
 
-          <td>Edit button</td>
+          <td><a href="{{ url_for('EditAssessment', assessment_id=assessment.id)}}">Edit button</a></td>
 
           <td>
             <a href="{{ url_for('DeleteAssessment', assessment_id=assessment.id)}}">Delete</a> 

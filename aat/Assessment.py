@@ -144,13 +144,13 @@ def testassess_route():
 
 
 class Assessment_Form(FlaskForm):
-    question_1 = StringField('question-id-1', validators=[DataRequired()])
-    question_2 = StringField('question-id-2', validators=[DataRequired()])
-    question_3 = StringField('question-id-3', validators=[DataRequired()])
-    type_1 = StringField('question-type-1', validators=[DataRequired()])
-    type_2 = StringField('question-type-2', validators=[DataRequired()])
-    type_3 = StringField('question-type-3', validators=[DataRequired()])
-    module = StringField('module-code', validators=[DataRequired()])
+    q1_id = StringField('question-id-1', validators=[DataRequired()])
+    q2_id = StringField('question-id-2', validators=[DataRequired()])
+    q3_id = StringField('question-id-3', validators=[DataRequired()])
+    q1_type = StringField('question-type-1', validators=[DataRequired()])
+    q2_type = StringField('question-type-2', validators=[DataRequired()])
+    q3_type = StringField('question-type-3', validators=[DataRequired()])
+    module_code = StringField('module-code', validators=[DataRequired()])
     submit = SubmitField('Save')
     is_summative = StringField('assessment-type', validators=[DataRequired()])
     feedback_date = DateField('Feedback-Date')
