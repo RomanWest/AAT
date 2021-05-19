@@ -11,3 +11,8 @@ X*.py
 /aat/app.db
 /aat/__pycache__/
 *.history
+.DS_Store
+.idea/
+Pipfile
+Pipfile.lock
+identifier.sqlite
