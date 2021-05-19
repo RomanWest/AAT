@@ -79,6 +79,38 @@ function uncheck() {
   }
 }
 
+function editAssessmentLoad() {
+  var hiddenInfo = document.getElementsByClassName("hiddenQInfo");
+  var multipleQ = document.getElementsByClassName("Multiple");
+  var fillQ = document.getElementsByClassName("Fill");
+
+  for (i = 0; i < hiddenInfo.length / 2; i ++){
+    console.log(hiddenInfo[2*i].value, hiddenInfo[2*i+1].value);
+
+    if ( hiddenInfo[2*i].value == 'Multiple'){
+      for (j = 0; j < multipleQ.length; j ++){
+        if (multipleQ[j].id == hiddenInfo[2*i+1].value){
+          var jid = j+1;
+          var multiple = "Multiple "
+          var multipleid = multiple + jid;
+          document.getElementById(multipleid).checked = true;
+          console.log(multipleQ[j].innerHTML);
+        }
+      } 
+    } else {
+      for (j = 0; j < fillQ.length; j ++){
+        if (fillQ[j].id == hiddenInfo[2*i+1].value){
+          var jid = j+1;
+          var fill = "Fill "
+          var fillid = fill + jid;
+          document.getElementById(fillid).checked = true;
+          console.log(fillQ[j].innerHTML);
+        }
+      } 
+    }
+  }
+}
+
 function filter() {
   var filterType = document.getElementById("assessmentDropdown");
   var question_type = document.getElementsByClassName("question-type");

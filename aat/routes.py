@@ -165,6 +165,8 @@ def viewAttempts():
 
 @app.route("/EditAssessment/<int:assessment_id>", methods=['GET', 'POST'])
 def EditAssessment(assessment_id):
+    multiple_all = Multiple.query.all()
+    fill_all = Fill.query.all()
     assessment = db.session.query(Assessment).get(assessment_id)
     form = Assessment_Form(formdata=request.form, obj = assessment)
     if form.validate_on_submit():
@@ -184,5 +186,5 @@ def EditAssessment(assessment_id):
         db.session.commit()
         flash("edited successfully")
         return redirect(url_for('staffhome'))
-    return render_template('EditAssessment.html', assessment=assessment, form=form)
+    return render_template('EditAssessment.html', assessment=assessment, form=form, multiple_all=multiple_all, fill_all=fill_all)
 

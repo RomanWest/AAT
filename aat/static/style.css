@@ -551,6 +551,10 @@ td {
   display:none;
 }
 
+.hidden {
+  display:none;
+}
+
 .admin-create-summative {
   width: 100%;
 }
