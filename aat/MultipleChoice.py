@@ -23,13 +23,10 @@ class MCDeleteForm(FlaskForm):
     confirmDelete = BooleanField('Confirm:')
     submit = SubmitField('Delete')
 
-    def validate_confirm(self, confirm):
+    def validate_confirmDelete(MCDeleteForm, confirmDelete):
         confirm = confirmDelete.data
         if confirm != 1:
             raise ValidationError('Please confirm that you want to delete this question.')
-
-    def validate_InUse():
-        raise ValidationError('This question is being used in an assessment so cannot be deleted.')
 
 
 def MultipleEditRoute():
@@ -42,7 +39,7 @@ def MultipleEditRoute():
     @app.route('/Edit-Multiple-Choice-Question/<int:id>',methods=['GET', 'POST'])
     def MultipleEditQuest(id):
         MC = db.session.query(Multiple).get(id)
-        form = MCForm(formdata=request.form, obj = MC)
+        form = MCForm(obj = MC)
         if form.validate_on_submit():
             db.session.delete(MC)
             question = Multiple(id = id,
@@ -87,3 +84,4 @@ def MultipleRoute():
             db.session.commit()
             return redirect(url_for('staffhome'))
         return render_template('Create Multiple Choice Question.html', form = form)
+

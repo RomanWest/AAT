@@ -7,11 +7,32 @@ from flask_login import login_user, logout_user, login_required, current_user
 from aat.testroute import test
 from aat.MultipleChoice import MultipleRoute, MultipleEditRoute
 from aat.Fill import filleditroute, fillblankroute, test_fill_route
-from aat.Assessment import testassess_route
+from aat.Assessment import Assessment_Form, createassessment_route, testassess_route
 
 @app.route("/c")
+
+
+@app.route("/Staff-Home", methods=["GET", 'POST'])
 def staffhome():
-    return render_template('Staff Home.html')
+    assessment_all = Assessment.query.all()
+
+    return render_template('Staff Home.html', assessment_all=assessment_all)
+
+@app.route("/DeleteAssessment/<int:assessment_id>", methods=['GET', 'POST'])
+def DeleteAssessment(assessment_id):
+    assessment = db.session.query(Assessment).get(assessment_id)
+    if request.method == 'POST':
+
+        if request.form.get("delete"):
+            db.session.delete(assessment)
+            db.session.commit()
+            flash("Assessment deleted.")
+            return redirect(url_for("staffhome"))
+
+        if request.form.get("keep"):
+            return redirect(url_for("staffhome"))
+
+    return render_template("AssessmentDelete.html", assessment=assessment)
 
 @app.route("/Student-Home", methods=["GET", 'POST'])
 def studenthome():
@@ -63,11 +84,13 @@ MultipleEditRoute()
 
 testassess_route()
 
-@app.route("/Create-Formative")
-def createFormative():
-    multiple_all = Multiple.query.all()
-    fill_all = Fill.query.all()
-    return render_template('Create Formative.html', multiple_all=multiple_all, fill_all=fill_all)
+createassessment_route()
+
+# @app.route("/Create-Formative")
+# def createFormative():
+#     multiple_all = Multiple.query.all()
+#     fill_all = Fill.query.all()
+#     return render_template('Create Formative.html', multiple_all=multiple_all, fill_all=fill_all)
 
 @app.route("/Create-Summative")
 def createSummative():
@@ -118,6 +141,7 @@ def previewAssessment():
 def submitAssessment():
     return render_template('Submit Assessment.html')
 
+
 @app.route('/View-Student-Number')
 def viewStudentNumber():
     post = User.query(db.func.count(User.is_admin == False)).all()
@@ -138,4 +162,27 @@ def viewAttempts():
     post = Attempts.query.all()
     return render_template("View Attempt.html", post=post)
 
+
+@app.route("/EditAssessment/<int:assessment_id>", methods=['GET', 'POST'])
+def EditAssessment(assessment_id):
+    assessment = db.session.query(Assessment).get(assessment_id)
+    form = Assessment_Form(formdata=request.form, obj = assessment)
+    if form.validate_on_submit():
+        db.session.delete(assessment)
+        assessment_edit = Assessment(id = assessment_id,
+                        q1_type = form.q1_type.data,
+                        q1_id = form.q1_id.data,
+                        q2_type = form.q2_type.data,
+                        q2_id = form.q2_id.data,
+                        q3_type = form.q3_type.data,
+                        q3_id = form.q3_id.data,
+                        module_code=form.module_code.data, 
+                        is_summative=form.is_summative.data,
+                        assessment_name=form.assessment_name.data
+                        )
+        db.session.add(assessment_edit)
+        db.session.commit()
+        flash("edited successfully")
+        return redirect(url_for('staffhome'))
+    return render_template('EditAssessment.html', assessment=assessment, form=form)
 

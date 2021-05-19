@@ -39,15 +39,15 @@ else {
 
 //function to change url based on dropdown menu
 
-function dropdownURL(){
-  if(document.getElementById("qType").value = "Fill in the Blank"){
+function dropdownURL() {
+  if (document.getElementById("qType").value = "Fill in the Blank") {
     var newurl = window.location.href.replace(window.location.pathname, "/Create-Fill-in-the-Blank");
     location.replace(newurl)
   }
 }
 
-function dropdownURL2(){
-  if(document.getElementById("qType").value = "Multiple Choice"){
+function dropdownURL2() {
+  if (document.getElementById("qType").value = "Multiple Choice") {
     var newurl = window.location.href.replace(window.location.pathname, "/Create-Multiple-Choice-Question");
     location.replace(newurl)
   }
@@ -60,17 +60,74 @@ function questionCheck() {
   for (var i = 0; i < noElements.length; i++) {
     count += 1;
     if (noElements[i].checked == false) {
-      count -=1
+      count -= 1
+      noElements[i].name = "unchecked";
+    }
+    if (noElements[i].checked == true) {
+      noElements[i].name = "checked!";
     }
   }
   console.log(count);
-  document.getElementById("question-counter").innerText = count + "/3";
+  document.getElementById("question-counter").innerText = count + "/ 3";
+
 }
 
-function uncheck(){
+function uncheck() {
   var noElements = document.getElementsByClassName("checkbx");
   for (var i = 0; i < noElements.length; i++) {
     noElements[i].checked = false;
+  }
+}
 
+function filter() {
+  var filterType = document.getElementById("assessmentDropdown");
+  var question_type = document.getElementsByClassName("question-type");
+  var question = document.getElementsByClassName("assessment-question");
+  var filterModule = document.getElementById("moduleDropdown");
+  var moduleCode = document.getElementsByClassName("module-code");
+
+  var Type = document.getElementsByClassName("hiddenType");
+  var Module = document.getElementsByClassName("hiddenModule");
+  var Modules = document.getElementsByClassName("modules");
+
+  for (i = 0; i < Modules.length - 1; i ++){
+    if (Modules[i+1].value == Modules[i].value){
+      Modules[i+1].style.display = 'none';
+    }
+  }
+
+  for (i = 0; i < Type.length; i ++){
+    if (Type[i].id == filterType.value){
+      Type[i].name = "selectedType";
+    } else {
+      Type[i].name = Type[i].id;
+    }
+  }
+
+  for (i = 0; i < Module.length; i ++){
+    if (Module[i].id == filterModule.value){
+      Module[i].name = "selectedModule";
+    } else {
+      Module[i].name = Module[i].id;
+    }
+  }
+
+  for (i = 0; i < question.length; i++) {
+    // Filter on both Question Type and Module Code
+    if (question_type[i].innerHTML == filterType.value && moduleCode[i].innerHTML == filterModule.value) {
+      question[i].style.display = "block";
+    } // Filter on just Module Code
+    else if (filterType.value == 'Select Type' && moduleCode[i].innerHTML == filterModule.value) {
+      question[i].style.display = "block";
+    } //Filter on just Question Type
+    else if (filterModule.value == 'Select Module' && question_type[i].innerHTML == filterType.value) {
+      question[i].style.display = "block";
+    } // No Filter
+    else if (filterModule.value == 'Select Module' && filterType.value == 'Select Type') {
+      question[i].style.display = "block";
+    } // Does not match
+    else {
+      question[i].style.display = "none";
+    }
   }
 }

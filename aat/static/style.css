@@ -5,7 +5,7 @@ html {
     background: #e5e5e5;
 }
 
-  
+
 /* Layout */
 
 .alignleft {
@@ -203,6 +203,11 @@ body {
   margin-bottom: 1rem;
 }
 .view-assessments {
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  white-space: normal;
   background-color: #acacac;
   border-radius: 1rem;
 }
@@ -213,6 +218,7 @@ td {
   margin-right: 1rem;
   border: 1px solid black;
   border-collapse: collapse;
+  background-color: rgb(235, 235, 235); 
 }
 
 .create-questions {
@@ -431,7 +437,7 @@ td {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
 }
 .question-main {
   background-color: rgb(30, 255, 0);
@@ -536,6 +542,13 @@ td {
 /* Create Formative & Summative */
 .admin-create-formative {
   width: 100%;
+}
+
+.hiddenType{
+  display:none;
+}
+.hiddenModule{
+  display:none;
 }
 
 .admin-create-summative {
@@ -821,6 +834,7 @@ td {
   transform: rotate(45deg);
 }
 
+<<<<<<< HEAD
 .content-section {
 	background: #ffffff;
 	padding: 10px 20px;
@@ -829,3 +843,25 @@ td {
 	margin-bottom: 20px;
 }
 
+=======
+
+.class-name-that-nobody-is-using{
+      background-color: white;
+      font-weight: 400;
+      font-size: 1.7rem;
+      padding: 0.5rem;
+      border-radius: 1rem;
+
+}
+
+
+
+
+.issummative-delete {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    align-items: center;
+    flex-direction: column;
+}
+>>>>>>> 673a69a3c9398643423225c75a2bffc5e0e3c48b
