@@ -221,6 +221,10 @@ td {
   background-color: rgb(235, 235, 235); 
 }
 
+.assessments-table{
+  margin-bottom:1rem;
+}
+
 .create-questions {
   display: flex;
   flex-direction: column;
@@ -331,7 +335,6 @@ td {
 
 .question-maker-container {
   width: 100%;
-  background-color: #c4c4c4;
   padding: 2rem;
   border-radius: 2rem;
   display: flex;
@@ -540,6 +543,11 @@ td {
 }
 
 /* Create Formative & Summative */
+
+.content .admin-create-formative{
+  background-color:#e5e5e5;
+}
+
 .admin-create-formative {
   width: 100%;
 }
@@ -561,6 +569,17 @@ td {
 
 .Top-dropdown {
   display: inline-flex;
+  font-size:1rem;
+  max-height:auto;
+}
+
+.Top-dropdown .assessment-name-label{
+  border-radius: 4rem;
+  height: 3rem;
+  border: 1rem;
+  font-size: 2rem;
+  margin: 1rem;
+  padding-left:0.8rem;
 }
 
 .Top-dropdown .module-dropdown {
@@ -838,7 +857,6 @@ td {
   transform: rotate(45deg);
 }
 
-<<<<<<< HEAD
 .content-section {
 	background: #ffffff;
 	padding: 10px 20px;
@@ -846,8 +864,6 @@ td {
 	border-radius: 3px;
 	margin-bottom: 20px;
 }
-
-=======
 
 .class-name-that-nobody-is-using{
       background-color: white;
@@ -868,4 +884,3 @@ td {
     align-items: center;
     flex-direction: column;
 }
->>>>>>> 673a69a3c9398643423225c75a2bffc5e0e3c48b

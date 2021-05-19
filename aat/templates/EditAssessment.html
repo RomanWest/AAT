@@ -1,21 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
-<body onload='uncheck(), editAssessmentLoad()'>
-<form class="question-maker-container" method="POST" action="">
+
+<body onload='uncheck(), editAssessmentLoad(), editFilter()'>
+  <form class="question-maker-container" method="POST" action="">
     {{form.csrf_token}}
     <div class="top-input-box">
-      {{form.assessment_name.label (class = "assessment-label")}}{{form.assessment_name (class = "assessment-input")}}
+
+      <h5><b> Assessment Type</b></h5>
+      <select class=assessment-dropdown name="assessments" id="assessmentDropdown" onchange="editFilter()">
+        <option value="Select Type">Select Type</option>
+        {% if assessment.is_summative == 0 %} 
+        <option value="Formative" selected="selected">Formative</option>
+        <option value="Summative">Summative</option>
+        {% else %}
+        <option value="Formative">Formative</option>
+        <option value="Summative" selected="selected">Summative</option>
+        {% endif %}
+      </select>
+      <input type="text" id="Formative" class="hiddenType" name="Formative" value="Formative">
+      <input type="text" id="Summative" class="hiddenType" name="Summative" value="Summative">
 
     </div>
-    <div class="bottom-inputs">
-      <div class="module-and-formative">
-        <div class="module">
-          {{form.module_code.label (class = "assessment-label")}}{{form.module_code (class = "assessment-input")}}
-          </div>
-        <div class="issummative" >
-          {{form.is_summative.label (class="assessment-label")}} {{form.is_summative (class = "checkbox")}}
-          </div>
-      </div>
+    <h5><b>Assessment Name:</b> {{form.assessment_name (class = "assessment-input")}}</h5>
+    <div class="module">
+      <h5><b>Module Code:</b> </h5>
+      <h5 id="EditModule" value="{{assessment.module_code }}" name="moduleCode">{{assessment.module_code }}</h5>
+      <input type="text" id="ModuleCodee" class="hidden" name="moduleCode" value="{{assessment.module_code }}">
+    </div>
 
     <div class="answer-and-difficulty">
       <select class='hidden'>
@@ -26,7 +37,7 @@
         <option value="{{assessment.q3_type}}" class='hiddenQInfo'>q3_type</option>
         <option value="{{assessment.q3_id}}" class='hiddenQInfo'>q3_id</option>
       </select>
-      {{form.submit (class="save-btn")}}
+
     </div>
 
     <div class="question-preview">
@@ -54,7 +65,7 @@
 
             <div id="col1">
               <h3>Module</h3>
-              <h5 class = "module-code">{{ multiple.module_code }}</h5>
+              <h5 class="module-code">{{ multiple.module_code }}</h5>
               <h3>In Use Y/N</h3>
               <h5>*Y/N*</h5>
               <h3>Difficulty</h3>
@@ -83,8 +94,9 @@
             <div id="col5">
               <h3>Add to assessment</h3>
               <label class="checkcontainer">
-                <input type="checkbox" class="checkbx" name="checkbox" value="Multiple {{multiple.id}} {{multiple.feedback}}"
-                  id="Multiple {{multiple.id}}" onclick="questionCheck()" checked>
+                <input type="checkbox" class="checkbx" name="checkbox"
+                  value="Multiple {{multiple.id}} {{multiple.feedback}}" id="Multiple {{multiple.id}}"
+                  onclick="questionCheck()" checked>
                 <span class="checkmark"></span>
               </label>
             </div>
@@ -149,9 +161,10 @@
         </div>
       </div>
       {% endfor %}
-
+      {{form.submit (class="save-btn")}}
     </div>
-</div>
-</form>
+    </div>
 
-{% endblock content %}
+  </form>
+
+  {% endblock content %}

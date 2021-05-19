@@ -229,17 +229,22 @@ def EditAssessment(assessment_id):
     fill_all = Fill.query.all()
     assessment = db.session.query(Assessment).get(assessment_id)
     form = Assessment_Form(formdata=request.form, obj=assessment)
-    if form.validate_on_submit():
+
+    if request.method == "POST":
+
         if request.form.getlist("checked!"):
             value = request.form.getlist('checked!')
             id_type = []
             for i in range(len(value)):
                 id_type.append(value[i].split(" ", 2))
-        assessType = request.form.get('is_summative')
-        if assessType == "True":
-            assessType = True
-        else:
-            assessType = False
+
+        if request.form.get('selectedType') == "Formative":
+            form.is_summative.data = False
+        if request.form.get('selectedType') == "Summative":
+            form.is_summative.data = True
+
+        moduleCode = request.form.get('moduleCode')
+        print(moduleCode)
 
         db.session.delete(assessment)
         assessment_edit = Assessment(id=assessment_id,
@@ -252,10 +257,12 @@ def EditAssessment(assessment_id):
             q1_feedback=id_type[0][2],
             q2_feedback=id_type[1][2],
             q3_feedback=id_type[2][2],
-            module_code=form.module_code.data,  # Needs changing
-            is_summative=assessType,
+            module_code=moduleCode,  # Needs changing
+            is_summative=form.is_summative.data,
             assessment_name=form.assessment_name.data
         )
+
+        print(assessment_edit)
         db.session.add(assessment_edit)
         db.session.commit()
         flash("edited successfully")
