@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, InputRequired, ValidationError, Regexp
-from flask_babel import _, lazy_gettext as _l
+from flask_babel import lazy_gettext as _l
 from aat.models import User
 from flask import request
 class RegistrationForm(FlaskForm):

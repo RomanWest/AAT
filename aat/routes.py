@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask import render_template, url_for, request, redirect, flash, g, current_app, session
 from aat import app, db
-from aat.models import Assessment, User, Multiple, Fill
+from aat.models import Assessment, User, Multiple, Fill, Attempts
 from aat.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat.testroute import test
@@ -9,7 +9,7 @@ from aat.MultipleChoice import MultipleRoute, MultipleEditRoute
 from aat.Fill import filleditroute, fillblankroute, test_fill_route
 from aat.Assessment import testassess_route
 
-@app.route("/Staff-Home")
+@app.route("/c")
 def staffhome():
     return render_template('Staff Home.html')
 
@@ -86,7 +86,7 @@ def studentViewAttempts():
 
 @app.route("/View-Quiz-Attempt")
 def viewQuizAttempt():
-    return render_template('View Quiz Attempt.html')
+    return render_template('View Attempt.html')
 
 @app.route("/Generate-Quiz")
 def generateQuiz():
@@ -117,3 +117,25 @@ def previewAssessment():
 @app.route("/Submit-Assessment")
 def submitAssessment():
     return render_template('Submit Assessment.html')
+
+@app.route('/View-Student-Number')
+def viewStudentNumber():
+    post = User.query(db.func.count(User.is_admin == False)).all()
+    return render_template('View Student Number.html',post=post)
+
+@app.route('/View-Student-List')
+def viewStudentList():
+    post = User.query.all()
+    return render_template('View Student List.html',post=post)
+
+@app.route('/Search-Student')
+def searchStudent():
+    #post = User.query.filter(User.id == ('%{keyword}%'.format(keyword=request.form.get('search_input')))).all()
+    return render_template("View Student Search.html")
+
+@app.route('/View-Attempts')
+def viewAttempts():
+    post = Attempts.query.all()
+    return render_template("View Attempt.html", post=post)
+
+
