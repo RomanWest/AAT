@@ -11,3 +11,6 @@ X*.py
 /aat/app.db
 /aat/__pycache__/
 *.history
+Lib/
+Scripts/
+*.cfg
