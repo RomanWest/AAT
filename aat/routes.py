@@ -170,16 +170,26 @@ def EditAssessment(assessment_id):
     assessment = db.session.query(Assessment).get(assessment_id)
     form = Assessment_Form(formdata=request.form, obj = assessment)
     if form.validate_on_submit():
+        if request.form.getlist("checked!"):
+            value = request.form.getlist('checked!')
+            print(value)
+            id_type = []
+            for i in range(len(value)):
+                id_type.append(value[i].split(" ", 2))
+    
         db.session.delete(assessment)
         assessment_edit = Assessment(id = assessment_id,
-                        q1_type = form.q1_type.data,
-                        q1_id = form.q1_id.data,
-                        q2_type = form.q2_type.data,
-                        q2_id = form.q2_id.data,
-                        q3_type = form.q3_type.data,
-                        q3_id = form.q3_id.data,
-                        module_code=form.module_code.data, 
-                        is_summative=form.is_summative.data,
+                        q1_id=int(id_type[0][1]),
+                        q2_id=int(id_type[1][1]),
+                        q3_id=int(id_type[2][1]),
+                        q1_type=id_type[0][0],
+                        q2_type=id_type[1][0],
+                        q3_type=id_type[2][0],
+                        q1_feedback = id_type[0][2],
+                        q2_feedback = id_type[1][2],
+                        q3_feedback = id_type[2][2],
+                        module_code=form.module_code.data, # Needs changing 
+                        is_summative=form.is_summative.data, # Needs changing
                         assessment_name=form.assessment_name.data
                         )
         db.session.add(assessment_edit)

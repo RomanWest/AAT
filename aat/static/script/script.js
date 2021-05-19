@@ -94,6 +94,7 @@ function editAssessmentLoad() {
           var multiple = "Multiple "
           var multipleid = multiple + jid;
           document.getElementById(multipleid).checked = true;
+          document.getElementById(multipleid).name = "checked!";
           console.log(multipleQ[j].innerHTML);
         }
       } 
@@ -104,6 +105,7 @@ function editAssessmentLoad() {
           var fill = "Fill "
           var fillid = fill + jid;
           document.getElementById(fillid).checked = true;
+          document.getElementById(fillid).name = "checked!";
           console.log(fillQ[j].innerHTML);
         }
       } 
