@@ -50,7 +50,7 @@ def filleditroute():
     @app.route("/Edit-Fill-in-the-Blank/<int:fill_id>",methods=['GET', 'POST'])
     def FillEdit(fill_id):
         fill = db.session.query(Fill).get(fill_id)
-        form = FillQForm(formdata=request.form, obj = fill)
+        form = FillQForm(obj = fill)
         if form.validate_on_submit():
             db.session.delete(fill)
             question = Fill(id = fill_id,
@@ -72,7 +72,6 @@ def filleditroute():
     def DeleteFill(fill_id):
         fill = db.session.query(Fill).get(fill_id)
         if request.method == 'POST':
-
             if request.form.get("delete"):
                 db.session.delete(fill)
                 db.session.commit()

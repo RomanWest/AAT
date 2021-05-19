@@ -834,6 +834,16 @@ td {
   transform: rotate(45deg);
 }
 
+<<<<<<< HEAD
+.content-section {
+	background: #ffffff;
+	padding: 10px 20px;
+	border: 1px solid #dddddd;
+	border-radius: 3px;
+	margin-bottom: 20px;
+}
+
+=======
 
 .class-name-that-nobody-is-using{
       background-color: white;
@@ -854,3 +864,4 @@ td {
     align-items: center;
     flex-direction: column;
 }
+>>>>>>> 673a69a3c9398643423225c75a2bffc5e0e3c48b

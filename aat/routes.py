@@ -1,13 +1,16 @@
 from datetime import datetime
 from flask import render_template, url_for, request, redirect, flash, g, current_app, session
 from aat import app, db
-from aat.models import Assessment, User, Multiple, Fill
+from aat.models import Assessment, User, Multiple, Fill, Attempts
 from aat.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, login_required, current_user
 from aat.testroute import test
 from aat.MultipleChoice import MultipleRoute, MultipleEditRoute
 from aat.Fill import filleditroute, fillblankroute, test_fill_route
 from aat.Assessment import Assessment_Form, createassessment_route, testassess_route
+
+@app.route("/c")
+
 
 @app.route("/Staff-Home", methods=["GET", 'POST'])
 def staffhome():
@@ -106,7 +109,7 @@ def studentViewAttempts():
 
 @app.route("/View-Quiz-Attempt")
 def viewQuizAttempt():
-    return render_template('View Quiz Attempt.html')
+    return render_template('View Attempt.html')
 
 @app.route("/Generate-Quiz")
 def generateQuiz():
@@ -138,7 +141,28 @@ def previewAssessment():
 def submitAssessment():
     return render_template('Submit Assessment.html')
 
-    
+
+@app.route('/View-Student-Number')
+def viewStudentNumber():
+    post = User.query(db.func.count(User.is_admin == False)).all()
+    return render_template('View Student Number.html',post=post)
+
+@app.route('/View-Student-List')
+def viewStudentList():
+    post = User.query.all()
+    return render_template('View Student List.html',post=post)
+
+@app.route('/Search-Student')
+def searchStudent():
+    #post = User.query.filter(User.id == ('%{keyword}%'.format(keyword=request.form.get('search_input')))).all()
+    return render_template("View Student Search.html")
+
+@app.route('/View-Attempts')
+def viewAttempts():
+    post = Attempts.query.all()
+    return render_template("View Attempt.html", post=post)
+
+
 @app.route("/EditAssessment/<int:assessment_id>", methods=['GET', 'POST'])
 def EditAssessment(assessment_id):
     assessment = db.session.query(Assessment).get(assessment_id)
@@ -148,7 +172,7 @@ def EditAssessment(assessment_id):
         assessment_edit = Assessment(id = assessment_id,
                         q1_type = form.q1_type.data,
                         q1_id = form.q1_id.data,
-                        q2_type = form. q2_type.data,
+                        q2_type = form.q2_type.data,
                         q2_id = form.q2_id.data,
                         q3_type = form.q3_type.data,
                         q3_id = form.q3_id.data,
@@ -161,3 +185,4 @@ def EditAssessment(assessment_id):
         flash("edited successfully")
         return redirect(url_for('staffhome'))
     return render_template('EditAssessment.html', assessment=assessment, form=form)
+
