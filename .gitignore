@@ -16,3 +16,6 @@ X*.py
 Pipfile
 Pipfile.lock
 identifier.sqlite
+Lib/
+Scripts/
+*.cfg
