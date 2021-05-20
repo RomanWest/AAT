@@ -1,22 +1,23 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="formative-summative-container">
+<div class="feedback-container">
     <div id="title">
         <h1>Assessments:</h1>
     </div>
-{% for attempt in attempts %}
-    {% if attempt.feedback_date <= attempt.feedback_date.utcnow() %}
-    <div class="feedback">
-        <ul>{{attempt.assessment_name}}&nbsp;
-        <a href="{{url_for('viewfeedback', attempt_id = attempt.id)}}">  View Results</a>
-        </ul>
-        {% else %}
-        <ul>{{attempt.assessment_name}}&nbsp;
-        <h5> Feedback available on {{attempt.feedback_date }} </h5>
-        </ul>
-    </div>
-    {% endif %}
-{% endfor %}
+    {% for attempt in attempts %}
+        {% if attempt.feedback_date <= attempt.feedback_date.utcnow() %}
+        <div class="feedback">
+            <ul>{{attempt.assessment_name}}&nbsp;
+                <a href="{{url_for('viewfeedback', attempt_id = attempt.id)}}">  View Results</a>
+            </ul>
+            {% else %}
+            <ul>{{attempt.assessment_name}}&nbsp;
+                <h4> Feedback available on {{attempt.feedback_date.strftime('%Y-%m-%d') }} </h4>
+            
+            </ul>
+        </div>
+        {% endif %}
+    {% endfor %}
 </div>
     
 

@@ -154,7 +154,7 @@ class Assessment_Form(FlaskForm):
     module_code = StringField('module-code', validators=[DataRequired()])
     submit = SubmitField('Save')
     is_summative = StringField('assessment-type', validators=[DataRequired()])
-    feedback_date = DateField('Feedback-Date')
+    feedback_date = DateField('Feedback-Date', format='%Y-%m-%d', render_kw={"placeholder": "YYYY-M-D"})
     assessment_name = StringField('assessment-name', validators=[DataRequired()])
 
 
@@ -195,12 +195,13 @@ def createassessment_route():
                                            is_summative=form.is_summative.data,
                                            assessment_name=form.assessment_name.data,
                                            admin_created=True,
-                                           module_code=form.module_code.data
+                                           module_code=form.module_code.data,
+                                           feedback_date=form.feedback_date.data
                                            )
             db.session.add(createdAssessment)
             db.session.commit()
             flash("Assessment added.")
-            return redirect(url_for('assessSubmit'))
+            return redirect(url_for('staffhome'))
 
         return render_template("Create Formative.html", form=form, 
                             multiple_all=multiple_all, fill_all=fill_all, 
