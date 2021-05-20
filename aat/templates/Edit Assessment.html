@@ -5,7 +5,7 @@
   <form class="question-maker-container" method="POST" action="">
     {{form.csrf_token}}
     <div class="edit-head">
-      <div class="Top-dropdown">
+      <div class="Top-dropdown3">
         <h2><b> Assessment Type: </b></h2>
   
           <select class=assessment-dropdown name="assessments" id="assessmentDropdown" onchange="editFilter()">
@@ -34,7 +34,7 @@
           <input type="text" id="ModuleCodee" class="hidden" name="moduleCode" value="{{assessment.module_code }}">
         </div>
         <br>
-          <h2><b>Feedback Date</b> &nbsp;{{form.feedback_date (class="assessment-feedback-label")}}</h2>
+          <h2><b>Feedback Date: </b> &nbsp;{{form.feedback_date (class="assessment-feedback-label")}}</h2>
 
       </div>
     </div>

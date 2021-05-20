@@ -27,6 +27,9 @@
           <h2>Module Code</h2>
         </th>
         <th>
+          <h2>Feedback Date</h2>
+        </th>
+        <th>
           <h2>Edit</h2>
         </th>
         <th>
@@ -42,6 +45,7 @@
           </td>
 
           <td>{{ assessment.module_code }}</td>
+          <td>{{ assessment.feedback_date.strftime('%d-%m-%Y') }}</td>
 
           <td><a href="{{ url_for('EditAssessment', assessment_id=assessment.id)}}">Edit</a></td>
 
@@ -62,6 +66,9 @@
           <h2>Module Code</h2>
         </th>
         <th>
+          <h2>Feedback Date</h2>
+        </th>
+        <th>
           <h2>Edit</h2>
         </th>
         <th>
@@ -76,6 +83,7 @@
             <a href=" {{ url_for('testassess', assessment_id=assessment.id)}} "> {{ assessment.assessment_name }} </a>
           </td>
           <td>{{ assessment.module_code }}</td>
+          <td>{{ assessment.feedback_date.strftime('%d-%m-%Y') }}</td>
           <td><a href="{{ url_for('EditAssessment', assessment_id=assessment.id)}}">Edit</a></td>
           <td>
             <a href="{{ url_for('DeleteAssessment', assessment_id=assessment.id)}}">Delete</a>
