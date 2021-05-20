@@ -126,7 +126,8 @@ def testassess_route():
                                feedback_3 = assessment.q3_feedback,
                                percentage_correct=percentage_correct, module_code=assessment.module_code,
                                is_summative=assessment.is_summative, attempt_no=attempt, 
-                               assessment_name = assessment.assessment_name
+                               assessment_name = assessment.assessment_name,
+                               feedback_date=assessment.feedback_date
                                )
             db.session.add(attempt)
             db.session.commit()
@@ -208,9 +209,9 @@ def createassessment_route():
     @app.route("/feedback", methods = ["GET", "POST"])
     def viewfeedbacklist():
         attempts = Attempts.query.filter_by(user_id=current_user.id).all()
-        
+        wasNow = datetime.utcnow()
 
-        return render_template("Feedbacklist.html", attempts=attempts)
+        return render_template("Feedbacklist.html", attempts=attempts, wasNow=wasNow)
     
 
     @app.route("/feedback/<int:attempt_id>", methods = ["GET", "POST"])

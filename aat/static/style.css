@@ -46,7 +46,7 @@ body {
   color: white;
   text-decoration: none;
   padding: 2rem;
-  border-radius: 4rem;
+  border-radius: 1rem;
   transition: 0.3s;
   background-color: #3546a3;
 }
@@ -69,8 +69,8 @@ body {
   font-size: 2rem;
   color: white;
   text-decoration: none;
-  padding: 2rem;
-  border-radius: 4rem;
+  padding: 1rem;
+  border-radius: 1rem;
   transition: 0.3s;
   background-color: #acacac;
 }
@@ -144,7 +144,7 @@ body {
   align-items: center;
   padding: 1rem;
   background-color: rgb(221, 221, 221);
-  border-radius: 3rem;
+  border-radius: 1rem;
   border: #000000 1px solid;
   opacity: 1;
   transition: 0.3;
@@ -181,7 +181,7 @@ body {
   margin-top: 2rem;
 }
 .admin-main .module-dropdown {
-  border-radius: 4rem;
+  border-radius: 1rem;
   height: 3rem;
   width: 15%;
   border: 1rem;
@@ -261,6 +261,7 @@ td {
   width: 90%;
   color: white;
   height: 100%;
+  border-radius: 1rem;
 }
 .active-assessments-title-container {
   margin: 1rem;
@@ -274,12 +275,28 @@ td {
   display: flex;
   justify-content: space-around;
   margin-top: 3rem;
+  border-radius: 1rem;
 }
 .formative-summative {
   background-color: #717171;
   margin: left 2.5% right 2.5%;
   width: 40%;
   height: 100%;
+  border-radius: 0.5rem;
+  margin-bottom: 3rem;
+  padding: 1%;
+  color: white;
+}
+
+.feedback {
+  background-color: #717171;
+  margin: left 2.5% right 2.5%;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  margin-bottom: 3rem;
+  padding: 1%;
+  color: white;
 }
 
 /* HOME & POSTS */
@@ -336,7 +353,7 @@ td {
 .question-maker-container {
   width: 100%;
   padding: 2rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   margin-bottom: 2.5rem;
@@ -347,7 +364,7 @@ td {
 .question-input {
   width: 100%;
   height: 3rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   border: none;
   outline: none;
   padding: 1rem;
@@ -377,7 +394,7 @@ td {
 .module-input {
   width: 90%;
   height: 2rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   border: none;
   outline: none;
   padding: 1rem;
@@ -397,7 +414,7 @@ td {
 .question-input {
   width: 100%;
   height: 3rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   border: none;
   outline: none;
   padding: 1rem;
@@ -424,10 +441,10 @@ td {
   font-size: 2rem;
   border-radius: 1rem;
   outline: none;
-  border: none;
+  border: black 1px;
   transition: 0.3s;
   margin: 1rem;
-  background-color: #e7e7e7;
+  background-color: #ffffff;
 }
 
 .save-btn:hover {
@@ -447,7 +464,7 @@ td {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 2rem;
+  border-radius: 1rem;
   width: 80%;
   padding: 1rem;
 }
@@ -574,7 +591,7 @@ td {
 }
 
 .Top-dropdown .assessment-name-label{
-  border-radius: 4rem;
+  border-radius: 1rem;
   height: 3rem;
   border: 1rem;
   font-size: 2rem;
@@ -583,7 +600,7 @@ td {
 }
 
 .Top-dropdown .module-dropdown {
-  border-radius: 4rem;
+  border-radius: 1rem;
   height: 3rem;
   border: 1rem;
   font-size: 2rem;
@@ -591,7 +608,7 @@ td {
 }
 
 .Top-dropdown .assessment-dropdown {
-  border-radius: 4rem;
+  border-radius: 1rem;
   height: 3rem;
   border: 1rem;
   font-size: 2rem;
@@ -601,7 +618,7 @@ td {
 #quiz-questions-container {
   background-color: #c4c4c4;
   border: 1rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 .question-container-head {
@@ -621,14 +638,14 @@ td {
   width: 40%;
   background-color: white;
   margin: 2rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 .unchosen-q {
   width: 40%;
   background-color: white;
   margin: 2rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 .move-button {
@@ -643,7 +660,7 @@ td {
   text-decoration: none;
   padding: 1rem;
   margin: 1rem;
-  border-radius: 4rem;
+  border-radius: 1rem;
   transition: 0.3s;
   background-color: white;
 }
@@ -663,7 +680,7 @@ td {
 .question {
   display: grid;
   background-color: #c4c4c4;
-  border-radius: 2rem;
+  border-radius: 1rem;
   margin-top:10px;
   margin-bottom:10px;
 }
@@ -754,7 +771,7 @@ td {
   text-decoration: none;
   padding: 1rem;
   margin: 1rem;
-  border-radius: 4rem;
+  border-radius: 1rem;
   transition: 0.3s;
 }
 
@@ -883,4 +900,63 @@ td {
     width: 80%;
     align-items: center;
     flex-direction: column;
+}
+
+.delete-assessment {
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  background-color: #c4c4c4;
+  border-radius: 1rem;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.delete-btn {
+  float: center;
+  height: 3rem;
+  width: 80%;
+  align-self: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  border-radius: 1rem;
+  outline: none;
+  border: black 1px;
+  transition: 0.3s;
+  margin: 1rem;
+  background-color: #ffffff;
+}
+
+.delete-btn:hover {
+  background-color: #aaaaaa;
+}
+
+
+.feedback-title{
+  display: inline-flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: white;
+  margin: 1rem;
+  border-radius: 1rem;
+}
+
+.question-feedback {
+  flex-direction: column;
+  background-color: #c4c4c4;
+  border-radius: 1rem;
+  margin-top:2px;
+  margin-bottom:2px;
+  padding:1%;
+  width:100%;
+}
+
+.feedback-elements {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  background-color: white;
+  margin: 1rem;
+  border-radius: 1rem;
 }

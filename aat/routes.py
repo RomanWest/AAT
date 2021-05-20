@@ -18,7 +18,7 @@ def staffhome():
     return render_template('Staff Home.html', assessment_all=assessment_all)
 
 
-@app.route("/DeleteAssessment/<int:assessment_id>", methods=['GET', 'POST'])
+@app.route("/Delete-Assessment/<int:assessment_id>", methods=['GET', 'POST'])
 def DeleteAssessment(assessment_id):
     assessment = db.session.query(Assessment).get(assessment_id)
     if request.method == 'POST':
@@ -223,7 +223,7 @@ def viewAttempts():
     return render_template("View Attempt.html", post=post)
 
 
-@app.route("/EditAssessment/<int:assessment_id>", methods=['GET', 'POST'])
+@app.route("/Edit-Assessment/<int:assessment_id>", methods=['GET', 'POST'])
 def EditAssessment(assessment_id):
     multiple_all = Multiple.query.all()
     fill_all = Fill.query.all()
@@ -267,4 +267,4 @@ def EditAssessment(assessment_id):
         db.session.commit()
         flash("edited successfully")
         return redirect(url_for('staffhome'))
-    return render_template('EditAssessment.html', assessment=assessment, form=form, multiple_all=multiple_all, fill_all=fill_all)
+    return render_template('Edit Assessment.html', assessment=assessment, form=form, multiple_all=multiple_all, fill_all=fill_all)

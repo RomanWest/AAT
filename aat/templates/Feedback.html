@@ -1,19 +1,29 @@
 {% extends "layout.html" %}
 {% block content %}
-assessment name: {{attempt.assessment_name}}<br>
-your score: {{attempt.percentage_correct}}%<br>
-q1: {{q1}}<br>
-your answer: {{attempt.answer_1}}<br>
-correct answer: {{correct_1}}<br>
-feedback: {{attempt.feedback_1}}<br>
-<br>
-q2: {{q2}}<br>
-your answer: {{attempt.answer_2}}<br>
-correct answer: {{correct_2}}<br>
-feedback: {{attempt.feedback_2}}<br>
-<br>
-q3: {{q3}}<br>
-your answer: {{attempt.answer_3}}<br>
-correct answer: {{correct_3}}<br>
-feedback: {{attempt.feedback_3}}<br>
+<div class="feedback-title">
+    <h2>Assessment name: </h2>{{attempt.assessment_name}}
+    <h2>Your Score: </h2>{{attempt.percentage_correct}}%
+</div>
+
+<div class="question-feedback">
+    <div class="feedback-elements">q1: {{q1}}</div><br>
+    <div class="feedback-elements">your answer: {{attempt.answer_1}}</div><br>
+    <div class="feedback-elements">correct answer: {{correct_1}}</div><br>
+    <div class="feedback-elements">feedback: {{attempt.feedback_1}}</div><br>
+</div>
+
+<div class="question-feedback">
+    <div class="feedback-elements">q2: {{q2}}</div><br>
+    <div class="feedback-elements">your answer: {{attempt.answer_2}}</div><br>
+    <div class="feedback-elements">correct answer: {{correct_2}}</div><br>
+    <div class="feedback-elements">feedback: {{attempt.feedback_2}}</div><br>
+</div>
+
+<div class="question-feedback">
+    <div class="feedback-elements">q3: {{q3}}</div><br>
+    <div class="feedback-elements"> your answer: {{attempt.answer_3}}</div><br>
+    <div class="feedback-elements">correct answer: {{correct_3}}</div><br>
+    <div class="feedback-elements">feedback: {{attempt.feedback_3}}</div><br>
+</div>
+
 {% endblock content %}

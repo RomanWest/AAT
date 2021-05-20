@@ -26,6 +26,7 @@ class Attempts(db.Model):
 	percentage_correct = db.Column(db.Float, nullable=False)
 	module_code = db.Column(db.String,nullable=False)
 	date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+	feedback_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 	is_summative = db.Column(db.Boolean,nullable=False)
 
 #multiple means multiple choice type question
