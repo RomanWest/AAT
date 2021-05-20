@@ -1,12 +1,8 @@
 {% extends "layout.html" %} {% block content %}
-<div class = module-sidebar>
-    Modules
-
-</div>
 
 <div class = student-home-main>
 <div class = progressbtn-container>
-  <a class="button" href="{{url_for('studentViewProgress')}}">Statistics</a>
+  <a class="button" href="{{url_for('studentViewProgress')}}">Statistics</a> &nbsp;
   <a class="button" href="{{url_for('viewfeedbacklist', attempt_id=attempt_id)}}">Feedback</a>
   </form> 
 </div>
@@ -19,16 +15,18 @@
   <div class = formative-summative-container>
     <div class="formative-summative">
       <h2>Summative</h2>
+      <hr>
     {% for assessment in assessment_all %}
       {% if assessment.is_summative == True %}
         <ul><a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a></ul>
-        <br>
+        
         {% endif %}
     {% endfor %}
     </div>
     <br>
     <div class="formative-summative">
       <h2>Formative</h2>
+      <hr>
     {% for assessment in assessment_all %}
       {% if assessment.is_summative == False %}
       <ul><a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a></ul>

@@ -4,8 +4,8 @@
 <div class="feedback-container">
 
 <div class="feedback-title">
-    <div id="feed-title-segs"><h2><strong>Assessment name: </strong></h2>&nbsp;<h2> {{attempt.assessment_name}}</h2></div>
-    <div id="feed-title-segs"><h2><strong>Your Score: </strong></h2>&nbsp;<h2> {{attempt.percentage_correct}}% </h2></div>
+    <div id="feed-title-segs"><h2><strong>Assessment: </strong></h2>&nbsp;<h2> {{attempt.assessment_name}}</h2></div>
+    <div id="feed-title-segs"><h2><strong>Your Score: </strong></h2>&nbsp;<h2> {{attempt.percentage_correct|round(2, 'floor')}}% </h2></div>
 </div>
 
 <div class="question-feedback">

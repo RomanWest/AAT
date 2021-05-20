@@ -7,13 +7,11 @@
     {% for attempt in attempts %}
         {% if attempt.feedback_date <= attempt.feedback_date.utcnow() %}
         <div class="feedback">
-            <ul>{{attempt.assessment_name}}&nbsp;
+            <ul id="feedback-line">{{attempt.assessment_name}}: &nbsp;
                 <a href="{{url_for('viewfeedback', attempt_id = attempt.id)}}">  View Results</a>
             </ul>
-            {% else %}
-            <ul>{{attempt.assessment_name}}&nbsp;
-                <h4> Feedback available on {{attempt.feedback_date.strftime('%Y-%m-%d') }} </h4>
-            
+        {% else %}
+            <ul id="feedback-line">{{attempt.assessment_name}}: &nbsp; Feedback available on {{attempt.feedback_date.strftime('%d-%m-%Y') }}
             </ul>
         </div>
         {% endif %}
