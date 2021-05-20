@@ -288,15 +288,6 @@ td {
   color: white;
 }
 
-.feedback-container {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 3rem;
-  border-radius: 1rem;
-  min-width: 100%;
-}
-
-
 .feedback {
   background-color: #717171;
   margin: left 1% right 1%;
@@ -953,23 +944,45 @@ td {
   background-color: #aaaaaa;
 }
 
+.feedback-container{
+  grid-column: 1;
+  grid-row: 1;
+  font-size:1.5rem;
+  min-width: 100%;
+  justify-content: center;
+  padding: 1rem;
+}
+
+
+
+.feedback-container .feedback-title .question-feedback{
+  display: grid;  
+  grid-column: 1;
+  grid-row: 1;
+  font-size:1.5rem;
+  max-height:auto;
+}
 
 .feedback-title{
   display: inline-flex;
-  flex-direction: row;
   width: 100%;
   background-color: white;
-  margin: 1rem;
   border-radius: 1rem;
+  padding: 1rem;
+  margin-top:2px;
+  margin-bottom:2px;
+  justify-content: space-between;
 }
 
 .question-feedback {
-  flex-direction: column;
+  display: inline-flex;
+  font-size:1rem;
+  max-height:auto;
   background-color: #c4c4c4;
   border-radius: 1rem;
   margin-top:2px;
   margin-bottom:2px;
-  padding:1%;
+  padding:1rem;
   width:100%;
 }
 
@@ -980,6 +993,13 @@ td {
   background-color: white;
   margin: 1rem;
   border-radius: 1rem;
+  padding:1rem;
+  font-size:1.5rem;
+}
+
+#feed-title-segs{
+  display: inline-flex;
+  justify-content: space-between;
 }
 
 .edit-head {
@@ -1023,3 +1043,4 @@ min-width: 100%;
 .counter-save{
   justify-content: right;
 }
+
