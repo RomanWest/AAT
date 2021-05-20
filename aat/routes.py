@@ -129,12 +129,13 @@ def assessSubmit2():
                                            is_summative=form.is_summative.data,
                                            assessment_name=form.assessment_name.data,
                                            admin_created=True,
-                                           module_code=form.module_code.data
+                                           module_code=form.module_code.data,
+                                           feedback_date=form.feedback_date.data
                                            )
         db.session.add(createdAssessment)
         db.session.commit()
         flash("Assessment added.")
-        return redirect(url_for('assessSubmit2'))
+        return redirect(url_for('staffhome'))
 
     return render_template("Create Summative.html", form=form,
                                multiple_all=multiple_all, fill_all=fill_all,

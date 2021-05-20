@@ -4,33 +4,41 @@
 <body onload='uncheck(), editAssessmentLoad(), editFilter()'>
   <form class="question-maker-container" method="POST" action="">
     {{form.csrf_token}}
+    <div class="edit-head">
       <div class="Top-dropdown">
         <h2><b> Assessment Type: </b></h2>
   
-      <select class=assessment-dropdown name="assessments" id="assessmentDropdown" onchange="editFilter()">
-        <option value="Select Type">Select Type</option>
-        {% if assessment.is_summative == 0 %} 
-        <option value="Formative" selected="selected">Formative</option>
-        <option value="Summative">Summative</option>
-        {% else %}
-        <option value="Formative">Formative</option>
-        <option value="Summative" selected="selected">Summative</option>
-        {% endif %}
-      </select>
-      <input type="text" id="Formative" class="hiddenType" name="Formative" value="Formative">
-      <input type="text" id="Summative" class="hiddenType" name="Summative" value="Summative">
-      
-    
-    <h2><b> &nbsp; Assessment Name:</b> {{form.assessment_name (class = "assessment-input")}} &nbsp; </h2>
-    &nbsp;
-    <h2><b> &nbsp; Module Code: &nbsp; </b></h2> 
-    
-    <div class="module">
-        <h2 id="EditModule" value="{{assessment.module_code }}" name="moduleCode">{{assessment.module_code }}</h2>
-        <input type="text" id="ModuleCodee" class="hidden" name="moduleCode" value="{{assessment.module_code }}">
+          <select class=assessment-dropdown name="assessments" id="assessmentDropdown" onchange="editFilter()">
+            <option value="Select Type">Select Type</option>
+            {% if assessment.is_summative == 0 %} 
+            <option value="Formative" selected="selected">Formative</option>
+            <option value="Summative">Summative</option>
+            {% else %}
+            <option value="Formative">Formative</option>
+            <option value="Summative" selected="selected">Summative</option>
+            {% endif %}
+          </select>
+          <input type="text" id="Formative" class="hiddenType" name="Formative" value="Formative">
+          <input type="text" id="Summative" class="hiddenType" name="Summative" value="Summative">
+          
+        
+          <h2><b> &nbsp; Assessment Name:</b> {{form.assessment_name (class = "assessment-input")}} &nbsp; </h2>
+          
+      </div>
+
+      <div class="Top-dropdown2">
+        <h2><b>Module Code: &nbsp; </b></h2> &nbsp;
+        <br>
+        <div class="module">
+          <h2 id="EditModule" value="{{assessment.module_code }}" name="moduleCode">{{assessment.module_code }}</h2>
+          <input type="text" id="ModuleCodee" class="hidden" name="moduleCode" value="{{assessment.module_code }}">
+        </div>
+        <br>
+          <h2><b>Feedback Date</b> &nbsp;{{form.feedback_date (class="assessment-feedback-label")}}</h2>
+
       </div>
     </div>
-  
+
     <div class="answer-and-difficulty">
       <select class='hidden'>
         <option value="{{assessment.q1_type}}" class='hiddenQInfo'>q1_type</option>
@@ -159,17 +167,21 @@
                 <span class="checkmark"></span>
               </label>
             </div>
-
           </div>
+
         </div>
       </div>
-      {% endfor %}
+    {% endfor %}
+     
+    </div>
+    <div class="foot">
       <h3>Questions Selected</h3>
         <h5 id="question-counter">0 / 3</h5>
       {{form.submit (class="save-btn")}}
     </div>
-    </div>
-
   </form>
+  </div>
 
-  {% endblock content %}
+</div>
+
+{% endblock content %}
