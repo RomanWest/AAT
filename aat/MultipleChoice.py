@@ -9,7 +9,7 @@ from sqlalchemy import desc
 class MCForm(FlaskForm):
     question = StringField('Question', validators=[DataRequired(), Length(min=3)])
     correct = StringField('Correct', validators=[DataRequired()])
-    module_code = StringField('Module_code', validators=[DataRequired()])
+    module_code = StringField('Module Code', validators=[DataRequired()])
     incorrect_1 = StringField('Incorrect Answer 1', validators=[DataRequired()])
     incorrect_2 = StringField('Incorrect Answer 2', validators=[DataRequired()])
     incorrect_3 = StringField('Incorrect Answer 3', validators=[DataRequired()])
