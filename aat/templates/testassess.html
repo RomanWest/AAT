@@ -23,7 +23,7 @@
                     {% set randomMultiAnswer = ["answer_1_multi","answer_2_multi","answer_3_multi"] %}
                     {% set randomFill = ({ q1 : form.answer_1_fill, q2 : form.answer_2_fill, q3 : form.answer_3_fill})%}
                     {% set randomQType = [assessment.q1_type, assessment.q2_type, assessment.q3_type] %}
-                    {% set ranQ = range(0 , 2) | random %}
+                    {% set ranQ = range(0 , 3) | random %}
 
                     <h5 id='question-text'> {{ randomQ[ranQ] }} <br>
 
@@ -80,7 +80,7 @@
             </div>
             <div class="question">
                 <div id="top">
-                    {% set ranQ = range(0 , 1) | random %}
+                    {% set ranQ = range(0 , 2) | random %}
                     <h5 id='question-text'> {{ randomQ[ranQ] }} <br>
 
 
