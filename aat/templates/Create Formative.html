@@ -6,7 +6,7 @@
     <form class="question-maker-container" method="POST" action="">
       {{ form.csrf_token }}
       <div class="Top-dropdown">
-        <select class=module-dropdown name="modules" id="moduleDropdown" onchange="filter()">
+        <select class=module-dropdown name="modules" id="moduleDropdown" onchange="filter(), moduleCheck()">
           <option value="Select Module">Select Module</option>
           {% for multiple in multiple_all %}
           <option value="{{multiple.module_code}}" class='modules'>{{multiple.module_code}}</option>
@@ -16,6 +16,8 @@
         <input type="text" id="{{multiple.module_code}}" class="hiddenModule" name="{{multiple.module_code}}"
           value="{{multiple.module_code}}">
         {% endfor %}
+        <input type="text" id="Select Module" class="hiddenModule" name="Select Module"
+          value="Select Module">
 
         <select class=assessment-dropdown name="assessments" id="assessmentDropdown" onchange="filter()">
           <option value="Select Type">Select Type</option>
