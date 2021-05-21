@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 
+
 <div class="feedback-container">
 
 <div class="feedback-title">
@@ -12,21 +13,39 @@
     <div class="feedback-elements"><b>Q1: </b> {{q1}} </div>
     <div class="feedback-elements"><b>Your Answer: </b> {{attempt.answer_1}} </div>
     <div class="feedback-elements"><b>Correct Answer: </b> {{correct_1}} </div>
-    <div class="feedback-elements"><b>Feedback: </b> {{attempt.feedback_1}} </div>
+    <div class="feedback-elements"><b>Feedback: </b> 
+        {% if attempt.answer_1 == correct_1 %}
+            Well done!
+        {% else %} 
+            {{attempt.feedback_1}} 
+        {% endif %}
+        </div>
 </div>
 
 <div class="question-feedback">
     <div class="feedback-elements"><b>Q2: </b> {{q2}} </div>
     <div class="feedback-elements"><b>Your Answer: </b> {{attempt.answer_2}} </div>
     <div class="feedback-elements"><b>Correct Answer: </b> {{correct_2}} </div>
-    <div class="feedback-elements"><b>Feedback: </b> {{attempt.feedback_2}} </div>
+    <div class="feedback-elements"><b>Feedback: </b> 
+        {% if attempt.answer_2 == correct_2 %}
+            Well done!
+        {% else %} 
+            {{attempt.feedback_2}} 
+        {% endif %} 
+    </div>
 </div>
 
 <div class="question-feedback">
     <div class="feedback-elements"><b>Q3: </b> {{q3}} </div>
     <div class="feedback-elements"><b>Your Answer: </b> {{attempt.answer_3}} </div>
     <div class="feedback-elements"><b>Correct Answer: </b> {{correct_3}} </div>
-    <div class="feedback-elements"><b>Feedback: </b> {{attempt.feedback_3}} </div>
+    <div class="feedback-elements"><b>Feedback: </b> 
+        {% if attempt.answer_3 == correct_3 %}
+            Well done!
+        {% else %} 
+            {{attempt.feedback_3}} 
+        {% endif %}
+    </div>
 </div>
 </div>
 
