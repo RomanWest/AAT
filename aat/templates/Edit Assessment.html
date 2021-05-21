@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<body onload='uncheck(), editAssessmentLoad(), editFilter()'>
+<body onload='uncheck(), editAssessmentLoad(), editFilter(),  questionCheck()'>
   <form class="question-maker-container" method="POST" action="">
     {{form.csrf_token}}
     <div class="edit-head">
