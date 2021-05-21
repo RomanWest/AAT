@@ -4,7 +4,7 @@ from wtforms import StringField, PasswordField, SubmitField, SelectField, Boolea
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Regexp, InputRequired
 from flask_wtf import FlaskForm
 from aat import app, db
-from aat.models import Fill
+from aat.models import Fill, Assessment
 from sqlalchemy import desc
 
 class FillQForm(FlaskForm):
@@ -16,6 +16,14 @@ class FillQForm(FlaskForm):
     difficulty = SelectField('Difficulty', choices=[('easy','Easy'), ('medium', 'Medium'), ('hard', 'Hard')], validators=[DataRequired()])
     submit = SubmitField('Save')
 
+class FillDeleteForm(FlaskForm):
+    confirmDelete = BooleanField('Confirm:')
+    submit = SubmitField('Delete')
+
+    def validate_confirmDelete(FillDeleteForm, confirmDelete):
+        confirm = confirmDelete.data
+        if confirm != 1:
+            raise ValidationError('Please confirm that you want to delete this question.')
 
 def fillblankroute():
     @app.route("/Create-Fill-in-the-Blank",methods=['GET', 'POST'])
@@ -70,18 +78,19 @@ def filleditroute():
     
     @app.route("/DeleteFill/<int:fill_id>", methods=['GET', 'POST'])
     def DeleteFill(fill_id):
+
+        Q1 = Assessment.query.filter_by(q1_type = "Fill", q1_id = fill_id).first()
+        Q2 = Assessment.query.filter_by(q2_type = "Fill", q2_id = fill_id).first()
+        Q3 = Assessment.query.filter_by(q3_type = "Fill", q3_id = fill_id).first()
+
         fill = db.session.query(Fill).get(fill_id)
-        if request.method == 'POST':
-            if request.form.get("delete"):
-                db.session.delete(fill)
-                db.session.commit()
-                flash("Question deleted.")
-                return redirect(url_for("FillEditList"))
+        form = FillDeleteForm()
+        if form.validate_on_submit():
+            db.session.delete(fill)
+            db.session.commit()
+            return redirect(url_for('staffhome'))
+        return render_template("fillDelete.html", fill=fill, Q1=Q1, Q2=Q2, Q3=Q3, form=form)
 
-            if request.form.get("keep"):
-                return redirect(url_for("FillEditList"))
-
-        return render_template("fillDelete.html", fill=fill)
 
         
 def test_fill_route():
