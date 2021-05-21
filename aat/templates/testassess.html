@@ -19,8 +19,7 @@
                     {% set randomQ = [q1, q2, q3] %}
                     {% set randomMulti = ({ q1 : q1_multi, q2 : q2_multi, q3 : q3_multi}) %}
                     {% set randomMultiAnswer = ["answer_1_multi","answer_2_multi","answer_3_multi"] %}
-                    {% set randomFill = ({ q1 : form.answer_1_fill, q2 : form.answer_2_fill, q3 : form.answer_3_fill})
-                    %}
+                    {% set randomFill = ({ q1 : form.answer_1_fill, q2 : form.answer_2_fill, q3 : form.answer_3_fill})%}
                     {% set randomQType = [assessment.q1_type, assessment.q2_type, assessment.q3_type] %}
                     {% set ranQ = range(0 , 3) | random %}
 
@@ -143,26 +142,23 @@
                 randomMulti[randomQ[ranQ]].incorrect_1, randomMulti[randomQ[ranQ]].incorrect_2,
                 randomMulti[randomQ[ranQ]].incorrect_3] %}
                 {% set ran = range(0 , 4) | random %}
-                <input type="radio" name="{{randomMultiAnswer[ranQ]}}" id="option1"
-                    value="{{ randomiser[ran] }}" required>
+                <input type="radio" name="{{randomMultiAnswer[ranQ]}}" id="option1" value="{{ randomiser[ran] }}"
+                    required>
                 {{ randomiser[ran] }}</input><br>
                 {% set temp = randomiser.pop(ran) %}
 
                 {% set ran = range(0, 3) | random %}
-                <input type="radio" name="{{randomMultiAnswer[ranQ]}}" id="option2"
-                    value="{{ randomiser[ran] }}">
+                <input type="radio" name="{{randomMultiAnswer[ranQ]}}" id="option2" value="{{ randomiser[ran] }}">
                 {{ randomiser[ran] }}</input><br>
                 {% set temp = randomiser.pop(ran) %}
 
                 {% set ran = range(0, 2) | random %}
-                <input type="radio" name="{{randomMultiAnswer[ranQ]}}" id="option3"
-                    value="{{ randomiser[ran] }}">
+                <input type="radio" name="{{randomMultiAnswer[ranQ]}}" id="option3" value="{{ randomiser[ran] }}">
                 {{ randomiser[ran] }}</input><br>
                 {% set temp = randomiser.pop(ran) %}
 
                 {% set ran = 0 %}
-                <input type="radio" name="{{randomMultiAnswer[ranQ]}}" id="option4"
-                    value="{{ randomiser[ran] }}">
+                <input type="radio" name="{{randomMultiAnswer[ranQ]}}" id="option4" value="{{ randomiser[ran] }}">
                 {{ randomiser[ran] }}</input><br>
 
                 {% else %}
