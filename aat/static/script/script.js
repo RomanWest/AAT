@@ -72,6 +72,26 @@ function questionCheck() {
 
 }
 
+function moduleCheck() {
+  var count = 0;
+  var noElements = document.getElementsByClassName("checkbx");
+  var moduleCode = document.getElementsByClassName("module-code");
+  var filterModule = document.getElementById("moduleDropdown");
+
+  for (var i = 0; i < noElements.length; i++) {
+    count += 1;
+    if (noElements[i].checked == true && moduleCode[i].innerHTML == filterModule.value){
+    } else if (noElements[i].checked == true && filterModule.value == "Select Module") {
+    } else {
+      noElements[i].checked = false;
+      count -= 1;
+    }
+  }
+  //console.log(count);
+  document.getElementById("question-counter").innerText = count + "/ 3";
+
+}
+
 function uncheck() {
   var noElements = document.getElementsByClassName("checkbx");
   for (var i = 0; i < noElements.length; i++) {
@@ -129,7 +149,7 @@ function editAssessmentLoad() {
   }
 }
 
-function editFilter(){
+function editFilter() {
   var filterType = document.getElementById("assessmentDropdown");
   var question_type = document.getElementsByClassName("question-type");
   var question = document.getElementsByClassName("assessment-question");
