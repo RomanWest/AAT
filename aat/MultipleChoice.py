@@ -54,6 +54,7 @@ def MultipleEditRoute():
                             is_summative=form.is_summative.data)
             db.session.add(question)
             db.session.commit()
+            flash("Changes Saved.")
             return redirect(url_for('staffhome'))
         return render_template("EditMC.html", MC=MC, form=form)
 
@@ -70,6 +71,7 @@ def MultipleEditRoute():
         if form.validate_on_submit():
             db.session.delete(MC)
             db.session.commit()
+            flash("Question Deleted.")
             return redirect(url_for('staffhome'))
         return render_template("DeleteMC.html", MC=MC, Q1=Q1, Q2=Q2, Q3=Q3, form=form)
 
@@ -82,5 +84,6 @@ def MultipleRoute():
             quest = Multiple(question=form.question.data, correct=form.correct.data, module_code=form.module_code.data, incorrect_1=form.incorrect_1.data, incorrect_2=form.incorrect_2.data, incorrect_3=form.incorrect_3.data, difficulty=form.difficulty.data, is_summative=form.is_summative.data, feedback=form.feedback.data)
             db.session.add(quest)
             db.session.commit()
+            flash("Question added.")
             return redirect(url_for('staffhome'))
         return render_template('Create Multiple Choice Question.html', form = form)
