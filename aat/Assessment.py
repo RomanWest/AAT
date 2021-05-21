@@ -81,7 +81,7 @@ def testassess_route():
             if assessment.q2_type == "Multiple" :
                 answer_2=request.form.getlist("answer_2_multi")[0]
             else:
-                answer_2=form.answer_2_fill.data.lower()
+                answer_2=form.answer_2_fill.data
         
             if assessment.q3_type == "Multiple" :
                 answer_3=request.form.getlist("answer_3_multi")[0]
