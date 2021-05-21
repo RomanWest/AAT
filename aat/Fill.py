@@ -88,6 +88,7 @@ def filleditroute():
         if form.validate_on_submit():
             db.session.delete(fill)
             db.session.commit()
+            flash("Question deleted.")
             return redirect(url_for('staffhome'))
         return render_template("fillDelete.html", fill=fill, Q1=Q1, Q2=Q2, Q3=Q3, form=form)
 
