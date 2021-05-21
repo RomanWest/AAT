@@ -167,41 +167,49 @@ def createassessment_route():
         form = Assessment_Form()
 
         if request.method == "POST":
-            print("Hi")
-            if request.form.get('selectedType') == "Formative":
-                form.is_summative.data = False
-            if request.form.get('selectedType') == "Summative":
-                form.is_summative.data = True
 
-            form.module_code.data = request.form.getlist('selectedModule')[0]
-            
-            if request.form.getlist("checked!"):
-                value = request.form.getlist('checked!')
-                id_type = []
-                for i in range(len(value)):
-                    id_type.append(value[i].split(" ", 2))
-                print("tim")
-                print(id_type)
-                print(id_type[0][2])
-            createdAssessment = Assessment(q1_id=int(id_type[0][1]),
-                                           q2_id=int(id_type[1][1]),
-                                           q3_id=int(id_type[2][1]),
-                                           q1_type=id_type[0][0],
-                                           q2_type=id_type[1][0],
-                                           q3_type=id_type[2][0],
-                                           q1_feedback = id_type[0][2],
-                                           q2_feedback = id_type[1][2],
-                                           q3_feedback = id_type[2][2],
-                                           is_summative=form.is_summative.data,
-                                           assessment_name=form.assessment_name.data,
-                                           admin_created=True,
-                                           module_code=form.module_code.data,
-                                           feedback_date=form.feedback_date.data
-                                           )
-            db.session.add(createdAssessment)
-            db.session.commit()
-            flash("Assessment added.")
-            return redirect(url_for('staffhome'))
+            if request.form.getlist('selectedModule')[0] == "Select Module":
+                flash("Please Select a module")
+            else:
+
+                if len(request.form.getlist('checked!')) != 3:
+                    flash("Please Select 3 questions")
+                else:
+                    print("Hi")
+                    if request.form.get('selectedType') == "Formative":
+                        form.is_summative.data = False
+                    if request.form.get('selectedType') == "Summative":
+                        form.is_summative.data = True
+
+                    form.module_code.data = request.form.getlist('selectedModule')[0]
+                    
+                    if request.form.getlist("checked!"):
+                        value = request.form.getlist('checked!')
+                        id_type = []
+                        for i in range(len(value)):
+                            id_type.append(value[i].split(" ", 2))
+                        print("tim")
+                        print(id_type)
+                        print(id_type[0][2])
+                    createdAssessment = Assessment(q1_id=int(id_type[0][1]),
+                                                q2_id=int(id_type[1][1]),
+                                                q3_id=int(id_type[2][1]),
+                                                q1_type=id_type[0][0],
+                                                q2_type=id_type[1][0],
+                                                q3_type=id_type[2][0],
+                                                q1_feedback = id_type[0][2],
+                                                q2_feedback = id_type[1][2],
+                                                q3_feedback = id_type[2][2],
+                                                is_summative=form.is_summative.data,
+                                                assessment_name=form.assessment_name.data,
+                                                admin_created=True,
+                                                module_code=form.module_code.data,
+                                                feedback_date=form.feedback_date.data
+                                                )
+                    db.session.add(createdAssessment)
+                    db.session.commit()
+                    flash("Assessment added.")
+                    return redirect(url_for('staffhome'))
 
         return render_template("Create Formative.html", form=form, 
                             multiple_all=multiple_all, fill_all=fill_all, 
