@@ -1070,17 +1070,3 @@ min-width: 100%;
 .counter-save{
   justify-content: right;
 }
-
-
-
-
-
-
-
-.mainbit-MC {
-  display: flex;
-  border-radius: 1rem;
-  background-color: #acacac;
-  flex-direction: column;
-  padding: 2%;
-  width: 100%;
