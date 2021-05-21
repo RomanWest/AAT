@@ -7,6 +7,13 @@
 <div class="feedback-title">
     <div id="feed-title-segs"><h2><strong>Assessment: </strong></h2>&nbsp;<h2> {{attempt.assessment_name}}</h2></div>
     <div id="feed-title-segs"><h2><strong>Your Score: </strong></h2>&nbsp;<h2> {{attempt.percentage_correct|round(2, 'floor')}}% </h2></div>
+    {% if attempt.percentage_correct >= 70 %}
+    <div id="feed-titel-segs"><h2><strong>Distinction! Keep up the good work</strong></h2></div>
+    {% elif attempt.percentage_correct >= 50 %}
+    <div id="feed-titel-segs"><h2><strong>Pass! Keep up the good work</strong></h2></div>
+    {% else %}
+    <div id="feed-titel-segs"><h2><strong>Fail. Please follow up on the feedback below</strong></h2></div>
+    {% endif %}
 </div>
 
 <div class="question-feedback">
