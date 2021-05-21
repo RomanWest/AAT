@@ -84,3 +84,4 @@ def MultipleRoute():
             db.session.commit()
             return redirect(url_for('staffhome'))
         return render_template('Create Multiple Choice Question.html', form = form)
+

@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="student-view-progress">
+</div>
+
+  <div class="container" style="padding-left: 200px; padding-top: 150px">
+        <div>
+            <a class="button">Student List</a>
+            {% for p in post %}
+                <a href="/post/{{ p.id }}">{{ p.first_name }}</a>&nbsp&nbsp<a>{{ p.last_name }}</a>
+            {% endfor %}
+        </div>
+  </div>
+
+{% endblock content %}

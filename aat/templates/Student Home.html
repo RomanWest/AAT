@@ -1,13 +1,9 @@
 {% extends "layout.html" %} {% block content %}
-<div class = module-sidebar>
-    modules
-</div>
 
-<div class = student-home-main>
-<div class = progressbtn-container>
-  <a class="button" href="{{url_for('studentViewProgress')}}">View Progress</a>
-  <form method = 'POST' action=''>
-  <input class="button" type = submit name = "test" value = "dosomething">
+<div class = "student-home-main">
+<div class = "progressbtn-container">
+  <a class="button" href="{{url_for('studentViewProgress')}}">Statistics</a> &nbsp;
+  <a class="button" href="{{url_for('viewfeedbacklist', attempt_id=attempt_id)}}">Feedback</a>
   </form> 
 </div>
 
@@ -17,23 +13,25 @@
     <a class="button student-home-btn" href="{{url_for('generateQuiz')}}">Generate Practice Quiz</a>
   </div>
   <div class = formative-summative-container>
-    <div class="formative-summative">Summative</div>
-    <br>
     <div class="formative-summative">
+      <h2>Summative</h2>
+      <hr>
     {% for assessment in assessment_all %}
       {% if assessment.is_summative == True %}
-        <a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a>
-      {% endif %}
+        <ul><a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a></ul>
+        
+        {% endif %}
     {% endfor %}
     </div>
     <br>
-    <div class="formative-summative">Formative</div>
-    <br>
     <div class="formative-summative">
+      <h2>Formative</h2>
+      <hr>
     {% for assessment in assessment_all %}
       {% if assessment.is_summative == False %}
-        <a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a>
-      {% endif %}
+      <ul><a href=" {{ url_for('testassess', assessment_id=assessment.id )}} "> {{ assessment.assessment_name }} </a></ul>
+        <br>
+        {% endif %}
     {% endfor %}
     </div>
     <br>

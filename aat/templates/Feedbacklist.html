@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="feedback-container">
+    <div id="title">
+        <h1>Assessments:</h1>
+    </div>
+    {% for attempt in attempts %}
+        {% if attempt.feedback_date <= attempt.feedback_date.utcnow() %}
+        <div class="feedback">
+            <ul id="feedback-line">{{attempt.assessment_name}}: &nbsp;
+                <a href="{{url_for('viewfeedback', attempt_id = attempt.id)}}">  View Results</a>
+            </ul>
+        {% else %}
+            <ul id="feedback-line">{{attempt.assessment_name}}: &nbsp; Feedback available on {{attempt.feedback_date.strftime('%d-%m-%Y') }}
+            </ul>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+    
+
+{%endblock content%}
