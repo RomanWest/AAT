@@ -84,6 +84,7 @@ function moduleCheck() {
     } else if (noElements[i].checked == true && filterModule.value == "Select Module") {
     } else {
       noElements[i].checked = false;
+      noElements[i].name = "unchecked";
       count -= 1;
     }
   }
