@@ -222,7 +222,7 @@ td {
   margin-right: 1rem;
   border: 1px solid black;
   border-collapse: collapse;
-  background-color: rgb(235, 235, 235); 
+  background-color: rgb(235, 235, 235);
 }
 
 .assessments-table{
@@ -992,7 +992,7 @@ td {
 
 
 .feedback-container .feedback-title .question-feedback{
-  display: grid;  
+  display: grid;
   grid-column: 1;
   grid-row: 1;
   font-size:1.5rem;
