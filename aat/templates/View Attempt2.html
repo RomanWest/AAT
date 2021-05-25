@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="student-view-attempts">
+</div>
+
+    <div style="padding-left: 600px; padding-top: 150px">
+        <a class="button">Student Attempts</a>
+    </div>
+
+    <div style="position:fixed; top: 350px; left: 800px; border-color: black; border: solid; border: 2px">
+        {% for p in post %}
+            <p>User id: {{ p.user_id }}</p>
+            <p>Assessment name:  {{ p.assessment_name }}</p>
+            <p>Percentage correct:  {{ p.percentage_correct}}</p>
+            <p>Module code:  {{ p.module_code }}</p>
+            <p>Date_created:  {{ p.date_created }}</p>
+            <p>Is_summative:  {{ p.is_summative }}</p>
+            <br>
+            <p>--------------------------------</p>
+            <br>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

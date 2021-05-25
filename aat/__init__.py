@@ -7,10 +7,10 @@ from werkzeug.debug import DebuggedApplication
 
 app = Flask(__name__) 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://c2058816:Kejinmysql2021@csmysql.cs.cf.ac.uk:3306/c2058816_aat'
 app.config['SECRET_KEY'] = 'd530f8e038ee2524ec69e2f37bceeb44eb14473aa2853aeb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.wsgi_app = DebuggedApplication(app.wsgi_app, True)
+app.config['DEBUG'] = True
 
 db = SQLAlchemy(app)
 login_manager = LoginManager()

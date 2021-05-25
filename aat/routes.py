@@ -11,16 +11,17 @@ from aat.Assessment import Assessment_Form, createassessment_route, testassess_r
 
 @app.route("/c")
 
-
 @app.route("/Staff-Home", methods=["GET", 'POST'])
 def staffhome():
     assessment_all = Assessment.query.all()
-
     return render_template('Staff Home.html', assessment_all=assessment_all)
 
 @app.route("/DeleteAssessment/<int:assessment_id>", methods=['GET', 'POST'])
+
 def DeleteAssessment(assessment_id):
+
     assessment = db.session.query(Assessment).get(assessment_id)
+
     if request.method == 'POST':
 
         if request.form.get("delete"):
@@ -104,7 +105,7 @@ def studentViewProgress():
 
 @app.route("/Student-View-Attempts")
 def studentViewAttempts():
-
+    post = Attempts.query.filter_by(User.user_id)
     return render_template('Student View Attempts.html')
 
 @app.route("/View-Quiz-Attempt")
@@ -142,26 +143,30 @@ def submitAssessment():
     return render_template('Submit Assessment.html')
 
 
-@app.route('/View-Student-Number')
-def viewStudentNumber():
-    post = User.query(db.func.count(User.is_admin == False)).all()
-    return render_template('View Student Number.html',post=post)
-
 @app.route('/View-Student-List')
 def viewStudentList():
-    post = User.query.all()
+    post = User.query.filter(User.is_admin == False).all()
     return render_template('View Student List.html',post=post)
 
-@app.route('/Search-Student')
+@app.route('/Search-Student', methods=['POST'])
 def searchStudent():
-    #post = User.query.filter(User.id == ('%{keyword}%'.format(keyword=request.form.get('search_input')))).all()
-    return render_template("View Student Search.html")
+    input_id = request.form.get('search_stuNo_input')
+    post = User.query.filter(User.id == input_id).first()
+    fruit_attempts = (Attempts.query.filter(User.id == input_id and Attempts.module_code == 'fruit123')).first()
+    biology_attempts = (Attempts.query.filter(User.id == input_id and Attempts.module_code == 'biology123')).first()
+    math_attempts = (Attempts.query.filter(User.id == input_id and Attempts.module_code == 'math123')).first()
+    attempts = Attempts.query.filter(Attempts.user_id == input_id).all()
+    return render_template("View Individual Student.html",post=post,fruit_attempts = fruit_attempts,biology_attempts = biology_attempts,math_attempts = math_attempts,attempts = attempts)
+
 
 @app.route('/View-Attempts')
 def viewAttempts():
-    post = Attempts.query.all()
-    return render_template("View Attempt.html", post=post)
+    return render_template("View Attempt.html")
 
+@app.route('/Search-Attempts',methods=['POST'])
+def searchAttempts():
+    post = Attempts.query.filter(Attempts.user_id == request.form.get('search_input'))
+    return render_template("View Attempt2.html", post=post)
 
 @app.route("/EditAssessment/<int:assessment_id>", methods=['GET', 'POST'])
 def EditAssessment(assessment_id):
@@ -185,4 +190,5 @@ def EditAssessment(assessment_id):
         flash("edited successfully")
         return redirect(url_for('staffhome'))
     return render_template('EditAssessment.html', assessment=assessment, form=form)
+
 

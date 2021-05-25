@@ -3,13 +3,16 @@
 <div class="student-view-progress">
 </div>
 
-  <div class="container" style="padding-left: 200px; padding-top: 150px">
+  <div class="container" style="padding-left: 650px; padding-top: 150px">
         <div>
             <a class="button">Student List</a>
+        </div>
+        <div style="position:fixed; top: 400px; left: 800px">
             {% for p in post %}
-                <a href="/post/{{ p.id }}">{{ p.first_name }}</a>&nbsp&nbsp<a>{{ p.last_name }}</a>
+                <a>Student id: {{ p.id }}&nbsp&nbsp&nbspStudent name: {{ p.first_name }}&nbsp&nbsp{{ p.last_name }}<br></a>
             {% endfor %}
         </div>
   </div>
+
 
 {% endblock content %}

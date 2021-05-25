@@ -2,44 +2,24 @@
 {% block content %}
 <div class="student-view-progress">
 </div>
-    <div class="container" style="padding-top: 150px;padding-left: 200px">
-        <div>
-            <a class="button">Student Information</a>
-                <div class="content-section" style="border: 2px solid;border-radius: 3px;position: fixed; left: 390px; top: 400px">
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-light" style="padding-top: 23px; padding-bottom: 23px"><a href="\View-Student-Number">Student number</a></li>
-                        <li class="list-group-item list-group-item-light" style="padding-top: 22px; padding-bottom: 22px"><a href="\View-Student-List">Student list</a></li>
-                        <li class="list-group-item list-group-item-light" style="padding-top: 23px; padding-bottom: 23px"><a href="\Search-Student">Search Student</a></li>
-                    </ul>
-                </div>
-        </div>
+
+    <div class="container" style="position:fixed; top: 250px; left: 800px">
+            <a class="button">Search a student</a>
     </div>
 
-
-
-    <div class="container" style="padding-left: 200px; padding-top: 150px">
-        <div>
-            <a class="button">Student Attainment</a>
-            <div class="content-section" style="border: 2px solid;border-radius: 3px;position: fixed; left: 815px; top: 400px">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-light" style="padding-top: 23px; padding-bottom: 23px"><a href="\students_desc">Module: Fruit123</a></li>
-                    <li class="list-group-item list-group-item-light" style="padding-top: 22px; padding-bottom: 22px"><a href="\students_list">Module: Biology123</a></li>
-                    <li class="list-group-item list-group-item-light" style="padding-top: 23px; padding-bottom: 23px"><a href="\students_info">Module: Maths123</a></li>
-                </ul>
-            </div>
-        </div>
+    <div class="divspan" style="width: 500px; position:fixed; top: 400px; left: 790px">
+        <form class="navbar-form navbar-left" method="post" action="/Search-Student">
+            <span class="form-group" >
+                <input name="search_stuNo_input" type="text" class="form-control" placeholder="Student ID" style="width: 200px; height: 30px">
+            </span>
+            <span><button style="width: 60px; height: 35px" type="submit" class="btn btn-default">Search</button></span>
+        </form>
     </div>
 
-    <div class="container" style="padding-left: 200px; padding-top: 150px">
-        <div>
-            <a class="button">Student Engagement</a>
-            <div class="content-section" style="border: 2px solid;border-radius: 3px;position: fixed; left: 1235px; top: 400px">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-light" style="padding-top: 39px; padding-bottom: 39px"><a href="\students_desc">Student Attempts</a></li>
-                    <li class="list-group-item list-group-item-light" style="padding-top: 39px; padding-bottom: 39px"><a href="\students_list">Assessment Process</a></li>
-                </ul>
-            </div>
-        </div>
+    <div class="container" style="position:fixed; top: 550px; left: 810px">
+        <a class="button">Student list</a>
     </div>
+        <a href="/View-Student-List" style="position:fixed; top: 650px; left: 830px">View student list</a>
+
 
 {% endblock content %}
