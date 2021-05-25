@@ -1,0 +1,187 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<body onload='uncheck(), editAssessmentLoad(), editFilter(),  questionCheck()'>
+  <form class="question-maker-container" method="POST" action="">
+    {{form.csrf_token}}
+    <div class="edit-head">
+      <div class="Top-dropdown3">
+        <h2><b> Assessment Type: </b></h2>
+  
+          <select class=assessment-dropdown name="assessments" id="assessmentDropdown" onchange="editFilter()">
+            <option value="Select Type">Select Type</option>
+            {% if assessment.is_summative == 0 %} 
+            <option value="Formative" selected="selected">Formative</option>
+            <option value="Summative">Summative</option>
+            {% else %}
+            <option value="Formative">Formative</option>
+            <option value="Summative" selected="selected">Summative</option>
+            {% endif %}
+          </select>
+          <input type="text" id="Formative" class="hiddenType" name="Formative" value="Formative">
+          <input type="text" id="Summative" class="hiddenType" name="Summative" value="Summative">
+          
+        
+          <h2><b> &nbsp; Assessment Name:</b> {{form.assessment_name (class = "assessment-input")}} &nbsp; </h2>
+          
+      </div>
+
+      <div class="Top-dropdown2">
+        <h2><b>Module Code: &nbsp; </b></h2> &nbsp;
+        <br>
+        <div class="module">
+          <h2 id="EditModule" value="{{assessment.module_code }}" name="moduleCode">{{assessment.module_code }}</h2>
+          <input type="text" id="ModuleCodee" class="hidden" name="moduleCode" value="{{assessment.module_code }}">
+        </div>
+        <br>
+          <h2><b>Feedback Date: </b> &nbsp;{{form.feedback_date (class="assessment-feedback-label")}}</h2>
+
+      </div>
+    </div>
+
+    <div class="answer-and-difficulty">
+      <select class='hidden'>
+        <option value="{{assessment.q1_type}}" class='hiddenQInfo'>q1_type</option>
+        <option value="{{assessment.q1_id}}" class='hiddenQInfo'>q1_id</option>
+        <option value="{{assessment.q2_type}}" class='hiddenQInfo'>q2_type</option>
+        <option value="{{assessment.q2_id}}" class='hiddenQInfo'>q2_id</option>
+        <option value="{{assessment.q3_type}}" class='hiddenQInfo'>q3_type</option>
+        <option value="{{assessment.q3_id}}" class='hiddenQInfo'>q3_id</option>
+      </select>
+
+    </div>
+
+    <div class="question-preview">
+      {% for multiple in multiple_all %}
+      <div class="assessment-question">
+        <div class="question-preview-head">
+          <div id="title">
+            <h1 class="Multiple" id="{{multiple.id}}">Multiple Choice Question {{ multiple.id }}</h1>
+          </div>
+        </div>
+
+        <div class="question">
+          <div id="top">
+            <h3>Question</h3>
+            <h5 id='question-text'>{{ multiple.question }}</h5>
+            <h3>Question Type</h3>
+            {% if multiple.is_summative == 1 %}
+            <h5 id='question-type-text' class="question-type">Summative</h5>
+            {% else %}
+            <h5 id='question-type-text' class="question-type">Formative</h5>
+            {% endif %}
+          </div>
+
+          <div id="multiple-cont">
+
+            <div id="col1">
+              <h3>Module</h3>
+              <h5 class="module-code">{{ multiple.module_code }}</h5>
+              <h3>In Use Y/N</h3>
+              <h5>*Y/N*</h5>
+              <h3>Difficulty</h3>
+              <h5>{{ multiple.difficulty }}</h5>
+            </div>
+
+            <div id="col2">
+              <h3>Correct Answer</h3>
+              <h5>{{ multiple.correct }}</h5>
+              <h3>Incorrect Answer 1</h3>
+              <h5>{{ multiple.incorrect_1 }}</h5>
+            </div>
+
+            <div id="col3">
+              <h3>Incorrect Answer 2</h3>
+              <h5>{{ multiple.incorrect_2 }}</h5>
+              <h3>Incorrect Answer 3</h3>
+              <h5>{{ multiple.incorrect_3 }}</h5>
+            </div>
+
+            <div id="col4">
+              <h3>Incorrect Answer Feedback</h3>
+              <h5>{{ multiple.feedback }}</h5>
+            </div>
+
+            <div id="col5">
+              <h3>Add to assessment</h3>
+              <label class="checkcontainer">
+                <input type="checkbox" class="checkbx" name="checkbox"
+                  value="Multiple {{multiple.id}} {{multiple.feedback}}" id="Multiple {{multiple.id}}"
+                  onclick="questionCheck()" checked>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      {% endfor %}
+
+      {% for fill in fill_all %}
+      <div class="assessment-question">
+        <div class="question-preview-head">
+          <div id="title">
+            <h1 class="Fill" id="{{fill.id}}">Fill in the Blank Question {{ multiple_all|length + fill.id }}</h1>
+          </div>
+        </div>
+
+        <div class="question">
+          <div id="top">
+            <h3>Question</h3>
+            <h5 id='question-text'>{{ fill.question }}</h5>
+            <h3>Question Type</h3>
+            {% if fill.is_summative == 1 %}
+            <h5 id='question-type-text' class="question-type">Summative</h5>
+            {% else %}
+            <h5 id='question-type-text' class="question-type">Formative</h5>
+            {% endif %}
+          </div>
+
+          <div id="fill-cont">
+
+            <div id="col1">
+              <h3>Module</h3>
+              <h5 class="module-code">{{ fill.module_code }}</h5>
+              <h3>In Use Y/N</h3>
+              <h5>*Y/N*</h5>
+              <h3>Difficulty</h3>
+              <h5>{{ fill.difficulty }}</h5>
+            </div>
+
+            <div id="col2">
+              <h3>Correct Answer</h3>
+              <h5>{{ fill.correct }}</h5>
+            </div>
+
+            <div id="col4">
+              <h3>Incorrect Answer Feedback</h3>
+              <h5>{{ fill.feedback }}</h5>
+            </div>
+
+            <div id="col5">
+              <h3>Add to assessment</h3>
+              <label class="checkcontainer">
+                <input type="checkbox" class="checkbx" name="checkbox" value="Fill {{fill.id}} {{fill.feedback}}"
+                  id="Fill {{fill.id}}" onclick="questionCheck()">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    {% endfor %}
+     
+    </div>
+    <div class="foot">
+      <h3>Questions Selected</h3>
+        <h5 id="question-counter">0 / 3</h5>
+      {{form.submit (class="save-btn")}}
+    </div>
+  </form>
+  </div>
+
+</div>
+
+{% endblock content %}

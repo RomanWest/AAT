@@ -1,31 +1,31 @@
 {% extends "layout.html" %} {% block content %}
 {% from "_formhelpers.html" import render_field %}
-<form class="question-maker-container" method="POST" action="">
+<form class="question-maker-container-2" method="POST" action="">
 
     <div class="top-input-box">
-      <div class = "question-label">question</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.question }}</div>
+      <div class = "question-label">Question</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.question }}</div>
 
     </div>
     <div class="bottom-inputs">
       <div class="module-and-formative">
         <div class="module">
-          <div class = "question-label">module_code</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.module_code}}</div>
+          <div class = "question-label">Module Code</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.module_code}}</div>
           </div>
         <div class="issummative-delete" >
-          <div class = "question-label">is_summative</div> <br><div class = "question-input class-name-that-nobody-is-using">{{MC.is_summative}}</div>
+          <div class = "question-label">Summative?</div> <br><div class = "question-input class-name-that-nobody-is-using">{{MC.is_summative}}</div>
           </div>
       </div>
 
     <div class="answer-and-difficulty">
-      <div class = "question-label">correct</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.correct }}</div>
-      <div class = "question-label">incorrect_1</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.incorrect_1 }}</div>
-      <div class = "question-label">incorrect_2</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.incorrect_2 }}</div>
-      <div class = "question-label">incorrect_3</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.incorrect_3 }}</div>
-      <div class = "question-label">feedback</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.feedback }}</div>
-      <div class = "question-label">difficulty</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.difficulty }}</div>
+      <div class = "question-label">Correct</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.correct }}</div>
+      <div class = "question-label">Incorrect answer 1</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.incorrect_1 }}</div>
+      <div class = "question-label">Incorrect answer 2</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.incorrect_2 }}</div>
+      <div class = "question-label">Incorrect answer 3</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.incorrect_3 }}</div>
+      <div class = "question-label">Feedback</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.feedback }}</div>
+      <div class = "question-label">Difficulty</div> <div class = "question-input class-name-that-nobody-is-using">{{MC.difficulty }}</div>
     </div>
 </div>
-    <div class="answer-and-difficulty">
+    <div class="confirm-container">
       {% if Q1==None and Q2==None and Q3==None%}
         {{ form.csrf_token }}
         <p>{{form.confirmDelete.label (class="question-label")}} {{form.confirmDelete (class = "question-input")}}

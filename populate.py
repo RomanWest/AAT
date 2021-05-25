@@ -172,17 +172,33 @@ db.session.add(User(username="Admin", first_name="Ad", last_name="min", email="a
                     module_1="Fruit123", module_2="Biology123", module_3="Maths123"))
 db.session.commit()
 
+db.session.commit()
+db.session.add(User(username="Student", first_name="Stu", last_name="dent", email="stu@dent.com", password="123456", is_admin=False,
+                    module_1="Fruit123", module_2="Biology123", module_3="Maths123"))
+db.session.commit()
+
 Assessment.query.delete()
 db.session.commit()
-db.session.add(Assessment(assessment_name="Test",is_summative=True, module_code="Fruit123", admin_created=True, 
-    q1_type="Multiple", q1_id=1, q2_type="Fill", q2_id="1", q3_type="Fill", q3_id="3", feedback_date=datetime(2021,5,19)))
+db.session.add(Assessment(assessment_name="Maths End of Term",is_summative=True, module_code="Maths123", admin_created=True, 
+    q1_type="Fill", q1_id="2", q2_type="Multiple", q2_id="28", q3_type="Fill", q3_id="4", 
+    q1_feedback = "Refer to Maths123 notes, Chapter 2", q2_feedback = "Refer to Maths123 module!",q3_feedback = "Refer to Maths123 notes, Chapter 15",
+    feedback_date=datetime(2021,5,28)))
 db.session.commit()
 
 db.session.commit()
-db.session.add(Assessment(assessment_name="Test2",is_summative=False, module_code="Maths123", admin_created=True, 
-    q1_type="Multiple", q1_id="1", q2_type="Multiple", q2_id="2", q3_type="Multiple", q3_id="3", feedback_date=datetime(2021,5,18)))
-db.session.commit()
-db.session.add(Assessment(assessment_name="Assessment 3",is_summative=False, module_code="Biology123", admin_created=True, 
-    q1_type="Multiple", q1_id="5", q2_type="Multiple", q2_id="10", q3_type="Fill", q3_id="4"))
+db.session.add(Assessment(assessment_name="Fruity test",is_summative=True, module_code="Fruit123", admin_created=True, 
+    q1_type="Multiple", q1_id="8", q2_type="Multiple", q2_id="9", q3_type="Fill", q3_id="3", 
+    q1_feedback = "Refer to Fruit123 module!", q2_feedback = "Refer to Fruit123 module!",q3_feedback = "Refer to Fruit123 notes, Chapter 10", feedback_date=datetime(2021,5,26)))
 db.session.commit()
 
+
+db.session.add(Assessment(assessment_name="Biology Test Final",is_summative=True, module_code="Biology123", admin_created=True, 
+    q1_type="Multiple", q1_id="19", q2_type="Multiple", q2_id="25", q3_type="Multiple", q3_id="27", 
+    q1_feedback = "Refer to Biology123 module!", q2_feedback = "Refer to Biology123 module!", q3_feedback = "Refer to Biology123 module!",
+    feedback_date = datetime(2021,5,28)))
+db.session.commit()
+
+db.session.add(Assessment(assessment_name="Maths Test Week 2",is_summative=False, module_code="Maths123", admin_created=True, 
+    q1_type="Multiple", q1_id="28", q2_type="Multiple", q2_id="29", q3_type="Multiple", q3_id="31", 
+    q1_feedback = "Refer to Maths123 module!", q2_feedback = "Refer to Maths123 module!", q3_feedback = "Refer to Maths123 module!"))
+db.session.commit()

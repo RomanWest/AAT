@@ -81,7 +81,7 @@ def testassess_route():
             if assessment.q2_type == "Multiple" :
                 answer_2=request.form.getlist("answer_2_multi")[0]
             else:
-                answer_2=form.answer_2_fill.data.lower()
+                answer_2=form.answer_2_fill.data
         
             if assessment.q3_type == "Multiple" :
                 answer_3=request.form.getlist("answer_3_multi")[0]
@@ -126,7 +126,8 @@ def testassess_route():
                                feedback_3 = assessment.q3_feedback,
                                percentage_correct=percentage_correct, module_code=assessment.module_code,
                                is_summative=assessment.is_summative, attempt_no=attempt, 
-                               assessment_name = assessment.assessment_name
+                               assessment_name = assessment.assessment_name,
+                               feedback_date=assessment.feedback_date
                                )
             db.session.add(attempt)
             db.session.commit()
@@ -153,7 +154,7 @@ class Assessment_Form(FlaskForm):
     module_code = StringField('module-code', validators=[DataRequired()])
     submit = SubmitField('Save')
     is_summative = StringField('assessment-type', validators=[DataRequired()])
-    feedback_date = DateField('Feedback-Date')
+    feedback_date = DateField('Feedback-Date', format='%Y-%m-%d', render_kw={"placeholder": "YYYY-M-D"})
     assessment_name = StringField('assessment-name', validators=[DataRequired()])
 
 
@@ -166,40 +167,49 @@ def createassessment_route():
         form = Assessment_Form()
 
         if request.method == "POST":
-            print("Hi")
-            if request.form.get('selectedType') == "Formative":
-                form.is_summative.data = False
-            if request.form.get('selectedType') == "Summative":
-                form.is_summative.data = True
 
-            form.module_code.data = request.form.getlist('selectedModule')[0]
-            
-            if request.form.getlist("checked!"):
-                value = request.form.getlist('checked!')
-                id_type = []
-                for i in range(len(value)):
-                    id_type.append(value[i].split(" ", 2))
-                print("tim")
-                print(id_type)
-                print(id_type[0][2])
-            createdAssessment = Assessment(q1_id=int(id_type[0][1]),
-                                           q2_id=int(id_type[1][1]),
-                                           q3_id=int(id_type[2][1]),
-                                           q1_type=id_type[0][0],
-                                           q2_type=id_type[1][0],
-                                           q3_type=id_type[2][0],
-                                           q1_feedback = id_type[0][2],
-                                           q2_feedback = id_type[1][2],
-                                           q3_feedback = id_type[2][2],
-                                           is_summative=form.is_summative.data,
-                                           assessment_name=form.assessment_name.data,
-                                           admin_created=True,
-                                           module_code=form.module_code.data
-                                           )
-            db.session.add(createdAssessment)
-            db.session.commit()
-            flash("Assessment added.")
-            return redirect(url_for('assessSubmit'))
+            if request.form.getlist('selectedModule')[0] == "Select Module":
+                flash("Please Select a module")
+            else:
+
+                if len(request.form.getlist('checked!')) != 3:
+                    flash("Please Select 3 questions")
+                else:
+                    print("Hi")
+                    if request.form.get('selectedType') == "Formative":
+                        form.is_summative.data = False
+                    if request.form.get('selectedType') == "Summative":
+                        form.is_summative.data = True
+
+                    form.module_code.data = request.form.getlist('selectedModule')[0]
+                    
+                    if request.form.getlist("checked!"):
+                        value = request.form.getlist('checked!')
+                        id_type = []
+                        for i in range(len(value)):
+                            id_type.append(value[i].split(" ", 2))
+                        print("tim")
+                        print(id_type)
+                        print(id_type[0][2])
+                    createdAssessment = Assessment(q1_id=int(id_type[0][1]),
+                                                q2_id=int(id_type[1][1]),
+                                                q3_id=int(id_type[2][1]),
+                                                q1_type=id_type[0][0],
+                                                q2_type=id_type[1][0],
+                                                q3_type=id_type[2][0],
+                                                q1_feedback = id_type[0][2],
+                                                q2_feedback = id_type[1][2],
+                                                q3_feedback = id_type[2][2],
+                                                is_summative=form.is_summative.data,
+                                                assessment_name=form.assessment_name.data,
+                                                admin_created=True,
+                                                module_code=form.module_code.data,
+                                                feedback_date=form.feedback_date.data
+                                                )
+                    db.session.add(createdAssessment)
+                    db.session.commit()
+                    flash("Assessment added.")
+                    return redirect(url_for('staffhome'))
 
         return render_template("Create Formative.html", form=form, 
                             multiple_all=multiple_all, fill_all=fill_all, 
@@ -208,9 +218,9 @@ def createassessment_route():
     @app.route("/feedback", methods = ["GET", "POST"])
     def viewfeedbacklist():
         attempts = Attempts.query.filter_by(user_id=current_user.id).all()
-        
+        wasNow = datetime.utcnow()
 
-        return render_template("Feedbacklist.html", attempts=attempts)
+        return render_template("Feedbacklist.html", attempts=attempts, wasNow=wasNow)
     
 
     @app.route("/feedback/<int:attempt_id>", methods = ["GET", "POST"])

@@ -67,7 +67,28 @@ function questionCheck() {
       noElements[i].name = "checked!";
     }
   }
-  console.log(count);
+  //console.log(count);
+  document.getElementById("question-counter").innerText = count + "/ 3";
+
+}
+
+function moduleCheck() {
+  var count = 0;
+  var noElements = document.getElementsByClassName("checkbx");
+  var moduleCode = document.getElementsByClassName("module-code");
+  var filterModule = document.getElementById("moduleDropdown");
+
+  for (var i = 0; i < noElements.length; i++) {
+    count += 1;
+    if (noElements[i].checked == true && moduleCode[i].innerHTML == filterModule.value){
+    } else if (noElements[i].checked == true && filterModule.value == "Select Module") {
+    } else {
+      noElements[i].checked = false;
+      noElements[i].name = "unchecked";
+      count -= 1;
+    }
+  }
+  //console.log(count);
   document.getElementById("question-counter").innerText = count + "/ 3";
 
 }
@@ -76,6 +97,84 @@ function uncheck() {
   var noElements = document.getElementsByClassName("checkbx");
   for (var i = 0; i < noElements.length; i++) {
     noElements[i].checked = false;
+  }
+}
+
+function editAssessmentLoad() {
+  var hiddenInfo = document.getElementsByClassName("hiddenQInfo");
+  var multipleQ = document.getElementsByClassName("Multiple");
+  var fillQ = document.getElementsByClassName("Fill");
+
+  for (i = 0; i < hiddenInfo.length / 2; i++) {
+    //console.log(hiddenInfo[2 * i].value, hiddenInfo[2 * i + 1].value);
+
+    if (hiddenInfo[2 * i].value == 'Multiple') {
+      for (j = 0; j < multipleQ.length; j++) {
+        if (multipleQ[j].id == hiddenInfo[2 * i + 1].value) {
+          var jid = j + 1;
+          var multiple = "Multiple "
+          var multipleid = multiple + jid;
+          document.getElementById(multipleid).checked = true;
+          document.getElementById(multipleid).name = "checked!";
+          //console.log(multipleQ[j].innerHTML);
+        }
+      }
+    } else {
+      for (j = 0; j < fillQ.length; j++) {
+        if (fillQ[j].id == hiddenInfo[2 * i + 1].value) {
+          var jid = j + 1;
+          var fill = "Fill "
+          var fillid = fill + jid;
+          document.getElementById(fillid).checked = true;
+          document.getElementById(fillid).name = "checked!";
+          //console.log(fillQ[j].innerHTML);
+        }
+      }
+    }
+  }
+
+  var moduleCode = document.getElementsByClassName("module-code");
+  var filterModule = document.getElementById("EditModule");
+  var question = document.getElementsByClassName("assessment-question");
+
+  console.log(question.length);
+  console.log(filterModule.innerHTML);
+
+  for (i = 0; i < question.length; i++) {
+    if (moduleCode[i].innerHTML == filterModule.innerHTML) {
+      question[i].style.display = "block";
+    } // Does not match
+    else {
+      question[i].style.display = "none";
+    }
+  }
+}
+
+function editFilter() {
+  var filterType = document.getElementById("assessmentDropdown");
+  var question_type = document.getElementsByClassName("question-type");
+  var question = document.getElementsByClassName("assessment-question");
+  var moduleCode = document.getElementsByClassName("module-code");
+  var filterModule = document.getElementById("EditModule");
+  var Type = document.getElementsByClassName("hiddenType");
+
+  for (i = 0; i < question.length; i++) {
+    if (question_type[i].innerHTML == filterType.value && moduleCode[i].innerHTML == filterModule.innerHTML) {
+      question[i].style.display = "block";
+    } else if (filterType.value == 'Select Type' && moduleCode[i].innerHTML == filterModule.innerHTML) {
+      question[i].style.display = "block";
+    } // Does not match
+    else {
+      question[i].style.display = "none";
+    }
+  }
+
+  for (i = 0; i < Type.length; i++) {
+    if (Type[i].id == filterType.value) {
+      Type[i].name = "selectedType";
+    } else {
+      Type[i].name = Type[i].id;
+    }
   }
 }
 
@@ -90,22 +189,22 @@ function filter() {
   var Module = document.getElementsByClassName("hiddenModule");
   var Modules = document.getElementsByClassName("modules");
 
-  for (i = 0; i < Modules.length - 1; i ++){
-    if (Modules[i+1].value == Modules[i].value){
-      Modules[i+1].style.display = 'none';
+  for (i = 0; i < Modules.length - 1; i++) {
+    if (Modules[i + 1].value == Modules[i].value) {
+      Modules[i + 1].style.display = 'none';
     }
   }
 
-  for (i = 0; i < Type.length; i ++){
-    if (Type[i].id == filterType.value){
+  for (i = 0; i < Type.length; i++) {
+    if (Type[i].id == filterType.value) {
       Type[i].name = "selectedType";
     } else {
       Type[i].name = Type[i].id;
     }
   }
 
-  for (i = 0; i < Module.length; i ++){
-    if (Module[i].id == filterModule.value){
+  for (i = 0; i < Module.length; i++) {
+    if (Module[i].id == filterModule.value) {
       Module[i].name = "selectedModule";
     } else {
       Module[i].name = Module[i].id;

@@ -7,15 +7,15 @@ from aat import app, db
 from sqlalchemy import desc
 
 class MCForm(FlaskForm):
-    question = StringField('question', validators=[DataRequired(), Length(min=3)])
-    correct = StringField('correct', validators=[DataRequired()])
-    module_code = StringField('module_code', validators=[DataRequired()])
-    incorrect_1 = StringField('incorrect_1', validators=[DataRequired()])
-    incorrect_2 = StringField('incorrect_2', validators=[DataRequired()])
-    incorrect_3 = StringField('incorrect_3', validators=[DataRequired()])
-    difficulty = SelectField('difficulty', choices=[('easy','easy'),('medium','medium'),('hard','hard')], validators=[DataRequired()])
-    is_summative = BooleanField('is_summative')
-    feedback = StringField('feedback', validators=[DataRequired()])
+    question = StringField('Question', validators=[DataRequired(), Length(min=3)])
+    correct = StringField('Correct', validators=[DataRequired()])
+    module_code = StringField('Module Code', validators=[DataRequired()])
+    incorrect_1 = StringField('Incorrect Answer 1', validators=[DataRequired()])
+    incorrect_2 = StringField('Incorrect Answer 2', validators=[DataRequired()])
+    incorrect_3 = StringField('Incorrect Answer 3', validators=[DataRequired()])
+    difficulty = SelectField('Difficulty', choices=[('easy','easy'),('medium','medium'),('hard','hard')], validators=[DataRequired()])
+    is_summative = BooleanField('Summative?')
+    feedback = StringField('Feedback', validators=[DataRequired()])
     submit = SubmitField('Upload')
 
 
@@ -54,6 +54,7 @@ def MultipleEditRoute():
                             is_summative=form.is_summative.data)
             db.session.add(question)
             db.session.commit()
+            flash("Changes Saved.")
             return redirect(url_for('staffhome'))
         return render_template("EditMC.html", MC=MC, form=form)
 
@@ -70,6 +71,7 @@ def MultipleEditRoute():
         if form.validate_on_submit():
             db.session.delete(MC)
             db.session.commit()
+            flash("Question Deleted.")
             return redirect(url_for('staffhome'))
         return render_template("DeleteMC.html", MC=MC, Q1=Q1, Q2=Q2, Q3=Q3, form=form)
 
@@ -82,6 +84,6 @@ def MultipleRoute():
             quest = Multiple(question=form.question.data, correct=form.correct.data, module_code=form.module_code.data, incorrect_1=form.incorrect_1.data, incorrect_2=form.incorrect_2.data, incorrect_3=form.incorrect_3.data, difficulty=form.difficulty.data, is_summative=form.is_summative.data, feedback=form.feedback.data)
             db.session.add(quest)
             db.session.commit()
+            flash("Question added.")
             return redirect(url_for('staffhome'))
         return render_template('Create Multiple Choice Question.html', form = form)
-

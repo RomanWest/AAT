@@ -1,19 +1,59 @@
 {% extends "layout.html" %}
 {% block content %}
-assessment name: {{attempt.assessment_name}}<br>
-your score: {{attempt.percentage_correct}}%<br>
-q1: {{q1}}<br>
-your answer: {{attempt.answer_1}}<br>
-correct answer: {{correct_1}}<br>
-feedback: {{attempt.feedback_1}}<br>
-<br>
-q2: {{q2}}<br>
-your answer: {{attempt.answer_2}}<br>
-correct answer: {{correct_2}}<br>
-feedback: {{attempt.feedback_2}}<br>
-<br>
-q3: {{q3}}<br>
-your answer: {{attempt.answer_3}}<br>
-correct answer: {{correct_3}}<br>
-feedback: {{attempt.feedback_3}}<br>
+
+
+<div class="feedback-container">
+
+<div class="feedback-title">
+    <div id="feed-title-segs"><h2><strong>Assessment: </strong></h2>&nbsp;<h2> {{attempt.assessment_name}}</h2></div>
+    <div id="feed-title-segs"><h2><strong>Your Score: </strong></h2>&nbsp;<h2> {{attempt.percentage_correct|round(2, 'floor')}}% </h2></div>
+    {% if attempt.percentage_correct >= 70 %}
+    <div id="feed-titel-segs"><h2><strong>Distinction! Keep up the good work</strong></h2></div>
+    {% elif attempt.percentage_correct >= 50 %}
+    <div id="feed-titel-segs"><h2><strong>Pass! Keep up the good work</strong></h2></div>
+    {% else %}
+    <div id="feed-titel-segs"><h2><strong>Fail. Please follow up on the feedback below</strong></h2></div>
+    {% endif %}
+</div>
+
+<div class="question-feedback">
+    <div class="feedback-elements"><b>Q1: </b> {{q1}} </div>
+    <div class="feedback-elements"><b>Your Answer: </b> {{attempt.answer_1}} </div>
+    <div class="feedback-elements"><b>Correct Answer: </b> {{correct_1}} </div>
+    <div class="feedback-elements"><b>Feedback: </b> 
+        {% if attempt.answer_1 == correct_1 %}
+            Well done!
+        {% else %} 
+            {{attempt.feedback_1}} 
+        {% endif %}
+        </div>
+</div>
+
+<div class="question-feedback">
+    <div class="feedback-elements"><b>Q2: </b> {{q2}} </div>
+    <div class="feedback-elements"><b>Your Answer: </b> {{attempt.answer_2}} </div>
+    <div class="feedback-elements"><b>Correct Answer: </b> {{correct_2}} </div>
+    <div class="feedback-elements"><b>Feedback: </b> 
+        {% if attempt.answer_2 == correct_2 %}
+            Well done!
+        {% else %} 
+            {{attempt.feedback_2}} 
+        {% endif %} 
+    </div>
+</div>
+
+<div class="question-feedback">
+    <div class="feedback-elements"><b>Q3: </b> {{q3}} </div>
+    <div class="feedback-elements"><b>Your Answer: </b> {{attempt.answer_3}} </div>
+    <div class="feedback-elements"><b>Correct Answer: </b> {{correct_3}} </div>
+    <div class="feedback-elements"><b>Feedback: </b> 
+        {% if attempt.answer_3 == correct_3 %}
+            Well done!
+        {% else %} 
+            {{attempt.feedback_3}} 
+        {% endif %}
+    </div>
+</div>
+</div>
+
 {% endblock content %}

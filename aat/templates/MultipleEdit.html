@@ -13,7 +13,7 @@ Answer : {{question.correct}} &nbsp;
 </div>
 </div>
 <div class="question-date">
-    <div>Created : {{question.date_created}}</div>
+    <div>Created : {{question.date_created.strftime("%x")}}</div>
     <a href="{{ url_for('MultipleEditQuest', id=question.id) }}">Edit</a>
     <a href="{{ url_for('MultipleDeleteQuest', id=question.id) }}">Delete</a>
 </div>
