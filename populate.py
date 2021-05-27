@@ -1,5 +1,5 @@
 from aat import db
-from aat.models import Assessment, Multiple, Fill, User
+from aat.models import Assessment, Multiple, Fill, User, Attempts
 from datetime import datetime
 
 Multiple.query.delete()
@@ -172,8 +172,20 @@ db.session.add(User(username="Admin", first_name="Ad", last_name="min", email="a
                     module_1="Fruit123", module_2="Biology123", module_3="Maths123"))
 db.session.commit()
 
+db.session.add(User(username="Alice", first_name="Alice", last_name="Wang", email="alice123@gmail.com", password="123456", is_admin=False,
+                    module_1="Fruit123", module_2="Biology123", module_3="Maths123"))
 db.session.commit()
-db.session.add(User(username="Student", first_name="Stu", last_name="dent", email="stu@dent.com", password="123456", is_admin=False,
+
+db.session.commit()
+db.session.add(User(username="Phoebe", first_name="Phoebe", last_name="Zhu", email="phoebe123@dent.com", password="123456", is_admin=False,
+                    module_1="Fruit123", module_2="Biology123", module_3="Maths123"))
+db.session.commit()
+
+db.session.add(User(username="Lily", first_name="Lily", last_name="Zhang", email="lily123@gmail.com", password="123456", is_admin=False,
+                    module_1="Fruit123", module_2="Biology123", module_3="Maths123"))
+db.session.commit()
+
+db.session.add(User(username="Tom", first_name="Tom", last_name="Smith", email="tom123@gmail.com", password="123456", is_admin=False,
                     module_1="Fruit123", module_2="Biology123", module_3="Maths123"))
 db.session.commit()
 
@@ -202,3 +214,18 @@ db.session.add(Assessment(assessment_name="Maths Test Week 2",is_summative=False
     q1_type="Multiple", q1_id="28", q2_type="Multiple", q2_id="29", q3_type="Multiple", q3_id="31", 
     q1_feedback = "Refer to Maths123 module!", q2_feedback = "Refer to Maths123 module!", q3_feedback = "Refer to Maths123 module!"))
 db.session.commit()
+
+
+
+db.session.add(Attempts(id = '1',user_id = "2",assessment_id = "1",assessment_name = "fruit", attempt_no = 1, answer_1 = "fasdf", correct_1 = True,feedback_1 = "fasdf",answer_2 = "fasdf", correct_2 = False,feedback_2 = "fasdf",answer_3 = "fasdf", correct_3 = True,feedback_3 = "fasdf",percentage_correct = 0.7,module_code = "fruit123", date_created = datetime(2021,5,20), feedback_date = datetime(2021,5,23),is_summative = 1))
+db.session.commit()
+
+db.session.add(Attempts(id = '2',user_id = "2",assessment_id = "2",assessment_name = "Biology", attempt_no = 2, answer_1 = "sdafdasf", correct_1 = False,feedback_1 = "fadsaff",answer_2 = "fgfdgf", correct_2 = True,feedback_2 = "faasdfaf",answer_3 = "asdff", correct_3 = True,feedback_3 = "fkwl",percentage_correct = 0.9,module_code = "biology123", date_created = datetime(2021,5,25), feedback_date = datetime(2021,5,28),is_summative = 1))
+db.session.commit()
+
+
+
+
+
+
+

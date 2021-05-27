@@ -9,25 +9,24 @@ from aat.MultipleChoice import MultipleRoute, MultipleEditRoute
 from aat.Fill import filleditroute, fillblankroute, test_fill_route
 from aat.Assessment import Assessment_Form, createassessment_route, testassess_route
 
-<<<<<<< HEAD
-@app.route("/c")
-
-=======
 
 @app.route("/c")
->>>>>>> 31d74340ad5d69afd5baeacd7d5f38238f80fbe3
+
+
+@app.route("/c")
+
 @app.route("/Staff-Home", methods=["GET", 'POST'])
 def staffhome():
     assessment_all = Assessment.query.all()
     return render_template('Staff Home.html', assessment_all=assessment_all)
 
-<<<<<<< HEAD
+
 @app.route("/DeleteAssessment/<int:assessment_id>", methods=['GET', 'POST'])
 
-=======
 
 @app.route("/Delete-Assessment/<int:assessment_id>", methods=['GET', 'POST'])
->>>>>>> 31d74340ad5d69afd5baeacd7d5f38238f80fbe3
+
+
 def DeleteAssessment(assessment_id):
 
     assessment = db.session.query(Assessment).get(assessment_id)
@@ -211,24 +210,18 @@ def submitAssessment():
     return render_template('Submit Assessment.html')
 
 
-<<<<<<< HEAD
+
 @app.route('/View-Student-List')
 def viewStudentList():
     post = User.query.filter(User.is_admin == False).all()
     return render_template('View Student List.html',post=post)
-=======
+
 @app.route('/View-Student-Number')
 def viewStudentNumber():
     post = User.query(db.func.count(User.is_admin == False)).all()
     return render_template('View Student Number.html', post=post)
 
 
-@app.route('/View-Student-List')
-def viewStudentList():
-    post = User.query.all()
-    return render_template('View Student List.html', post=post)
-
->>>>>>> 31d74340ad5d69afd5baeacd7d5f38238f80fbe3
 
 @app.route('/Search-Student', methods=['POST'])
 def searchStudent():
@@ -295,10 +288,10 @@ def EditAssessment(assessment_id):
         db.session.commit()
         flash("edited successfully")
         return redirect(url_for('staffhome'))
-<<<<<<< HEAD
+
     return render_template('EditAssessment.html', assessment=assessment, form=form)
 
 
-=======
+
     return render_template('Edit Assessment.html', assessment=assessment, form=form, multiple_all=multiple_all, fill_all=fill_all)
->>>>>>> 31d74340ad5d69afd5baeacd7d5f38238f80fbe3
+

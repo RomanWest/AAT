@@ -9,7 +9,7 @@
         <div class="container" style="padding-top: 150px;padding-left: 220px">
             <div>
                 <a class="button">Student Information</a>
-                    <div class="content-section" style="border: 2px solid;border-radius: 3px;position: fixed; left: 420px; top: 400px">
+                    <div class="content-section" style="border: 2px solid;border-radius: 3px;position: fixed; left: 405px; top: 400px">
                                    <div>
                                         <p>Student name: {{ post.first_name }}&nbsp&nbsp{{ post.last_name }}</p>
                                         <p>Email: {{ post.email }}</p>
@@ -28,7 +28,7 @@
         <div class="container" style="padding-left: 200px; padding-top: 150px">
             <div>
                 <a class="button">Student Attainment</a>
-                <div class="content-section" style="border: 2px solid;border-radius: 3px;position: fixed; left: 850px; top: 400px">
+                <div class="content-section" style="border: 2px solid;border-radius: 3px;position: fixed; left: 800px; top: 400px">
                     <ul class="list-group">
                         <li class="list-group-item list-group-item-light" style="padding-top: 23px; padding-bottom: 23px"><a>Fruit123 Grades:{{ fruit_attempts.percentage_correct }}</a></li>
                         <li class="list-group-item list-group-item-light" style="padding-top: 22px; padding-bottom: 22px"><a>Biology123 Grades:{{ biology_attempts.percentage_correct }}</a></li>
@@ -43,7 +43,7 @@
         <div class="container" style="padding-left: 200px; padding-top: 150px">
             <div>
                 <a class="button">Student Attempts</a>
-                <div class="content-section" style="border: 2px solid;border-radius: 3px;position: fixed; left: 1280px; top: 400px">
+                <div class="content-section" style="border: 2px solid;border-radius: 3px;position: fixed; left: 1200px; top: 400px">
                         {% for a in attempts %}
                             <li class="list-group-item list-group-item-light" style="padding-top: 10px; padding-bottom: 10px"><a>{{ a.assessment_name }}</a></li>
                         {% endfor %}
