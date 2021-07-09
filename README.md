@@ -1,4 +1,1 @@
-# CMT313 TeamJ
-
-CMT313 Automated Assessment Tool Project
-Tim Edit
+Automated Assessment Tool - Team Software Engineering project
